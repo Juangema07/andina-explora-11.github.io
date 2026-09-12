@@ -1,0 +1,12 @@
+DOMINIO PROPUESTO
+=================
+andina-explora-11.github.io
+
+La web está preparada como sitio estático y optimizada para Google Chrome en PC, tablet y móvil.
+
+IMPORTANTE: un dominio público no puede registrarse desde un archivo HTML local. Para que exista una URL pública real hay que publicarlo en un servicio de hosting. El nombre anterior es una propuesta de URL de GitHub Pages; si está disponible, puede quedar como:
+https://andina-explora-11.github.io/
+
+La página no depende de funciones exclusivas de Edge. Usa HTML5, CSS y JavaScript estándar y está pensada para Chrome.
+
+Para publicación, sube index.html, styles.css, app.js y la carpeta music/ al hosting elegido.
