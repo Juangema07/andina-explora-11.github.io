@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102f27">
+<meta name="description" content="Región Andina de Colombia — experiencia educativa interactiva para grado 11°.">
+<title>ANDINA · Colombia entre montañas</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="loader"><div class="loader-logo">ANDINA</div><div class="loader-bar"><i></i></div><span>Preparando el recorrido…</span></div>
+<div class="grain"></div>
+<header class="topbar">
+  <a class="brand" href="#inicio" aria-label="Inicio"><span>▲</span> ANDINA <small>COLOMBIA</small></a>
+  <nav id="mainNav">
+    <a href="#geografia">Geografía</a><a href="#humana">Personas</a><a href="#economia">Economía</a><a href="#cultura">Cultura</a><a href="#desafios">Desafíos</a><a href="#juegos">Juegos</a><a href="#recursos">Fuentes</a><a href="#explora">Explora</a>
+  </nav>
+  <button id="customizeBtn" class="round-btn" aria-label="Personalizar">☼</button>
+</header>
+
+<aside id="customPanel" class="custom-panel">
+  <div class="panel-title"><b>Personaliza tu recorrido</b><button id="closeCustom">×</button></div>
+  <label>Tema<select id="themeSelect"><option value="forest">Bosque</option><option value="night">Noche</option><option value="sun">Tierra</option></select></label>
+  <label>Texto<input id="fontScale" type="range" min=".9" max="1.15" step=".01" value="1"></label>
+  <label class="check"><input id="motionToggle" type="checkbox" checked> Animaciones</label>
+  <label class="check"><input id="contrastToggle" type="checkbox"> Alto contraste</label>
+  <hr>
+  <div class="music-head"><b>♫ Música</b><span id="musicStatus">Lista nativa</span></div>
+  <p class="tiny">La web trae una pista original. También puedes cargar varias canciones desde tu equipo.</p>
+  <select id="trackSelect"><option value="">Sin música</option></select>
+  <div class="music-row"><button id="musicToggle" class="small-btn">▶ Reproducir</button><button id="musicLoop" class="small-btn">↻ Repetir: sí</button></div>
+  <input id="musicVolume" type="range" min="0" max="1" step=".05" value=".3">
+  <label class="upload-music">+ Añadir canciones<input id="musicFiles" type="file" accept="audio/*" multiple></label>
+  <audio id="audioPlayer" preload="metadata"></audio>
+</aside>
+
+<main>
+<section id="inicio" class="hero section-anchor">
+  <div class="hero-bg hero-bg-a"></div><div class="hero-bg hero-bg-b"></div><div class="hero-bg hero-bg-c"></div>
+  <div class="hero-copy reveal"><span class="eyebrow">CIENCIAS SOCIALES · GRADO 11° · COLOMBIA</span><h1>REGIÓN<br><em>ANDINA</em></h1><p>Una historia de montañas, agua, ciudades, cultura y biodiversidad contada para explorarla, no solo memorizarla.</p><div class="hero-actions"><a class="primary" href="#geografia">Comenzar recorrido <b>↓</b></a><a class="ghost" href="#juegos">Ir a los retos</a></div><div class="hero-note"><span>01</span><i></i><span>UNA REGIÓN · MUCHAS ALTURAS</span></div></div>
+  <div class="hero-sticker sticker-peak">⛰️<small>ANDES</small></div><div class="hero-sticker sticker-coffee">☕<small>CAFÉ</small></div><div class="hero-sticker sticker-water">💧<small>AGUA</small></div>
+  <div class="scroll-word">DESLIZA<br><b>↓</b></div>
+</section>
+
+<section class="story-intro reveal-section"><div class="story-number">01</div><div><span class="tag">LA IDEA</span><h2>Piensa la región como un sistema.</h2><p>Una montaña cambia la temperatura. La temperatura influye en los ecosistemas. El agua conecta territorios. Las personas transforman y habitan esos espacios. La geografía se convierte así en una historia de relaciones.</p></div><div class="mini-facts"><b>3</b><span>cordilleras principales</span><b>2</b><span>valles interandinos destacados</span></div></section>
+
+<section id="geografia" class="content-section section-anchor mountain-section">
+  <div class="section-head reveal-section"><span class="tag">02 · GEOGRAFÍA FÍSICA</span><h2>La montaña cambia<br><em>todo el paisaje.</em></h2><p>La Región Andina se ubica en el centro del país y se organiza alrededor de los tres ramales de los Andes: Occidental, Central y Oriental.</p></div>
+  <div class="detail-nav reveal-section"><button data-detail="ubicacion">Ubicación completa</button><button data-detail="relieve">Relieve y cordilleras</button><button data-detail="clima">Clima y pisos térmicos</button><button data-detail="agua">Hidrografía</button><button data-detail="biodiversidad">Biodiversidad</button></div><div class="geo-cards">
+    <article class="geo-card geo-map reveal-section"><span>UBICACIÓN</span><h3>En el corazón de Colombia</h3><p>La región ocupa el espacio central del territorio colombiano. Sus montañas y valles forman corredores naturales donde se concentran numerosos municipios y grandes ciudades.</p><div class="map-illustration"><i class="map-dot d1">Bogotá</i><i class="map-dot d2">Medellín</i><i class="map-dot d3">Cali</i><div class="map-ridge"></div></div></article>
+    <article class="geo-card reveal-section"><span>RELIEVE</span><h3>Occidental · Central · Oriental</h3><p>Al entrar a Colombia, los Andes se dividen en tres grandes cordilleras. Entre ellas aparecen valles, cañones, altiplanos, mesetas y laderas.</p><div class="ridge-bars"><i></i><i></i><i></i><b>OCCIDENTAL</b><b>CENTRAL</b><b>ORIENTAL</b></div></article>
+  </div>
+  <div class="altitude-story reveal-section"><div class="altitude-copy"><span class="tag">PISOS TÉRMICOS</span><h3>Sube y descubre el cambio.</h3><p>Selecciona una altura. No es una frontera exacta: es una forma sencilla de entender cómo la altitud modifica temperatura, vegetación y formas de vida.</p><div class="altitude-buttons"><button class="active" data-alt="calido">Cálido</button><button data-alt="templado">Templado</button><button data-alt="frio">Frío</button><button data-alt="paramo">Páramo</button></div><div id="altitudeInfo" class="info-pop"><b>Cálido</b><span>Zonas de menor altura, con temperaturas generalmente más altas.</span></div></div><div class="altitude-art"><div class="layer l-cloud">☁</div><div class="layer l-condor">🦅</div><div class="layer l-paramo">🌿</div><div class="layer l-city">🏙️</div><div class="layer l-river">〰〰〰</div><div class="layer l-mountain">▲ ▲ ▲</div></div></div>
+  <div class="three-columns reveal-section"><article><b>AGUA</b><h3>Magdalena y Cauca</h3><p>Sus valles interandinos son fundamentales para población, agricultura, transporte, ecosistemas y actividades económicas.</p></article><article><b>ECOSISTEMAS</b><h3>Páramos y bosques</h3><p>Las diferencias de altura crean ambientes muy distintos, desde zonas cálidas hasta ecosistemas de alta montaña.</p></article><article><b>BIODIVERSIDAD</b><h3>Vida adaptada a la altura</h3><p>Cóndor de los Andes, danta de páramo, venados y numerosas aves y plantas son parte de esta diversidad.</p></article></div>
+  <div class="visual-banner reveal-section"><div><span>PARA RECORDAR</span><strong>Más altura ≠ solo más frío.</strong><p>También cambia el suelo, la vegetación, el agua disponible y la manera en que las personas aprovechan el territorio.</p></div><div class="big-number">↑ 5.000 m</div></div>
+</section>
+
+<section id="humana" class="dark-section section-anchor people-section">
+  <div class="section-head reveal-section"><span class="tag">03 · GEOGRAFÍA HUMANA</span><h2>Las montañas también<br><em>se habitan.</em></h2><p>La distribución de la población, las ciudades y las actividades rurales está relacionada con el relieve, el agua, las vías y la historia del territorio.</p></div>
+  <div class="people-grid"><article class="people-number reveal-section"><span>ATLAS DANE</span><strong>≈70%</strong><p>En la delimitación regional del Atlas Estadístico, la Región Andina concentraba cerca del 70,1 % de la población del país en 2005. Para datos actuales, consulta el DANE.</p></article><article class="city-panel reveal-section"><span>CIUDADES DESTACADAS</span><div class="city-cloud"><b>Bogotá</b><b>Medellín</b><b>Cali</b><b>Bucaramanga</b><b>Manizales</b><b>Pereira</b><b>Armenia</b><b>Popayán</b></div></article></div>
+  <div class="detail-nav reveal-section"><button data-detail="poblacion">Población</button><button data-detail="ciudades">Ciudades</button><button data-detail="diversidad">Diversidad cultural</button><button data-detail="urbanizacion">Urbanización</button><button data-detail="retosocial">Retos sociales</button></div><div class="human-cards"><article class="reveal-section"><span>01</span><h3>Campo y ciudad</h3><p>La región combina grandes áreas metropolitanas con municipios rurales, zonas campesinas y territorios de montaña.</p></article><article class="reveal-section"><span>02</span><h3>Diversidad cultural</h3><p>Las identidades locales se expresan en gastronomía, música, fiestas, artesanías, formas de trabajo y memoria.</p></article><article class="reveal-section"><span>03</span><h3>Retos sociales</h3><p>Persisten desigualdades en ingresos y oportunidades, acceso a servicios, conectividad y condiciones de vida en distintos territorios.</p></article></div>
+  <div class="infographic-slot reveal-section"><span>INFOGRAFÍA 01</span><h3>Población y diversidad cultural</h3><p>Cuando tengan la infografía de Canva/PowerPoint, colócala aquí como imagen o PDF.</p></div>
+</section>
+
+<section id="cultura" class="content-section section-anchor culture-section">
+  <div class="section-head reveal-section"><span class="tag">04 · CULTURA Y DIVERSIDAD</span><h2>Una región que<br><em>se escucha y se saborea.</em></h2><p>La cultura andina no es una sola expresión: cambia entre departamentos, ciudades, municipios y comunidades.</p></div>
+  <div class="culture-mosaic"><article class="culture-photo c1 reveal-section"><span>GASTRONOMÍA</span><h3>Maíz, café y cocina regional</h3><p>Preparaciones como ajiaco, tamales, lechona y otras recetas locales muestran la relación entre territorio y alimentación.</p></article><article class="culture-photo c2 reveal-section"><span>MÚSICA</span><h3>Ritmos y memoria</h3><p>La música tradicional y popular acompaña fiestas, encuentros y relatos regionales.</p></article><article class="culture-photo c3 reveal-section"><span>ARTESANÍAS</span><h3>Oficios y materiales</h3><p>Tejidos, cerámica, madera y otros oficios conservan conocimientos transmitidos entre generaciones.</p></article><article class="culture-photo c4 reveal-section"><span>FIESTAS</span><h3>Territorio en celebración</h3><p>Las celebraciones locales mezclan historia, identidad, música, comida y encuentro comunitario.</p></article></div>
+  <div class="sticker-row reveal-section"><span>☕ café</span><span>🧺 artesanía</span><span>🎶 tradición</span><span>🏔️ montaña</span><span>🌱 naturaleza</span></div>
+</section>
+
+<section id="economia" class="content-section section-anchor economy-section">
+  <div class="section-head reveal-section"><span class="tag">05 · GEOGRAFÍA ECONÓMICA</span><h2>Del territorio<br><em>a lo que consumimos.</em></h2><p>Las actividades económicas aprovechan recursos, conocimientos, infraestructura y ubicación. El relieve puede facilitar unas actividades y dificultar otras.</p></div>
+  <div class="detail-nav reveal-section"><button data-detail="agro">Agricultura</button><button data-detail="industria">Industria</button><button data-detail="servicios">Servicios</button><button data-detail="turismo">Turismo</button><button data-detail="conectividad">Conectividad</button></div><div class="economy-tabs reveal-section"><button class="active" data-econ="primario">01 · Primario</button><button data-econ="secundario">02 · Secundario</button><button data-econ="terciario">03 · Terciario</button></div>
+  <div id="econInfo" class="econ-detail reveal-section"><div class="econ-number">01</div><div><h3>Sector primario</h3><p>Agricultura, ganadería, pesca continental y minería forman parte de la producción regional. El café es un producto emblemático de varias zonas andinas.</p><div class="chips"><span>☕ Café</span><span>🌱 Agricultura</span><span>🐄 Ganadería</span><span>⛏️ Minería</span></div></div></div>
+  <div class="economy-grid"><article class="econ-card reveal-section"><span>COMERCIO</span><h3>Grandes mercados urbanos</h3><p>Bogotá, Medellín, Cali y otras ciudades concentran comercio y servicios que conectan productores y consumidores.</p></article><article class="econ-card reveal-section"><span>CONECTIVIDAD</span><h3>Carreteras y corredores</h3><p>La geografía montañosa hace que la infraestructura vial sea clave para transportar personas, alimentos y mercancías.</p></article><article class="econ-card reveal-section"><span>TURISMO</span><h3>Naturaleza + cultura</h3><p>Parques, paisajes de montaña, pueblos, gastronomía y experiencias de naturaleza aportan al turismo regional.</p></article></div>
+  <div class="tourism-strip reveal-section"><div><span>DESTINOS DE REFERENCIA</span><h3>Los Nevados · El Cocuy · Chingaza · Puracé</h3><p>Consulta las condiciones y reglamentos oficiales antes de presentar información turística actualizada.</p></div><div class="route-line">●━━●━━●━━●</div></div>
+  <div class="infographic-slot light reveal-section"><span>INFOGRAFÍA 02</span><h3>Geografía humana + económica</h3><p>Espacio para la segunda infografía original del grupo.</p></div>
+</section>
+
+<section id="desafios" class="dark-section section-anchor challenge-section">
+  <div class="section-head reveal-section"><span class="tag">06 · PROBLEMÁTICAS Y DESAFÍOS</span><h2>Conocer también es<br><em>preguntar qué está pasando.</em></h2><p>Seleccionamos tres retos para analizarlos con una lógica sencilla: problema → causas → consecuencias → afectados → posibles respuestas.</p></div>
+  <div class="challenge-grid"><article class="challenge reveal-section" data-modal="deforestacion"><b>01</b><h3>Deforestación y cambio de uso del suelo</h3><p>La pérdida de cobertura vegetal puede fragmentar ecosistemas y afectar agua y biodiversidad.</p><button>Explorar →</button></article><article class="challenge reveal-section" data-modal="agua"><b>02</b><h3>Presión sobre el agua</h3><p>El crecimiento urbano y productivo exige proteger fuentes, páramos, humedales y cuencas.</p><button>Explorar →</button></article><article class="challenge reveal-section" data-modal="mineria"><b>03</b><h3>Actividades extractivas</h3><p>La minería puede generar empleo y recursos, pero también impactos ambientales si no se gestiona adecuadamente.</p><button>Explorar →</button></article></div>
+  <div class="reflection reveal-section"><span>REFLEXIÓN</span><h3>¿Qué solución sería viable en tu territorio?</h3><p>Elige un problema, identifica a quién afecta y propón una acción concreta que combine conservación y bienestar social.</p><a class="primary" href="#juegos">Poner a prueba lo aprendido</a></div>
+</section>
+
+<section id="producciones" class="content-section section-anchor media-section">
+  <div class="section-head reveal-section"><span class="tag">07 · PRODUCCIONES DEL GRUPO</span><h2>Lo que ustedes<br><em>crearon.</em></h2><p>La web está preparada para integrar los productos obligatorios sin romper el diseño.</p></div>
+  <div class="media-grid"><article class="media-card video-card reveal-section"><span>VIDEO · 3–5 MIN</span><h3>Voces de la montaña</h3><p>Mini documental, reportaje, entrevista o noticiero creado por el grupo.</p><button class="primary" data-embed="video">▶ Añadir video</button><div id="videoFrame" class="embed-box"><input id="videoUrl" placeholder="Enlace de YouTube o video"><button class="small-btn" onclick="applyEmbed('video')">Cargar</button></div></article><article class="media-card podcast-card reveal-section"><span>PODCAST · 5–8 MIN</span><h3>Voces Andinas</h3><p>Una conversación sobre cultura, economía, territorio o problemáticas.</p><button class="outline" data-embed="podcast">🎧 Añadir podcast</button><div id="podcastFrame" class="embed-box"><input id="podcastUrl" placeholder="Enlace directo al audio"><button class="small-btn" onclick="applyEmbed('podcast')">Cargar</button></div></article></div>
+  <div class="presentation-card reveal-section"><div><span>POWERPOINT · 10–15 DIAPOSITIVAS</span><h3>La investigación completa</h3><p>Selecciona el archivo final del grupo para tenerlo a mano durante la exposición.</p></div><label class="file-button">Seleccionar archivo<input id="pptFile" type="file" accept=".ppt,.pptx,.pdf"></label></div>
+</section>
+
+<section id="juegos" class="game-section section-anchor">
+  <div class="section-head reveal-section"><span class="tag">08 · DESAFÍO ANDINO</span><h2>Sube la montaña<br><em>contra el reloj.</em></h2><p>Ahora sí: cinco juegos distintos. Cada minijuego ganado te hace avanzar en la montaña. Tienes <b>3 vidas</b>. Pierdes una si se acaba el tiempo o fallas.</p></div>
+  <div class="climb-hud reveal-section"><div><span>PUNTOS</span><b id="totalScore">0</b></div><div><span>MEJOR</span><b id="bestScore">0</b></div><div><span>TIEMPO</span><b id="gameTime">00:00</b></div><div><span>VIDAS</span><b id="lives">❤ ❤ ❤</b></div></div>
+  <div class="mountain-progress reveal-section"><div class="peak-line"><i id="climbFill"></i></div><div class="peak-marker">🏔️</div><div class="climb-labels"><span>Base</span><span>Bosque</span><span>Páramo</span><span>Cumbre</span></div></div>
+  <div class="game-tabs reveal-section"><button class="active" data-game="quiz">🧠 Quiz</button><button data-game="crossword">🧩 Crucigrama</button><button data-game="wordsearch">🔎 Sopa</button><button data-game="challenge">⏱️ Ascenso</button><button data-game="memory">🃏 Memoria</button></div>
+  <div id="gameArea" class="reveal-section"></div>
+</section>
+
+<section id="recursos" class="resources-section section-anchor">
+  <div class="section-head reveal-section"><span class="tag">09 · PARA SEGUIR EXPLORANDO</span><h2>Fuentes confiables<br><em>para ampliar.</em></h2><p>Estas fuentes sirven para contrastar datos, actualizar cifras y construir la bibliografía del proyecto.</p></div>
+  <div class="resource-list reveal-section">
+    <a href="https://colombia.co/pais-colombia/geografia-y-medio-ambiente/region-andina-de-colombia" target="_blank" rel="noopener"><b>Colombia.co</b><span>Información general sobre la Región Andina.</span>↗</a>
+    <a href="https://geoportal.dane.gov.co/servicios/atlas-estadistico/src/Tomo_I_Demografico/2.3.1.-poblacion-en-la-region-andina.html" target="_blank" rel="noopener"><b>DANE · Atlas Estadístico</b><span>Población y delimitación regional.</span>↗</a>
+    <a href="https://geoportal.dane.gov.co/geovisores/territorio/estadisticas-territoriales-sen/" target="_blank" rel="noopener"><b>DANE · Geovisor</b><span>Mapas e indicadores territoriales.</span>↗</a>
+    <a href="https://www.igac.gov.co/" target="_blank" rel="noopener"><b>IGAC</b><span>Cartografía e información geográfica oficial.</span>↗</a>
+    <a href="https://www.parquesnacionales.gov.co/" target="_blank" rel="noopener"><b>Parques Nacionales</b><span>Áreas protegidas y conservación.</span>↗</a>
+    <a href="https://colombia.travel/es/andes-colombianos" target="_blank" rel="noopener"><b>Colombia Travel</b><span>Cultura, destinos y naturaleza de los Andes.</span>↗</a>
+    <a href="https://historianatural.unal.edu.co/expo1/andina/" target="_blank" rel="noopener"><b>Universidad Nacional · Historia Natural</b><span>Divulgación científica sobre la región andina.</span>↗</a>
+  </div>
+  <div class="bibliography reveal-section"><h3>Fuentes consultadas</h3><ol><li>DANE. <i>Atlas Estadístico de Colombia — Población en la Región Andina.</i></li><li>Colombia.co. <i>Región Andina de Colombia.</i></li><li>Instituto Geográfico Agustín Codazzi (IGAC). Información geográfica y cartográfica.</li><li>Parques Nacionales Naturales de Colombia. Información de áreas protegidas.</li><li>Colombia Travel. <i>Andes colombianos.</i></li><li>Universidad Nacional de Colombia. Divulgación de historia natural y biodiversidad.</li></ol><p class="source-note">La información debe ser parafraseada por el grupo y las cifras deben verificarse en la fuente original antes de entregar.</p></div>
+</section>
+
+
+<section class="content-section section-anchor deep-dive" id="explora">
+  <div class="section-head reveal-section"><span class="tag">09 · EXPLORA A FONDO</span><h2>Abre una puerta.<br><em>Quédate a descubrir.</em></h2><p>La información no termina en una tarjeta. Usa los paneles para profundizar en conceptos, relaciones y ejemplos de la Región Andina.</p></div>
+  <div class="explore-grid reveal-section">
+    <article><span>ALTURA</span><strong>Más de 5.000 m</strong><p>La gran variación altitudinal ayuda a explicar cambios de temperatura, vegetación, cultivos y formas de poblamiento.</p><button data-detail="altura">Ver explicación</button></article>
+    <article><span>AGUA</span><strong>Cuencas y páramos</strong><p>Los ecosistemas de montaña participan en la regulación hídrica y sostienen actividades humanas y naturales.</p><button data-detail="cuencas">Abrir mapa conceptual</button></article>
+    <article><span>CIUDADES</span><strong>Red urbana</strong><p>Grandes ciudades, ciudades intermedias y municipios rurales forman redes de intercambio y servicios.</p><button data-detail="redurbana">Ver relaciones</button></article>
+    <article><span>ECONOMÍA</span><strong>Territorio → producto</strong><p>Un producto regional no aparece de la nada: depende de clima, suelo, trabajo, infraestructura, mercados y conocimientos.</p><button data-detail="cadena">Ver cadena</button></article>
+  </div>
+  <div class="timeline reveal-section"><div><b>Antes</b><span>Territorios, caminos y saberes locales</span></div><i></i><div><b>Hoy</b><span>Ciudades, agricultura, industria, servicios y turismo</span></div><i></i><div><b>Futuro</b><span>Conservar, conectar y producir de forma sostenible</span></div></div>
+</section>
+
+<section class="credits"><div class="reveal-section"><span class="tag">10 · DATOS DEL GRUPO</span><h2>Completen la portada.</h2><p>Los campos se guardan en este navegador para que la página pueda personalizarse sin editar el código.</p></div><div class="team-fields reveal-section"><input placeholder="Integrante 1"><input placeholder="Integrante 2"><input placeholder="Integrante 3"><input placeholder="Integrante 4"><input placeholder="Integrante 5"><input placeholder="Integrante 6"><input class="slogan" placeholder="Frase / eslogan del grupo"></div><div class="credits-foot"><span>CIENCIAS SOCIALES · 11°</span><span>REGIÓN ANDINA · 2026</span><a href="#inicio">Volver arriba ↑</a></div></section>
+</main>
+<div id="modal" class="modal"><div class="modal-box"><button id="modalClose">×</button><div id="modalContent"></div></div></div>
+<div id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
