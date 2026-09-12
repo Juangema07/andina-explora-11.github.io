@@ -1,36 +1,38 @@
-name: Apply games fix
+name: Apply games and mobile fixes
 on:
   push:
     paths:
       - 'andina-games-fix.js'
+      - 'mobile-fixes.css'
       - '.github/workflows/apply-games-fix.yml'
   workflow_dispatch:
 permissions:
   contents: write
 jobs:
-  games:
+  fixes:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Add games fix script
+      - name: Ensure fix assets are loaded
         run: |
           python - <<'PY'
           from pathlib import Path
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
-          tag='<script src="andina-games-fix.js"></script>'
-          if tag not in s:
+          game='<script src="andina-games-fix.js"></script>'
+          css='<link rel="stylesheet" href="mobile-fixes.css">'
+          if game not in s:
               marker='<script src="app.js" defer></script>'
-              if marker in s:
-                  s=s.replace(marker, marker+'\n'+tag)
-              else:
-                  s=s.replace('</body>', tag+'\n</body>')
-              p.write_text(s,encoding='utf-8')
+              s=s.replace(marker, marker+'\n'+game) if marker in s else s.replace('</body>', game+'\n</body>')
+          if css not in s:
+              marker='<link rel="stylesheet" href="styles.css">'
+              s=s.replace(marker, marker+'\n'+css) if marker in s else s.replace('</head>', css+'\n</head>')
+          p.write_text(s,encoding='utf-8')
           PY
       - name: Commit changes
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html
-          git diff --cached --quiet || git commit -m 'Load reliable games module'
+          git diff --cached --quiet || git commit -m 'Load mobile interaction fixes'
           git push
