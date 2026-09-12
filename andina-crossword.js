@@ -1,2 +1,0 @@
-/* Legacy duplicate crossword disabled.
-   The single interactive crossword is the one implemented in app.js. */
