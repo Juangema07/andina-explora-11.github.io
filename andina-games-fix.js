@@ -1,14 +1,15 @@
 (()=>{
 'use strict';
 
-const IMG_BASE='./.github/workflows/';
-const enc=(name)=>IMG_BASE+encodeURIComponent(name).replace(/%2F/g,'/');
+// Imágenes publicadas dentro del sitio para que GitHub Pages pueda cargarlas.
+const IMG_BASE='./assets/andina/';
+const enc=(name)=>IMG_BASE+name;
 const images={
-  map:enc('ChatGPT Image 12 sept 2026, 04_38_17 p.m..png'),
-  bogota:enc('ChatGPT Image 12 sept 2026, 04_38_26 p.m..png'),
-  cafe:enc('ChatGPT Image 12 sept 2026, 04_38_37 p.m..png'),
-  paramo:enc('ChatGPT Image 12 sept 2026, 04_39_30 p.m..png'),
-  valle:enc('ChatGPT Image 12 sept 2026, 04_39_35 p.m..png')
+  map:enc('mapa.png'),
+  bogota:enc('bogota.png'),
+  cafe:enc('eje-cafetero.png'),
+  paramo:enc('paramo.png'),
+  valle:enc('valle-del-cauca.png')
 };
 
 const places=[
