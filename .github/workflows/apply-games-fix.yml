@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'andina-games-fix.js'
+      - 'andina-image-fix.js'
       - 'mobile-fixes.css'
       - '.github/workflows/apply-games-fix.yml'
       - '.github/workflows/Mapa.png'
@@ -33,11 +34,11 @@ jobs:
           from pathlib import Path
           p=Path('andina-games-fix.js')
           s=p.read_text(encoding='utf-8')
-          start=s.index("const SITE_BASE=")
+          start=s.index("const PAGES_BASE=")
           end=s.index("\nconst places=", start)
-          block="""const PAGES_BASE='https://juangema07.github.io/andina-explora-11.github.io/assets/andina/';
+          block="""const PAGES_BASE=new URL('./assets/andina/',document.baseURI).href;
           const RAW_BASE='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/';
-          const asset=(name)=>({primary:RAW_BASE+name,fallback:PAGES_BASE+name});
+          const asset=(name)=>({primary:PAGES_BASE+name+'?v=20260912',fallback:RAW_BASE+name+'?v=20260912'});
           const images={
            map:asset('mapa.png'),
            bogota:asset('bogota.png'),
@@ -56,10 +57,14 @@ jobs:
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
           game='<script src="andina-games-fix.js" defer></script>'
+          image='<script src="andina-image-fix.js" defer></script>'
           s=s.replace('<script src="andina-games-fix.js"></script>', game)
           if game not in s:
               marker='<script src="app.js" defer></script>'
               s=s.replace(marker, marker+'\n'+game) if marker in s else s.replace('</body>', game+'\n</body>')
+          if image not in s:
+              s=s.replace(game, game+'\n'+image) if game in s else s.replace('</body>', image+'\n</body>')
+          s=s.replace('<script src="legacy-enhancements.js"></script>\n','')
           css='<link rel="stylesheet" href="mobile-fixes.css">'
           if css not in s:
               marker='<link rel="stylesheet" href="styles.css">'
@@ -70,6 +75,6 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html andina-games-fix.js assets/andina .nojekyll
+          git add index.html andina-games-fix.js andina-image-fix.js assets/andina .nojekyll
           git diff --cached --quiet || git commit -m 'Fix Andina game image loading [skip ci]'
           git push
