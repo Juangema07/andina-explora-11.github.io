@@ -5,6 +5,11 @@ on:
       - 'andina-games-fix.js'
       - 'mobile-fixes.css'
       - '.github/workflows/apply-games-fix.yml'
+      - '.github/workflows/Mapa.png'
+      - '.github/workflows/Bogota fondo.png'
+      - '.github/workflows/zona cafetera fondo.png'
+      - '.github/workflows/Paramos fondo.png'
+      - '.github/workflows/Valle del cauca fondo.png'
   workflow_dispatch:
 permissions:
   contents: write
@@ -13,6 +18,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Move game images to a public website folder
+        run: |
+          mkdir -p assets/andina
+          cp '.github/workflows/Mapa.png' 'assets/andina/mapa.png'
+          cp '.github/workflows/Bogota fondo.png' 'assets/andina/bogota.png'
+          cp '.github/workflows/zona cafetera fondo.png' 'assets/andina/eje-cafetero.png'
+          cp '.github/workflows/Paramos fondo.png' 'assets/andina/paramo.png'
+          cp '.github/workflows/Valle del cauca fondo.png' 'assets/andina/valle-del-cauca.png'
+      - name: Point the game directly to public image assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('andina-games-fix.js')
+          s=p.read_text(encoding='utf-8')
+          start=s.index("const IMG_BASE=")
+          end=s.index("\n\nconst places=", start)
+          replacement="""const IMG_BASE='./assets/andina/';
+const enc=(name)=>IMG_BASE+name;
+const images={
+  map:enc('mapa.png'),
+  bogota:enc('bogota.png'),
+  cafe:enc('eje-cafetero.png'),
+  paramo:enc('paramo.png'),
+  valle:enc('valle-del-cauca.png')
+};"""
+          s=s[:start]+replacement+s[end:]
+          p.write_text(s,encoding='utf-8')
+          PY
       - name: Ensure fix assets are loaded after the main app
         run: |
           python - <<'PY'
@@ -34,6 +67,6 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html
-          git diff --cached --quiet || git commit -m 'Fix game script order and mobile layout'
+          git add index.html andina-games-fix.js assets/andina
+          git diff --cached --quiet || git commit -m 'Publish Andina game images for GitHub Pages [skip ci]'
           git push
