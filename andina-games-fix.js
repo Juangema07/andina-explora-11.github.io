@@ -10,34 +10,36 @@ const images={
   valle:IMG_BASE+'ChatGPT%20Image%2012%20sept%202026%2C%2004_39_35%20p.m..png'
 };
 
+// Posiciones medidas sobre el mapa original 1672 x 940.
+// Cada botón cubre exactamente el recuadro dibujado en la imagen.
 const places=[
- {id:'bogota',name:'Bogotá',tag:'Ciudad andina · Cordillera Oriental',image:images.bogota,position:'left:31%;top:27%;',questions:[
-  ['¿En qué cordillera se encuentra principalmente Bogotá?',['Oriental','Central','Occidental'],0],
-  ['¿Qué tipo de paisaje rodea a Bogotá?',['Altiplano andino','Costa marina','Desierto'],0],
-  ['¿Cuál es una actividad importante de una gran ciudad como Bogotá?',['Servicios','Pesca oceánica','Salinas costeras'],0],
-  ['¿Qué elemento conecta Bogotá con otros territorios?',['Redes de transporte','Arrecifes','Manglares'],0],
-  ['¿Cuál es un reto urbano?',['Movilidad y planificación','Corales','Pesca artesanal marina'],0]
+ {id:'valle',name:'Valle del Cauca',tag:'Valle interandino · Río · Producción',image:images.valle,position:'left:18.1%;top:34.5%;width:17.7%;height:9.9%;',questions:[
+  ['¿Qué tipo de paisaje caracteriza al Valle del Cauca?',['Valle interandino','Isla oceánica','Desierto'],0],
+  ['¿Qué río es protagonista del valle?',['Cauca','Amazonas','Orinoco'],0],
+  ['¿Qué actividad agrícola destaca en buena parte del valle?',['Cultivo de caña de azúcar','Pesca marina','Cultivo de coral'],0],
+  ['¿Qué relación existe entre el río y las comunidades?',['Agua y actividades productivas','Solo transporte aéreo','Ninguna'],0],
+  ['¿Qué ciudad importante se encuentra en este territorio?',['Cali','Cartagena','Leticia'],0]
  ]},
- {id:'cafe',name:'Eje Cafetero',tag:'Montañas · Agricultura · Café',image:images.cafe,position:'left:57%;top:52%;',questions:[
+ {id:'cafe',name:'Eje Cafetero',tag:'Montañas · Agricultura · Café',image:images.cafe,position:'left:39.1%;top:38.7%;width:17.6%;height:10.0%;',questions:[
   ['¿Qué producto identifica especialmente a esta zona?',['Café','Sal marina','Petróleo'],0],
   ['¿A qué sector económico pertenece el cultivo de café?',['Primario','Secundario','Terciario'],0],
   ['¿Qué paisaje es frecuente en el Eje Cafetero?',['Montañas y laderas','Playa tropical','Sabana costera'],0],
   ['¿Qué actividad puede complementar al cultivo de café?',['Turismo rural','Pesca oceánica','Extracción de coral'],0],
   ['¿Qué ayuda a explicar la variedad de cultivos en la montaña?',['Altitud y clima','Mareas','Arrecifes'],0]
  ]},
- {id:'paramo',name:'Páramo',tag:'Alta montaña · Agua · Biodiversidad',image:images.paramo,position:'left:73%;top:22%;',questions:[
+ {id:'paramo',name:'Páramo',tag:'Alta montaña · Agua · Biodiversidad',image:images.paramo,position:'left:69.5%;top:12.0%;width:18.6%;height:9.6%;',questions:[
   ['¿Por qué son importantes los páramos?',['Ayudan a regular el agua','Producen sal marina','Forman arrecifes'],0],
   ['¿Qué planta es característica de muchos páramos?',['Frailejón','Mangle','Palma de coco'],0],
   ['¿En qué zona se encuentran?',['Alta montaña','Nivel del mar','Desierto cálido'],0],
   ['¿Qué actividad debe realizarse con especial cuidado en estos ecosistemas?',['Agricultura y turismo','Pesca oceánica','Construcción de puertos'],0],
   ['¿Qué valor tiene la biodiversidad del páramo?',['Sostiene funciones ecológicas','Solo sirve para decoración','No tiene relación con el agua'],0]
  ]},
- {id:'valle',name:'Valle del Cauca',tag:'Valle interandino · Río · Producción',image:images.valle,position:'left:19%;top:65%;',questions:[
-  ['¿Qué tipo de paisaje caracteriza al Valle del Cauca?',['Valle interandino','Isla oceánica','Desierto'],0],
-  ['¿Qué río es protagonista del valle?',['Cauca','Amazonas','Orinoco'],0],
-  ['¿Qué actividad agrícola destaca en buena parte del valle?',['Cultivo de caña de azúcar','Pesca marina','Cultivo de coral'],0],
-  ['¿Qué relación existe entre el río y las comunidades?',['Agua y actividades productivas','Solo transporte aéreo','Ninguna'],0],
-  ['¿Qué ciudad importante se encuentra en este territorio?',['Cali','Cartagena','Leticia'],0]
+ {id:'bogota',name:'Bogotá',tag:'Ciudad andina · Cordillera Oriental',image:images.bogota,position:'left:86.2%;top:50.8%;width:17.1%;height:9.9%;',questions:[
+  ['¿En qué cordillera se encuentra principalmente Bogotá?',['Oriental','Central','Occidental'],0],
+  ['¿Qué tipo de paisaje rodea a Bogotá?',['Altiplano andino','Costa marina','Desierto'],0],
+  ['¿Cuál es una actividad importante de una gran ciudad como Bogotá?',['Servicios','Pesca oceánica','Salinas costeras'],0],
+  ['¿Qué elemento conecta Bogotá con otros territorios?',['Redes de transporte','Arrecifes','Manglares'],0],
+  ['¿Cuál es un reto urbano?',['Movilidad y planificación','Corales','Pesca artesanal marina'],0]
  ]}
 ];
 
@@ -52,10 +54,11 @@ function init(){
  .map-game-card h3{margin:5px 0 7px;font-size:1.2rem}.map-game-card p{opacity:.86;line-height:1.5}
  .map-mission{display:flex;align-items:center;gap:14px;padding:14px 16px;margin:15px 0;border-radius:16px;background:#dced92;color:#183d32;font-weight:800}
  .map-mission b{display:block}.map-mission small{font-weight:600;opacity:.8}
- .map-board-real{position:relative;width:100%;aspect-ratio:16/9;min-height:320px;border-radius:20px;overflow:hidden;background:#dfe8d2 center/cover no-repeat;box-shadow:inset 0 0 0 1px #ffffff66}
+ .map-board-real{position:relative;width:100%;aspect-ratio:1672/940;min-height:0;border-radius:20px;overflow:hidden;background:#dfe8d2 center/100% 100% no-repeat;box-shadow:inset 0 0 0 1px #ffffff66}
  .map-board-real:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#0002,transparent 35%,#0003);pointer-events:none}
- .map-hotspot{position:absolute;z-index:2;transform:translate(-50%,-50%);border:2px solid #fff;background:#183d32;color:#fff;border-radius:999px;padding:10px 14px;cursor:pointer;font-weight:900;box-shadow:0 6px 18px #0005;transition:transform .2s,background .2s}
- .map-hotspot:hover,.map-hotspot:focus{transform:translate(-50%,-50%) scale(1.06);background:#dced92;color:#183d32;outline:none}
+ .map-hotspot{position:absolute;z-index:2;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;border:2px solid currentColor;background:#ffffff22;color:#183d32;border-radius:16px;padding:4px 8px;cursor:pointer;font-weight:900;font-size:clamp(.72rem,1.35vw,1rem);text-align:center;line-height:1.1;box-shadow:0 4px 14px #0002;backdrop-filter:blur(1px);transition:transform .2s,background .2s,box-shadow .2s}
+ .map-hotspot:hover,.map-hotspot:focus{transform:translate(-50%,-50%) scale(1.035);background:#ffffffb8;outline:none;box-shadow:0 7px 20px #0004}
+ .map-hotspot[data-id="valle"]{color:#1589b5}.map-hotspot[data-id="cafe"]{color:#277d3b}.map-hotspot[data-id="paramo"]{color:#bd8612}.map-hotspot[data-id="bogota"]{color:#a92d4d}
  .map-help{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:12px;font-size:.8rem}
  .location-game{position:relative;overflow:hidden;border-radius:24px;min-height:620px;padding:24px;color:#fff;background:#183d32 center/cover no-repeat;box-shadow:0 18px 45px #0004}
  .location-game:before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#07181266 0%,#071812c7 75%);z-index:0}
@@ -67,7 +70,7 @@ function init(){
  .answer-btn{border:1px solid #b7c4b0;background:#f7f8f2;color:#183d32;border-radius:14px;padding:14px;text-align:left;font-weight:800;cursor:pointer;min-height:62px}.answer-btn:hover{transform:translateY(-2px);box-shadow:0 7px 18px #0002}.answer-btn.good{background:#dced92;border-color:#718b4e}.answer-btn.bad{background:#f1d5c9;border-color:#a05a48}
  .progress-row{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:14px;font-weight:800}.progress-track{height:9px;background:#ffffff55;border-radius:99px;overflow:hidden;flex:1}.progress-track i{display:block;height:100%;background:#dced92;width:0;transition:width .25s}
  .map-back{margin-top:14px}.game-final{text-align:center;padding:50px 15px}.game-final .big{font-size:4rem}
- @media(max-width:700px){.map-board-real{min-height:300px;aspect-ratio:4/3}.map-hotspot{font-size:.72rem;padding:8px 10px}.answer-grid{grid-template-columns:1fr}.location-game{padding:16px;min-height:650px}.map-help{align-items:flex-start;flex-direction:column}.map-mission{align-items:flex-start}}
+ @media(max-width:700px){.map-game-card{padding:12px;border-radius:18px}.map-board-real{border-radius:14px}.map-hotspot{font-size:clamp(.48rem,2vw,.72rem);padding:2px 4px;border-width:1px;border-radius:9px;line-height:1}.map-help{align-items:flex-start;flex-direction:column}.map-mission{align-items:flex-start}.answer-grid{grid-template-columns:1fr}.location-game{padding:16px;min-height:650px}}
  `;document.head.appendChild(style);
 
  // Blindaje: ningún juego antiguo vuelve a mostrarse aunque quede HTML cacheado.
@@ -85,7 +88,7 @@ function init(){
     <div class="map-help"><span>📍 Toca un recuadro para comenzar.</span><span>🏆 5 preguntas · 180 segundos por localidad</span></div>
    </div>`;section.insertBefore(wrap,arena);
    const map=wrap.querySelector('#andinaMap');
-   places.forEach(p=>{const b=document.createElement('button');b.type='button';b.className='map-hotspot';b.style.cssText=p.position;b.textContent=p.name;b.title='Explorar '+p.name;b.addEventListener('click',()=>startPlace(p));map.appendChild(b)});
+   places.forEach(p=>{const b=document.createElement('button');b.type='button';b.className='map-hotspot';b.dataset.id=p.id;b.style.cssText=p.position;b.textContent=p.name;b.title='Explorar '+p.name;b.setAttribute('aria-label','Explorar '+p.name);b.addEventListener('click',()=>startPlace(p));map.appendChild(b)});
  }
 
  let timer=null;
