@@ -1,0 +1,37 @@
+name: Integrar diseño anterior
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  migrate:
+    if: ${{ !hashFiles('.legacy-migrated') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Integrar y limpiar
+        run: |
+          cp .github/workflows/index.html ./index.html
+          cp .github/workflows/styles.css ./styles.css
+          cp .github/workflows/app.js ./script.js
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          marker='<script src="legacy-enhancements.js"></script>'
+          if marker not in s:
+              s=s.replace('</body>', marker+'\n</body>')
+          p.write_text(s,encoding='utf-8')
+          PY
+          rm -f site-enhancements.js
+          rm -f .github/workflows/index.html .github/workflows/styles.css .github/workflows/app.js
+          rm -f .github/workflows/DOMINIO_Y_PUBLICACION.txt .github/workflows/README.txt
+          touch .legacy-migrated
+      - name: Guardar cambios
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'Integra y limpia el diseño anterior de Andina Explora' || exit 0
+          git push
