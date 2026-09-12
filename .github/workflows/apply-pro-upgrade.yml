@@ -1,34 +1,10 @@
 name: Aplicar mejora integral Andina
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 jobs:
-  upgrade:
+  info:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Inyectar mejoras
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('index.html')
-          s=p.read_text(encoding='utf-8')
-          css='<link rel="stylesheet" href="andina-pro.css">'
-          js='<script src="andina-pro.js"></script>'
-          cw='<script src="andina-crossword.js"></script>'
-          if css not in s: s=s.replace('</head>',css+'\n</head>')
-          if js not in s: s=s.replace('</body>',js+'\n</body>')
-          if cw not in s: s=s.replace('</body>',cw+'\n</body>')
-          p.write_text(s,encoding='utf-8')
-          PY
-      - name: Guardar
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html
-          git diff --cached --quiet && exit 0
-          git commit -m 'Integra navegación, música, crucigrama y mejoras visuales'
-          git push
+      - run: echo "El rediseño actual se mantiene directamente en main; no se inyectan scripts antiguos."
