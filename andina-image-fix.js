@@ -16,7 +16,7 @@ const raw=(name)=>RAW+name+bust;
 
 function repair(){
   document.querySelectorAll('.map-image').forEach(img=>{
-    const good=local(files.map);
+    const good=raw(files.map);
     if(!img.dataset.andinaFixed){
       img.dataset.andinaFixed='1';
       img.dataset.fallback=raw(files.map);
@@ -38,11 +38,11 @@ function repair(){
     if(title.includes('valle')) file=files.valle;
     else if(title.includes('cafetero')) file=files.cafe;
     else if(title.includes('páramo')||title.includes('paramo')) file=files.paramo;
-    panel.style.backgroundImage=`url("${local(file)}"),url("${raw(file)}")`;
+    panel.style.backgroundImage=`url("${raw(file)}"),url("${local(file)}")`;
     const probe=new Image();
     probe.onload=()=>{};
     probe.onerror=()=>{panel.style.backgroundImage=`url("${raw(file)}")`};
-    probe.src=local(file);
+    probe.src=raw(file);
   });
 }
 

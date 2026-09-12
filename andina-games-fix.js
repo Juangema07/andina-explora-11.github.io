@@ -3,7 +3,7 @@
 
 const PAGES_BASE=new URL('./assets/andina/',document.baseURI).href;
 const RAW_BASE='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/';
-const asset=(name)=>({primary:PAGES_BASE+name+'?v=20260912',fallback:RAW_BASE+name+'?v=20260912'});
+const asset=(name)=>({primary:RAW_BASE+name+'?v=20260912',fallback:PAGES_BASE+name+'?v=20260912'});
 const images={
  map:asset('mapa.png'),
  bogota:asset('bogota.png'),
@@ -14,7 +14,7 @@ const images={
 
 const places=[
  {id:'valle',name:'Valle del Cauca',tag:'Valle interandino · río · producción',image:images.valle,
-  hotspot:'left:2.1%;top:19.7%;width:11.7%;height:6.2%;',
+  hotspot:'left:2.2%;top:29.8%;width:18%;height:9.4%;',
   questions:[
    ['El río Cauca atraviesa el valle y allí existe agricultura intensiva. ¿Qué relación explica mejor esta situación?',['El agua sostiene actividades productivas, pero exige gestionar su uso','La presencia del río impide la agricultura','El río solo tiene valor turístico','La agricultura no depende de condiciones naturales'],0],
    ['¿Qué rasgo ayuda a explicar que el Valle del Cauca sea un valle interandino?',['Está condicionado por sistemas montañosos que influyen en relieve y clima','Está rodeado únicamente por océano','Es una llanura completamente desértica','Se encuentra sobre una isla volcánica'],0],
@@ -22,7 +22,7 @@ const places=[
    ['La conexión entre Cali, zonas rurales, carreteras y mercados muestra principalmente…',['Interdependencia urbano-rural','Aislamiento entre territorios','Dependencia de la pesca marina','Ausencia de intercambio'],0]
   ]},
  {id:'cafe',name:'Eje Cafetero',tag:'montañas · café · paisaje cultural',image:images.cafe,
-  hotspot:'left:19.6%;top:21.7%;width:11.8%;height:6.8%;',
+  hotspot:'left:34.4%;top:33.3%;width:18%;height:10.4%;',
   questions:[
    ['Una finca cafetera está en una ladera a cierta altitud. ¿Qué conjunto de factores explica mejor sus condiciones de cultivo?',['Altitud, temperatura, lluvias y relieve','Mareas y salinidad marina','Arrecifes y corrientes oceánicas','Desierto y ausencia de lluvias'],0],
    ['El café se cultiva, se transforma, se transporta y se vende. ¿Qué lectura económica es más completa?',['Se conectan actividades de los sectores primario, secundario y terciario','Solo interviene el sector terciario','Solo interviene la minería','El transporte no participa en la cadena'],0],
@@ -30,7 +30,7 @@ const places=[
    ['Una comunidad combina café, hospedaje y recorridos por fincas. ¿Qué estrategia representa?',['Diversificación mediante agricultura y turismo rural','Sustitución de agricultura por pesca','Industrialización de un puerto','Eliminación de actividades culturales'],0]
   ]},
  {id:'paramo',name:'Páramo',tag:'alta montaña · agua · biodiversidad',image:images.paramo,
-  hotspot:'left:40%;top:4.9%;width:12.1%;height:9.3%;',
+  hotspot:'left:61.2%;top:7.5%;width:18.6%;height:14%;',
   questions:[
    ['¿Por qué un páramo puede ser importante para poblaciones ubicadas a muchos kilómetros de él?',['Ayuda a regular y almacenar agua que alimenta cuencas','Funciona como puerto marítimo','Produce agua solo para la fauna local','Reemplaza las redes de acueducto'],0],
    ['Si se transforma un páramo sin considerar su función hídrica, ¿qué riesgo aparece?',['Pueden afectarse servicios ecosistémicos y disponibilidad o calidad del agua','La biodiversidad aumenta automáticamente','El ecosistema se convierte en mar','Deja de ser necesario proteger las cuencas'],0],
@@ -38,7 +38,7 @@ const places=[
    ['¿Qué decisión es más coherente con la conservación de un páramo?',['Regular actividades según la fragilidad del ecosistema','Construir sin evaluar impactos','Reemplazar vegetación nativa por cualquier cultivo','Extraer recursos sin controles'],0]
   ]},
  {id:'bogota',name:'Bogotá',tag:'ciudad andina · altiplano · servicios',image:images.bogota,
-  hotspot:'left:51%;top:30.5%;width:12%;height:6.3%;',
+  hotspot:'left:78.2%;top:46.8%;width:18.2%;height:9.6%;',
   questions:[
    ['Bogotá se ubica en un altiplano de la Cordillera Oriental. ¿Qué consecuencia territorial se relaciona con esa ubicación?',['Altitud y relieve influyen en clima, expansión urbana y conexiones','La ciudad queda al nivel del mar','El territorio funciona como una isla','La ubicación elimina problemas de movilidad'],0],
    ['Una gran ciudad concentra empresas, instituciones, educación y comercio. ¿Qué sector tiene especial peso?',['Servicios','Pesca oceánica','Extracción de sal marina','Agricultura de arrecife'],0],
