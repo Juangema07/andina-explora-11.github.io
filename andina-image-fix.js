@@ -13,7 +13,8 @@ function loadImage(img,name){
   img.dataset.andinaFixed='1';
   img.dataset.andinaName=name;
   img.decoding='async';
-  img.loading='eager';
+  img.loading='lazy';
+  img.fetchPriority='low';
   img.src=local(name);
   img.onerror=()=>{
     if(img.dataset.andinaRaw==='1')return;
