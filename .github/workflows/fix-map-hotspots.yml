@@ -1,0 +1,47 @@
+name: Fix map hotspot positions
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-map-hotspots.yml'
+      - 'andina-games-fix.js'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ajustar posiciones de los recuadros
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('andina-games-fix.js')
+          s = p.read_text(encoding='utf-8')
+          replacements = {
+              "left:18.2%;top:34.5%;width:17.7%;height:9.9%;": "left:2.2%;top:29.8%;width:18%;height:9.5%;",
+              "left:39.1%;top:38.7%;width:17.6%;height:10%;": "left:34.4%;top:34.8%;width:18%;height:9.6%;",
+              "left:69.5%;top:12%;width:18.6%;height:9.6%;": "left:61.2%;top:8%;width:18.6%;height:9.5%;",
+              "left:86.2%;top:50.8%;width:17.1%;height:9.9%;": "left:78.2%;top:47%;width:18.3%;height:9.5%;",
+              "transform:translate(-50%,-50%);display:flex;": "transform:none;display:flex;",
+              "transform:translate(-50%,-50%) scale(1.05);background:#ffffffdc;": "transform:scale(1.05);background:#ffffffdc;"
+          }
+          for old, new in replacements.items():
+              s = s.replace(old, new)
+          p.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Publicar cambios
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add andina-games-fix.js
+          if git diff --cached --quiet; then
+            echo 'Sin cambios'
+          else
+            git commit -m 'Alinea los recuadros con las zonas del mapa [skip ci]'
+            git push
+          fi
