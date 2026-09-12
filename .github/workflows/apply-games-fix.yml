@@ -13,17 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Ensure fix assets are loaded
+      - name: Ensure fix assets are loaded after the main app
         run: |
           python - <<'PY'
           from pathlib import Path
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
-          game='<script src="andina-games-fix.js"></script>'
-          css='<link rel="stylesheet" href="mobile-fixes.css">'
+          game='<script src="andina-games-fix.js" defer></script>'
+          s=s.replace('<script src="andina-games-fix.js"></script>', game)
           if game not in s:
               marker='<script src="app.js" defer></script>'
               s=s.replace(marker, marker+'\n'+game) if marker in s else s.replace('</body>', game+'\n</body>')
+          css='<link rel="stylesheet" href="mobile-fixes.css">'
           if css not in s:
               marker='<link rel="stylesheet" href="styles.css">'
               s=s.replace(marker, marker+'\n'+css) if marker in s else s.replace('</head>', css+'\n</head>')
@@ -34,5 +35,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html
-          git diff --cached --quiet || git commit -m 'Load mobile interaction fixes'
+          git diff --cached --quiet || git commit -m 'Fix game script order and mobile layout'
           git push
