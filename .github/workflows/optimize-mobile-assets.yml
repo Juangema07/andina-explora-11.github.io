@@ -1,0 +1,43 @@
+name: Optimize mobile assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/andina/**'
+      - 'andina-games-fix.js'
+      - 'andina-image-fix.js'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Convert Andina images to WebP
+        shell: bash
+        run: |
+          set -e
+          shopt -s nullglob
+          for f in assets/andina/*.png; do
+            out="${f%.png}.webp"
+            magick "$f" -strip -resize '1672x1672>' -quality 78 "$out"
+          done
+      - name: Use WebP assets in the interactive map
+        shell: bash
+        run: |
+          set -e
+          sed -i 's/\.png?/\.webp?/g; s/\.png"/\.webp"/g; s/\.png\x27/\.webp\x27/g' andina-games-fix.js andina-image-fix.js
+      - name: Commit optimized assets
+        shell: bash
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/andina/*.webp andina-games-fix.js andina-image-fix.js
+          git commit -m 'Serve compressed WebP assets for mobile [skip ci]'
+          git push
