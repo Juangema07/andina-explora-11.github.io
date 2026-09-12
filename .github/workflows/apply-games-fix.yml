@@ -26,6 +26,29 @@ jobs:
           cp '.github/workflows/zona cafetera fondo.png' 'assets/andina/eje-cafetero.png'
           cp '.github/workflows/Paramos fondo.png' 'assets/andina/paramo.png'
           cp '.github/workflows/Valle del cauca fondo.png' 'assets/andina/valle-del-cauca.png'
+          touch .nojekyll
+      - name: Force stable public image URLs
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('andina-games-fix.js')
+          s=p.read_text(encoding='utf-8')
+          start=s.index("const SITE_BASE=")
+          end=s.index("\nconst places=", start)
+          block="""const PAGES_BASE='https://juangema07.github.io/andina-explora-11.github.io/assets/andina/';
+          const RAW_BASE='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/';
+          const asset=(name)=>({primary:RAW_BASE+name,fallback:PAGES_BASE+name});
+          const images={
+           map:asset('mapa.png'),
+           bogota:asset('bogota.png'),
+           cafe:asset('eje-cafetero.png'),
+           paramo:asset('paramo.png'),
+           valle:asset('valle-del-cauca.png')
+          };
+          """
+          s=s[:start]+block+s[end:]
+          p.write_text(s,encoding='utf-8')
+          PY
       - name: Ensure fix assets are loaded after the main app
         run: |
           python - <<'PY'
@@ -47,6 +70,6 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html andina-games-fix.js assets/andina
-          git diff --cached --quiet || git commit -m 'Publish Andina game images for GitHub Pages [skip ci]'
+          git add index.html andina-games-fix.js assets/andina .nojekyll
+          git diff --cached --quiet || git commit -m 'Fix Andina game image loading [skip ci]'
           git push
