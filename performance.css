@@ -1,0 +1,15 @@
+/* Performance layer: keeps the visual design while reducing work on small screens. */
+img{content-visibility:auto}
+@media (max-width: 700px){
+  .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .settings{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .section{content-visibility:auto;contain-intrinsic-size:700px}
+  .section.dark,.economy,.culture,.band{content-visibility:auto}
+  .hero-art{opacity:.55}
+  .hero-lines{display:none}
+  .hero{background-position:center}
+}
+@media (prefers-reduced-data: reduce){
+  .hero-art,.hero-lines{display:none}
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
