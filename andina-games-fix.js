@@ -21,14 +21,6 @@ const places=[
    ['Una expansión de cultivos de caña aumenta la producción, pero también presiona suelo y agua. ¿Qué concepto permite analizar mejor el caso?',['Uso sostenible y planificación del territorio','Aislamiento geográfico','Urbanización costera','Desconexión económica'],0],
    ['La conexión entre Cali, zonas rurales, carreteras y mercados muestra principalmente…',['Interdependencia urbano-rural','Aislamiento entre territorios','Dependencia de la pesca marina','Ausencia de intercambio'],0]
   ]},
- {id:'cafe',name:'Eje Cafetero',tag:'montañas · café · paisaje cultural',image:images.cafe,
-  hotspot:'left:31.5%;top:33.3%;width:18%;height:10.4%;',
-  questions:[
-   ['Una finca cafetera está en una ladera a cierta altitud. ¿Qué conjunto de factores explica mejor sus condiciones de cultivo?',['Altitud, temperatura, lluvias y relieve','Mareas y salinidad marina','Arrecifes y corrientes oceánicas','Desierto y ausencia de lluvias'],0],
-   ['El café se cultiva, se transforma, se transporta y se vende. ¿Qué lectura económica es más completa?',['Se conectan actividades de los sectores primario, secundario y terciario','Solo interviene el sector terciario','Solo interviene la minería','El transporte no participa en la cadena'],0],
-   ['¿Por qué el relieve montañoso modifica la forma de producir café?',['Las pendientes condicionan cultivos, caminos, suelo y transporte','Las montañas hacen imposible toda agricultura','Las laderas convierten la zona en territorio marino','El relieve no influye en las actividades humanas'],0],
-   ['Una comunidad combina café, hospedaje y recorridos por fincas. ¿Qué estrategia representa?',['Diversificación mediante agricultura y turismo rural','Sustitución de agricultura por pesca','Industrialización de un puerto','Eliminación de actividades culturales'],0]
-  ]},
  {id:'paramo',name:'Páramo',tag:'alta montaña · agua · biodiversidad',image:images.paramo,
   hotspot:'left:61.2%;top:7.5%;width:18%;height:10.4%;',
   questions:[
@@ -36,6 +28,14 @@ const places=[
    ['Si se transforma un páramo sin considerar su función hídrica, ¿qué riesgo aparece?',['Pueden afectarse servicios ecosistémicos y disponibilidad o calidad del agua','La biodiversidad aumenta automáticamente','El ecosistema se convierte en mar','Deja de ser necesario proteger las cuencas'],0],
    ['¿Por qué el frailejón es un símbolo frecuente de los páramos?',['Representa biodiversidad e identidad asociadas a la alta montaña','Es una especie propia de manglares','Es un cultivo industrial de clima cálido','Es un animal de los valles interandinos'],0],
    ['¿Qué decisión es más coherente con la conservación de un páramo?',['Regular actividades según la fragilidad del ecosistema','Construir sin evaluar impactos','Reemplazar vegetación nativa por cualquier cultivo','Extraer recursos sin controles'],0]
+  ]},
+ {id:'cafe',name:'Eje Cafetero',tag:'montañas · café · paisaje cultural',image:images.cafe,
+  hotspot:'left:31.5%;top:33.3%;width:18%;height:10.4%;',
+  questions:[
+   ['Una finca cafetera está en una ladera a cierta altitud. ¿Qué conjunto de factores explica mejor sus condiciones de cultivo?',['Altitud, temperatura, lluvias y relieve','Mareas y salinidad marina','Arrecifes y corrientes oceánicas','Desierto y ausencia de lluvias'],0],
+   ['El café se cultiva, se transforma, se transporta y se vende. ¿Qué lectura económica es más completa?',['Se conectan actividades de los sectores primario, secundario y terciario','Solo interviene el sector terciario','Solo interviene la minería','El transporte no participa en la cadena'],0],
+   ['¿Por qué el relieve montañoso modifica la forma de producir café?',['Las pendientes condicionan cultivos, caminos, suelo y transporte','Las montañas hacen imposible toda agricultura','Las laderas convierten la zona en territorio marino','El relieve no influye en las actividades humanas'],0],
+   ['Una comunidad combina café, hospedaje y recorridos por fincas. ¿Qué estrategia representa?',['Diversificación mediante agricultura y turismo rural','Sustitución de agricultura por pesca','Industrialización de un puerto','Eliminación de actividades culturales'],0]
   ]},
  {id:'bogota',name:'Bogotá',tag:'ciudad andina · altiplano · servicios',image:images.bogota,
   hotspot:'left:78.2%;top:46.8%;width:18.2%;height:9.6%;',
