@@ -1,3 +1,12 @@
 {
-  "tracks": []
+  "tracks": [
+    {
+      "title": "Valles De Colombia (1)",
+      "src": "music/Valles de Colombia (1).mp3"
+    },
+    {
+      "title": "Valles De Colombia",
+      "src": "music/Valles de Colombia.mp3"
+    }
+  ]
 }
