@@ -20,11 +20,11 @@ jobs:
       - name: Validar JavaScript
         run: |
           node --check app.js
-          node --check andina-pro.js
+          node --check andina-games-fix.js
+          node --check andina-image-fix.js
           node --check andina-crossword.js
           node --check andina-nav-fix.js
           node --check andina-interactions.js
-          node --check legacy-enhancements.js
 
       - name: Validar referencias locales
         run: |
