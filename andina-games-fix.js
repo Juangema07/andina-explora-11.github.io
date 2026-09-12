@@ -1,9 +1,9 @@
 (()=>{
 'use strict';
 
-const PAGES_BASE='https://juangema07.github.io/andina-explora-11.github.io/assets/andina/';
+const PAGES_BASE=new URL('./assets/andina/',document.baseURI).href;
 const RAW_BASE='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/';
-const asset=(name)=>({primary:RAW_BASE+name,fallback:PAGES_BASE+name});
+const asset=(name)=>({primary:PAGES_BASE+name+'?v=20260912',fallback:RAW_BASE+name+'?v=20260912'});
 const images={
  map:asset('mapa.png'),
  bogota:asset('bogota.png'),
