@@ -3,50 +3,57 @@
 
 const BASE=new URL('./assets/andina/',document.baseURI).href;
 const RAW='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/';
-const files={
-  map:'mapa.png',
-  bogota:'bogota.png',
-  cafe:'eje-cafetero.png',
-  paramo:'paramo.png',
-  valle:'valle-del-cauca.png'
-};
-const bust='?v=20260912';
-const local=(name)=>BASE+name+bust;
-const raw=(name)=>RAW+name+bust;
+const files={map:'mapa.png',bogota:'bogota.png',cafe:'eje-cafetero.png',paramo:'paramo.png',valle:'valle-del-cauca.png'};
+const bust='?v=20260913';
+const local=n=>BASE+n+bust;
+const raw=n=>RAW+n+bust;
+
+function loadImage(img,name){
+  if(!img||img.dataset.andinaFixed==='1')return;
+  img.dataset.andinaFixed='1';
+  img.dataset.andinaName=name;
+  img.decoding='async';
+  img.loading='eager';
+  img.src=local(name);
+  img.onerror=()=>{
+    if(img.dataset.andinaRaw==='1')return;
+    img.dataset.andinaRaw='1';
+    img.src=raw(name);
+  };
+}
 
 function repair(){
-  document.querySelectorAll('.map-image').forEach(img=>{
-    const good=raw(files.map);
-    if(!img.dataset.andinaFixed){
-      img.dataset.andinaFixed='1';
-      img.dataset.fallback=raw(files.map);
-      img.src=good;
-      img.onerror=()=>{
-        if(img.dataset.andinaRawTried!=='1'){
-          img.dataset.andinaRawTried='1';
-          img.src=raw(files.map);
-        }
-      };
-    }
-  });
-
+  document.querySelectorAll('.map-image').forEach(img=>loadImage(img,files.map));
   document.querySelectorAll('.mission-panel').forEach(panel=>{
-    if(panel.dataset.andinaFixed==='1') return;
-    panel.dataset.andinaFixed='1';
     const title=(panel.querySelector('h3')?.textContent||'').toLowerCase();
-    let file=files.bogota;
-    if(title.includes('valle')) file=files.valle;
-    else if(title.includes('cafetero')) file=files.cafe;
-    else if(title.includes('páramo')||title.includes('paramo')) file=files.paramo;
-    panel.style.backgroundImage=`url("${raw(file)}"),url("${local(file)}")`;
-    const probe=new Image();
-    probe.onload=()=>{};
-    probe.onerror=()=>{panel.style.backgroundImage=`url("${raw(file)}")`};
-    probe.src=raw(file);
+    let name=files.bogota;
+    if(title.includes('valle'))name=files.valle;
+    else if(title.includes('cafetero'))name=files.cafe;
+    else if(title.includes('páramo')||title.includes('paramo'))name=files.paramo;
+
+    panel.style.backgroundImage='none';
+    let bg=panel.querySelector('.andina-real-bg');
+    if(!bg){
+      bg=document.createElement('img');
+      bg.className='andina-real-bg';
+      bg.alt='';
+      bg.setAttribute('aria-hidden','true');
+      bg.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0;';
+      panel.prepend(bg);
+    }
+    bg.dataset.andinaFixed='0';
+    loadImage(bg,name);
+    const overlay=panel.querySelector(':scope > .andina-image-overlay');
+    if(!overlay){
+      const o=document.createElement('div');
+      o.className='andina-image-overlay';
+      o.style.cssText='position:absolute;inset:0;background:linear-gradient(180deg,#07181255,#071812dd 72%);z-index:1;pointer-events:none;';
+      panel.insertBefore(o,panel.children[1]||null);
+    }
   });
 }
 
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',repair,{once:true});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',repair,{once:true});
 else repair();
 new MutationObserver(repair).observe(document.body,{childList:true,subtree:true});
 })();
