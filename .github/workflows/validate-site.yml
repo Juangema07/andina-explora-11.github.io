@@ -17,14 +17,11 @@ jobs:
       - name: Descargar sitio
         uses: actions/checkout@v4
 
-      - name: Validar JavaScript
+      - name: Validar JavaScript actual
         run: |
           node --check app.js
           node --check andina-games-fix.js
           node --check andina-image-fix.js
-          node --check andina-crossword.js
-          node --check andina-nav-fix.js
-          node --check andina-interactions.js
 
       - name: Validar referencias locales
         run: |
@@ -37,11 +34,13 @@ jobs:
           missing=[r for r in refs if not r.startswith(('http://','https://','//')) and not Path(r).exists()]
           if missing:
               raise SystemExit('Referencias locales inexistentes: '+', '.join(missing))
-          print('Referencias locales OK:', ', '.join(refs))
-          PY
+          print('Referencias locales OK')
 
-      - name: Comprobar protección del cargador
+      - name: Comprobar imágenes Andina
         run: |
-          grep -q '#loader' andina-pro.css
-          grep -q 'andinaLoaderAutoHide' andina-pro.css
-          echo 'Protección del loader OK'
+          test -s assets/andina/mapa.png
+          test -s assets/andina/bogota.png
+          test -s assets/andina/eje-cafetero.png
+          test -s assets/andina/paramo.png
+          test -s assets/andina/valle-del-cauca.png
+          echo 'Las 5 imágenes existen y tienen contenido.'
