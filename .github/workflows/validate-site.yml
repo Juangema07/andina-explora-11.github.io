@@ -1,0 +1,47 @@
+name: Validar sitio Andina
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar sitio
+        uses: actions/checkout@v4
+
+      - name: Validar JavaScript
+        run: |
+          node --check app.js
+          node --check andina-pro.js
+          node --check andina-crossword.js
+          node --check andina-nav-fix.js
+          node --check andina-interactions.js
+          node --check legacy-enhancements.js
+
+      - name: Validar referencias locales
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          html=Path('index.html').read_text(encoding='utf-8')
+          refs=re.findall(r'<script[^>]+src=[\"\']([^\"\']+)[\"\']',html)
+          refs += re.findall(r'<link[^>]+href=[\"\']([^\"\']+\.css)[\"\']',html)
+          missing=[r for r in refs if not r.startswith(('http://','https://','//')) and not Path(r).exists()]
+          if missing:
+              raise SystemExit('Referencias locales inexistentes: '+', '.join(missing))
+          print('Referencias locales OK:', ', '.join(refs))
+          PY
+
+      - name: Comprobar protección del cargador
+        run: |
+          grep -q '#loader' andina-pro.css
+          grep -q 'andinaLoaderAutoHide' andina-pro.css
+          echo 'Protección del loader OK'
