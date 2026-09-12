@@ -26,26 +26,6 @@ jobs:
           cp '.github/workflows/zona cafetera fondo.png' 'assets/andina/eje-cafetero.png'
           cp '.github/workflows/Paramos fondo.png' 'assets/andina/paramo.png'
           cp '.github/workflows/Valle del cauca fondo.png' 'assets/andina/valle-del-cauca.png'
-      - name: Point the game directly to public image assets
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          p=Path('andina-games-fix.js')
-          s=p.read_text(encoding='utf-8')
-          start=s.index("const IMG_BASE=")
-          end=s.index("\n\nconst places=", start)
-          replacement="""const IMG_BASE='./assets/andina/';
-const enc=(name)=>IMG_BASE+name;
-const images={
-  map:enc('mapa.png'),
-  bogota:enc('bogota.png'),
-  cafe:enc('eje-cafetero.png'),
-  paramo:enc('paramo.png'),
-  valle:enc('valle-del-cauca.png')
-};"""
-          s=s[:start]+replacement+s[end:]
-          p.write_text(s,encoding='utf-8')
-          PY
       - name: Ensure fix assets are loaded after the main app
         run: |
           python - <<'PY'
