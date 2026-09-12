@@ -22,7 +22,7 @@ const places=[
    ['La conexión entre Cali, zonas rurales, carreteras y mercados muestra principalmente…',['Interdependencia urbano-rural','Aislamiento entre territorios','Dependencia de la pesca marina','Ausencia de intercambio'],0]
   ]},
  {id:'cafe',name:'Eje Cafetero',tag:'montañas · café · paisaje cultural',image:images.cafe,
-  hotspot:'left:61.2%;top:7.5%;width:18%;height:10.4%;',
+  hotspot:'left:31.5%;top:33.3%;width:18%;height:10.4%;',
   questions:[
    ['Una finca cafetera está en una ladera a cierta altitud. ¿Qué conjunto de factores explica mejor sus condiciones de cultivo?',['Altitud, temperatura, lluvias y relieve','Mareas y salinidad marina','Arrecifes y corrientes oceánicas','Desierto y ausencia de lluvias'],0],
    ['El café se cultiva, se transforma, se transporta y se vende. ¿Qué lectura económica es más completa?',['Se conectan actividades de los sectores primario, secundario y terciario','Solo interviene el sector terciario','Solo interviene la minería','El transporte no participa en la cadena'],0],
@@ -30,7 +30,7 @@ const places=[
    ['Una comunidad combina café, hospedaje y recorridos por fincas. ¿Qué estrategia representa?',['Diversificación mediante agricultura y turismo rural','Sustitución de agricultura por pesca','Industrialización de un puerto','Eliminación de actividades culturales'],0]
   ]},
  {id:'paramo',name:'Páramo',tag:'alta montaña · agua · biodiversidad',image:images.paramo,
-  hotspot:'left:31.5%;top:33.3%;width:18%;height:10.4%;',
+  hotspot:'left:61.2%;top:7.5%;width:18%;height:10.4%;',
   questions:[
    ['¿Por qué un páramo puede ser importante para poblaciones ubicadas a muchos kilómetros de él?',['Ayuda a regular y almacenar agua que alimenta cuencas','Funciona como puerto marítimo','Produce agua solo para la fauna local','Reemplaza las redes de acueducto'],0],
    ['Si se transforma un páramo sin considerar su función hídrica, ¿qué riesgo aparece?',['Pueden afectarse servicios ecosistémicos y disponibilidad o calidad del agua','La biodiversidad aumenta automáticamente','El ecosistema se convierte en mar','Deja de ser necesario proteger las cuencas'],0],
