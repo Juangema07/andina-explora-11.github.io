@@ -3,42 +3,21 @@
 const LOCAL=new URL('./assets/andina/atlas-viaje-andino.webp?v=20260913',document.baseURI).href;
 const RAW='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/atlas-viaje-andino.webp?v=20260913';
 const STYLE='andina-atlas-sprites-style';
-const kinds={
- train:{w:170,h:57,pos:'-3px -19px'},
- station:{w:144,h:69,pos:'-179px -13px'},
- coffee:{w:43,h:48,pos:'-98px -98px'},
- bean:{w:43,h:40,pos:'-73px -111px'},
- toucan:{w:50,h:58,pos:'-128px -99px'},
- bluebird:{w:50,h:58,pos:'-168px -100px'},
- humming:{w:48,h:58,pos:'-208px -99px'},
- seedling:{w:55,h:65,pos:'-296px -161px'},
- bottle:{w:34,h:53,pos:'-124px -162px'},
- bag:{w:42,h:58,pos:'-142px -155px'},
- can:{w:35,h:51,pos:'-176px -163px'},
- trash:{w:37,h:45,pos:'-110px -164px'},
- paper:{w:38,h:44,pos:'-194px -164px'},
- tree:{w:64,h:55,pos:'-5px -209px'},
- stump:{w:55,h:55,pos:'-70px -209px'},
- landfill:{w:65,h:50,pos:'-115px -210px'},
- factory:{w:70,h:50,pos:'-174px -210px'},
- polluted:{w:78,h:50,pos:'-240px -210px'},
- barrels:{w:70,h:50,pos:'-314px -210px'}
-};
 function inject(){
  if(document.getElementById(STYLE))return;
  const s=document.createElement('style');s.id=STYLE;
  s.textContent=`
- .atlas-sprite{display:inline-block;background-image:url('${LOCAL}'),url('${RAW}');background-repeat:no-repeat;background-size:384px 256px;color:transparent!important;font-size:0!important;line-height:0!important;border:0!important;padding:0!important;overflow:hidden;vertical-align:middle;background-color:transparent!important;}
+ .atlas-sprite{display:inline-block;background-image:url('${LOCAL}'),url('${RAW}');background-repeat:no-repeat;background-size:384px 256px;color:transparent!important;font-size:0!important;line-height:0!important;border:0!important;padding:0!important;overflow:hidden;vertical-align:middle;background-color:transparent!important}
  .travel2-train.atlas-train{width:170px;height:57px;background-position:-3px -19px!important;filter:drop-shadow(0 7px 7px #0004)}
  .travel2-stop.station.atlas-station{width:58px;height:58px;background-position:-179px -13px!important;background-size:384px 256px!important;border:0!important;border-radius:0!important;background-color:transparent!important;box-shadow:none}
  .t2-item.atlas-item{width:48px;height:48px;background-size:384px 256px!important;transform:none!important}
- .atlas-coffee{background-position:-98px -98px!important}.atlas-bean{background-position:-73px -111px!important}.atlas-toucan{background-position:-128px -99px!important}.atlas-humming{background-position:-208px -99px!important}.atlas-bluebird{background-position:-168px -100px!important}.atlas-seedling{background-position:-296px -161px!important}.atlas-bottle{background-position:-124px -162px!important}.atlas-bag{background-position:-142px -155px!important}.atlas-can{background-position:-176px -163px!important}.atlas-trash{background-position:-110px -164px!important}.atlas-paper{background-position:-194px -164px!important}.atlas-tree{background-position:-5px -209px!important}.atlas-stump{background-position:-70px -209px!important}.atlas-landfill{background-position:-115px -210px!important}.atlas-factory{background-position:-174px -210px!important}.atlas-polluted{background-position:-240px -210px!important}.atlas-barrels{background-position:-314px -210px!important}
+ .atlas-coffee{background-position:-98px -98px!important}.atlas-bean{background-position:-73px -111px!important}.atlas-toucan{background-position:-128px -99px!important}.atlas-bluebird{background-position:-168px -100px!important}.atlas-humming{background-position:-208px -99px!important}.atlas-camera{background-position:-229px -108px!important}.atlas-seedling{background-position:-296px -161px!important}.atlas-bottle{background-position:-124px -162px!important}.atlas-bag{background-position:-142px -155px!important}.atlas-can{background-position:-176px -163px!important}.atlas-trash{background-position:-110px -164px!important}.atlas-paper{background-position:-194px -164px!important}.atlas-tree{background-position:-5px -209px!important}.atlas-stump{background-position:-70px -209px!important}.atlas-landfill{background-position:-115px -210px!important}.atlas-factory{background-position:-174px -210px!important}.atlas-polluted{background-position:-240px -210px!important}.atlas-barrels{background-position:-314px -210px!important}.atlas-logs{background-position:-70px -209px!important}
  .t2-drag.atlas-drag{width:58px;height:58px;background-position:-296px -161px!important;background-size:384px 256px!important;border:0!important;background-color:transparent!important;border-radius:0;padding:0!important;color:transparent!important;font-size:0!important}
  @media(max-width:600px){
   .travel2-train.atlas-train{width:112px;height:38px;background-size:253px 169px!important;background-position:-2px -13px!important}
   .travel2-stop.station.atlas-station{width:48px;height:48px;background-size:316px 211px!important;background-position:-147px -11px!important}
   .t2-item.atlas-item{width:40px;height:40px;background-size:320px 213px!important}
-  .atlas-coffee{background-position:-82px -82px!important}.atlas-bean{background-position:-61px -92px!important}.atlas-toucan{background-position:-107px -82px!important}.atlas-bluebird{background-position:-140px -83px!important}.atlas-humming{background-position:-173px -82px!important}.atlas-seedling{background-position:-247px -134px!important}.atlas-bottle{background-position:-103px -135px!important}.atlas-bag{background-position:-118px -130px!important}.atlas-can{background-position:-147px -136px!important}.atlas-trash{background-position:-92px -136px!important}.atlas-paper{background-position:-162px -136px!important}
+  .atlas-coffee{background-position:-82px -82px!important}.atlas-bean{background-position:-61px -92px!important}.atlas-toucan{background-position:-107px -82px!important}.atlas-bluebird{background-position:-140px -83px!important}.atlas-humming{background-position:-173px -82px!important}.atlas-camera{background-position:-191px -90px!important}.atlas-seedling{background-position:-247px -134px!important}.atlas-bottle{background-position:-103px -135px!important}.atlas-bag{background-position:-118px -130px!important}.atlas-can{background-position:-147px -136px!important}.atlas-trash{background-position:-92px -136px!important}.atlas-paper{background-position:-162px -136px!important}
  }
  `;
  document.head.appendChild(s);
@@ -65,7 +44,7 @@ function apply(root=document){
   else if(text==='🏭'||text==='💨'||text==='🔥'||text==='🚗')kind='factory';
   else if(text==='🌳')kind='tree';
   else if(text==='🛢️')kind='barrels';
-  if(!kind||!kinds[kind])return;
+  if(!kind)return;
   el.dataset.atlas='1';el.classList.add('atlas-sprite');
   if(kind==='train')el.classList.add('atlas-train');
   else if(kind==='station')el.classList.add('atlas-station');
