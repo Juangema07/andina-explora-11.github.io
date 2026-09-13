@@ -32,5 +32,5 @@ function repair(){
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',repair,{once:true});else repair();
 new MutationObserver(repair).observe(document.body,{childList:true,subtree:true});
 const travelScript=document.createElement('script');travelScript.src='./viaje-andino-overhaul.js?v=20260913';travelScript.defer=true;document.head.appendChild(travelScript);
-const atlasScript=document.createElement('script');atlasScript.src='./atlas-sprites.js?v=20260913-3';atlasScript.defer=true;document.head.appendChild(atlasScript);
+const assetsScript=document.createElement('script');assetsScript.src='./viaje-assets.js?v=20260913-1';assetsScript.defer=true;document.head.appendChild(assetsScript);
 })();
