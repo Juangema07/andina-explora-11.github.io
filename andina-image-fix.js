@@ -71,4 +71,10 @@ function repair(){
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',repair,{once:true});
 else repair();
 new MutationObserver(repair).observe(document.body,{childList:true,subtree:true});
+
+// Carga el rediseño completo de Viaje Andino después del juego base.
+const travelScript=document.createElement('script');
+travelScript.src='./viaje-andino-overhaul.js?v=20260913';
+travelScript.defer=true;
+document.head.appendChild(travelScript);
 })();
