@@ -33,4 +33,5 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 new MutationObserver(repair).observe(document.body,{childList:true,subtree:true});
 const travelScript=document.createElement('script');travelScript.src='./viaje-andino-overhaul.js?v=20260913';travelScript.defer=true;document.head.appendChild(travelScript);
 const assetsScript=document.createElement('script');assetsScript.src='./viaje-assets.js?v=20260913-1';assetsScript.defer=true;document.head.appendChild(assetsScript);
+const otherGamesScript=document.createElement('script');otherGamesScript.src='./otros-juegos.js?v=20260913-1';otherGamesScript.defer=true;document.head.appendChild(otherGamesScript);
 })();
