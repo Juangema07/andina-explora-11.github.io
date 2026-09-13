@@ -1,0 +1,176 @@
+(()=>{
+'use strict';
+
+const STYLE_ID='viaje-andino-overhaul-style';
+const STATE_KEY='viajeAndinoOverhaul';
+let activeCleanup=null;
+
+function injectStyle(){
+ if(document.getElementById(STYLE_ID))return;
+ const s=document.createElement('style');s.id=STYLE_ID;s.textContent=`
+ .travel2{padding:24px 22px 30px;background:linear-gradient(180deg,#173e32,#0b2921);color:#fff}
+ .travel2-head{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+ .travel2-head h3{margin:0;font-size:clamp(1.6rem,4vw,2.5rem)}
+ .travel2-sub{margin:5px 0 0;opacity:.78;line-height:1.45}
+ .travel2-lives{font-weight:900;font-size:1.05rem;white-space:nowrap}
+ .travel2-route{position:relative;height:150px;margin:24px 2px 18px}
+ .travel2-line{position:absolute;left:4%;right:4%;top:62px;height:9px;border-radius:99px;background:#dced92;box-shadow:0 0 20px #dced9240}
+ .travel2-stop{position:absolute;top:43px;width:40px;height:40px;border-radius:50%;background:#fff;color:#173e32;border:4px solid #dced92;display:flex;align-items:center;justify-content:center;font-weight:900;transform:translateX(-50%);z-index:2;box-shadow:0 7px 18px #0004;transition:.25s}
+ .travel2-stop.station{width:58px;height:58px;top:34px;background:#dced92;font-size:1.35rem}
+ .travel2-stop.active{box-shadow:0 0 0 8px #dced9238,0 7px 18px #0004;transform:translateX(-50%) scale(1.08)}
+ .travel2-stop.done{opacity:.55}
+ .travel2-train{position:absolute;top:7px;left:4%;font-size:2.45rem;z-index:4;transform:translateX(-50%);transition:left .9s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 7px 7px #0004)}
+ .travel2-label{position:absolute;top:105px;transform:translateX(-50%);font-size:.7rem;text-align:center;white-space:nowrap;opacity:.78}
+ .travel2-label.station{font-weight:900;opacity:1}
+ .travel2-card{background:#fff;color:#173e32;border-radius:20px;padding:21px;box-shadow:0 15px 35px #0004}
+ .travel2-card h4{margin:0 0 7px;font-size:1.35rem}
+ .travel2-card p{margin:0 0 16px;opacity:.72;line-height:1.45}
+ .travel2-action{display:flex;gap:10px;flex-wrap:wrap}
+ .travel2-btn{border:0;border-radius:13px;padding:13px 17px;background:#173e32;color:#fff;font-weight:900;cursor:pointer;transition:.2s}
+ .travel2-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px #0002}
+ .travel2-btn.main{background:#dced92;color:#173e32}
+ .travel2-progress{height:8px;background:#173e3230;border-radius:99px;overflow:hidden;margin-top:16px}
+ .travel2-progress i{display:block;height:100%;background:#71934c;transition:.5s}
+ .travel2-mini{position:relative;min-height:360px;padding:20px;background:linear-gradient(145deg,#e5f0d4,#afd1c1);border-radius:18px;color:#173e32;overflow:hidden}
+ .travel2-mini h4{margin:0 0 4px;font-size:1.35rem;padding-right:90px}
+ .travel2-mini p{margin:0 0 10px;font-weight:700;line-height:1.4}
+ .travel2-time{position:absolute;right:15px;top:15px;background:#173e32;color:#dced92;border-radius:999px;padding:7px 10px;font-weight:900;z-index:5}
+ .travel2-timebar{position:absolute;left:15px;right:15px;top:58px;height:8px;background:#173e3230;border-radius:99px;overflow:hidden;z-index:5}
+ .travel2-timebar i{display:block;height:100%;width:100%;background:#173e32;transform-origin:left;transition:width .1s linear}
+ .travel2-arena{position:absolute;inset:82px 13px 13px;border-radius:15px;overflow:hidden;background:#ffffff48}
+ .t2-item{position:absolute;border:0;background:transparent;cursor:pointer;user-select:none;font-size:2.25rem;padding:4px;transition:.15s}
+ .t2-item:hover{transform:scale(1.15)}
+ .t2-item.hit{opacity:.2;transform:scale(.55)}
+ .t2-drag{position:absolute;left:16px;bottom:18px;padding:12px 15px;border-radius:14px;background:#fff;border:2px dashed #71934c;font-weight:900;cursor:grab;z-index:3}
+ .t2-target{position:absolute;right:18px;top:52px;width:120px;height:105px;border:3px dashed #71934c;border-radius:20px;background:#ffffff65;display:flex;align-items:center;justify-content:center;text-align:center;font-weight:900;z-index:2}
+ .t2-score{position:absolute;left:15px;top:13px;background:#fff;border-radius:999px;padding:7px 10px;font-weight:900;z-index:5}
+ .t2-boss{background:radial-gradient(circle at 50% 35%,#315f4d,#0b211b 75%);color:#fff}
+ .t2-boss .travel2-arena{background:radial-gradient(circle at 50% 40%,#ffffff12,#00000020)}
+ .t2-boss .t2-item{filter:drop-shadow(0 5px 8px #0006)}
+ .t2-boss .t2-target{border-color:#dced92;background:#dced9215;color:#fff}
+ .t2-boss-note{font-size:.82rem;opacity:.75;margin-top:7px}
+ .travel2-result{padding:55px 20px;text-align:center;background:#173e32;color:#fff;border-radius:20px}
+ .travel2-result .big{font-size:4rem}
+ .travel2-result h3{font-size:clamp(1.8rem,5vw,3rem);margin:10px 0}
+ @media(max-width:600px){.travel2{padding:18px 12px 22px}.travel2-route{height:135px}.travel2-label{font-size:.57rem}.travel2-stop{width:34px;height:34px;top:46px}.travel2-stop.station{width:48px;height:48px;top:39px}.travel2-train{font-size:2rem}.travel2-mini{min-height:330px;padding:16px}.travel2-arena{inset:82px 10px 10px}.t2-item{font-size:1.9rem}.travel2-card{padding:17px}}
+ `;document.head.appendChild(s);
+}
+
+function q(selector){return document.querySelector(selector)}
+function cleanup(){if(activeCleanup){activeCleanup();activeCleanup=null}}
+function waitForMenu(){
+ const arena=q('#gameArena');if(!arena)return;
+ const bind=()=>{
+  const buttons=arena.parentElement?.querySelectorAll('.games-menu .game-choice')||document.querySelectorAll('.games-menu .game-choice');
+  if(!buttons.length)return false;
+  buttons.forEach(btn=>{
+   if(btn.dataset.travel2Bound==='1')return;
+   btn.dataset.travel2Bound='1';
+   btn.addEventListener('click',()=>{
+    if(btn.dataset.gameChoice==='viaje')setTimeout(()=>startTravel(),20);
+    else cleanup();
+   });
+  });
+  return true;
+ };
+ if(bind())return;
+ const mo=new MutationObserver(()=>{if(bind())mo.disconnect()});mo.observe(arena.parentElement||arena,{childList:true,subtree:true});
+}
+
+function startTravel(){
+ cleanup();injectStyle();
+ const panel=q('#gamePanel');if(!panel)return;
+ const stops=[
+  {name:'Estación 1',station:true,icon:'🚉'},
+  {name:'Parada 1',station:false,icon:'1'},
+  {name:'Parada 2',station:false,icon:'2'},
+  {name:'Estación 2',station:true,icon:'🚉'},
+  {name:'Parada 3',station:false,icon:'3'},
+  {name:'Parada 4',station:false,icon:'4'},
+  {name:'Estación 3',station:true,icon:'🚉'}
+ ];
+ const miniTypes=['coffee','birds','seed','river','birdPhoto','coffee'];
+ let index=0,lives=3,score=0,timer=null,raf=null,stopped=false;
+ const stopPositions=stops.map((_,i)=>4+(i/6)*92);
+ function clearTimers(){if(timer){clearInterval(timer);timer=null}if(raf){cancelAnimationFrame(raf);raf=null}}
+ activeCleanup=()=>{stopped=true;clearTimers()};
+ function hearts(){return '❤️'.repeat(lives)+'<span style="opacity:.25">'+ '❤️'.repeat(3-lives)+'</span>'}
+ function routeMarkup(trainPos){return `<div class="travel2-route"><div class="travel2-line"></div><div class="travel2-train" id="travel2Train" style="left:${trainPos}%">🚂</div>${stops.map((s,i)=>{const p=stopPositions[i];return `<div class="travel2-stop ${s.station?'station':''} ${i===index?'active':''} ${i<index?'done':''}" style="left:${p}%">${s.icon}</div><div class="travel2-label ${s.station?'station':''}" style="left:${p}%">${s.name}</div>`}).join('')}</div>`}
+ function renderStation(message,buttonText){
+  if(stopped)return;
+  clearTimers();
+  const p=stopPositions[index];
+  const isFinal=index===6;
+  panel.innerHTML=`<div class="game-panel"><div class="travel2"><div class="travel2-head"><div><h3>🚂 Viaje Andino</h3><p class="travel2-sub">3 estaciones · 4 paradas · pruebas rápidas de la Región Andina</p></div><div class="travel2-lives">${hearts()}</div></div>${routeMarkup(p)}<div class="travel2-card"><h4>${index===0?'🚉 Salida':isFinal?'🏁 Estación 3 · Parada final':'📍 '+stops[index].name}</h4><p>${message}</p>${buttonText?`<div class="travel2-action"><button class="travel2-btn main" id="travel2Continue">${buttonText}</button></div>`:''}<div class="travel2-progress"><i style="width:${(index/6)*100}%"></i></div></div></div></div>`;
+  const b=q('#travel2Continue');if(b)b.addEventListener('click',()=>moveTo(index+1));
+ }
+ function moveTo(next){
+  if(stopped)return;
+  clearTimers();
+  const old=index;index=next;
+  const pOld=stopPositions[old],pNew=stopPositions[next];
+  renderStation('El tren se prepara para avanzar…','');
+  const train=q('#travel2Train');if(!train)return;
+  train.style.left=pOld+'%';
+  void train.offsetWidth;
+  requestAnimationFrame(()=>{train.style.left=pNew+'%'});
+  setTimeout(()=>{
+   if(stopped)return;
+   if(next===6)startBoss();
+   else if(stops[next].station)renderStation('Llegaste a la segunda estación. Descansa un momento y continúa hacia las siguientes paradas.','🚂 Continuar');
+   else startMini();
+  },980);
+ }
+ function loseLife(reason){
+  if(stopped)return;clearTimers();lives--;
+  if(lives<=0){finish(false,'Te quedaste sin vidas. El tren debe volver a intentarlo.');return}
+  renderStation(reason||'La prueba no salió bien. Conservas el viaje, pero pierdes una vida.','🚂 Continuar');
+ }
+ function winMini(){if(stopped)return;clearTimers();score++;renderStation('¡Prueba superada! El tren está listo para seguir avanzando.','🚂 Continuar');}
+ function finish(win,text){clearTimers();stopped=true;panel.innerHTML=`<div class="travel2-result"><div class="big">${win?'🏆':'🚂'}</div><h3>${win?'¡Viaje completado!':'El viaje terminó'}</h3><p>${text}</p><p><b>${score} pruebas superadas · ${lives} vidas restantes</b></p><button class="travel2-btn main" id="travel2Again">↻ Viajar otra vez</button></div>`;q('#travel2Again').addEventListener('click',()=>{stopped=false;index=0;lives=3;score=0;renderStation('El recorrido comienza en la Estación 1. Cuando pulses iniciar, el tren avanzará hasta la primera parada.','🚂 Iniciar viaje')})}
+ function miniBase(title,instruction,boss=false){
+  panel.innerHTML=`<div class="game-panel"><div class="travel2"><div class="travel2-head"><div><h3>🚂 Viaje Andino</h3><p class="travel2-sub">${boss?'⚡ BOSS FINAL · 15 segundos':'Parada '+index+' · minijuego rápido'}</p></div><div class="travel2-lives">${hearts()}</div></div><div class="travel2-mini ${boss?'t2-boss':''}" id="travel2Mini"><span class="travel2-time" id="travel2Time">${boss?'15.0':'5.0'}s</span><div class="travel2-timebar"><i id="travel2TimeBar"></i></div><div class="t2-score" id="travel2Score">⭐ 0</div><h4>${title}</h4><p>${instruction}</p><div class="travel2-arena" id="travel2Arena"></div></div></div></div>`;
+ }
+ function runTimer(seconds,onEnd){
+  const start=performance.now();const end=start+seconds*1000;
+  timer=setInterval(()=>{
+   const left=Math.max(0,end-performance.now());
+   const sec=(left/1000).toFixed(1);
+   const t=q('#travel2Time'),bar=q('#travel2TimeBar');if(t)t.textContent=sec+'s';if(bar)bar.style.width=(left/(seconds*1000)*100)+'%';
+   if(left<=0){clearTimers();onEnd()}
+  },80);
+ }
+ function startMini(){
+  if(stopped)return;clearTimers();const type=miniTypes[(index-1)%miniTypes.length];
+  if(type==='coffee')return miniCoffee();
+  if(type==='birds')return miniBirds();
+  if(type==='seed')return miniDrag('🌱 Arrástrame','Lleva la semilla hasta el páramo','PÁRAMO','🌱');
+  if(type==='river')return miniRiver();
+  return miniBirdPhoto();
+ }
+ function miniCoffee(){
+  miniBase('☕ Atrapa el café','Haz clic en 4 granos que caen antes de que termine el tiempo.');const a=q('#travel2Arena');let hit=0;for(let i=0;i<7;i++){const b=document.createElement('button');b.className='t2-item';b.textContent=i%2?'🫘':'☕';b.style.left=(5+Math.random()*88)+'%';b.style.top=(-10-Math.random()*80)+'px';b.style.animation=`t2fall ${1.7+Math.random()*1.8}s linear ${Math.random()*1.1}s forwards`;b.addEventListener('click',()=>{if(b.classList.contains('hit'))return;b.classList.add('hit');hit++;q('#travel2Score').textContent='⭐ '+hit;if(hit>=4)winMini()});a.appendChild(b)}runTimer(5,()=>loseLife('El café se escapó. ¡La próxima parada necesita más rapidez!'));
+ }
+ function miniBirds(){
+  miniBase('🦜 Encuentra las aves','Haz clic en 3 aves antes de que desaparezcan.');const a=q('#travel2Arena');let hit=0;['🦜','🐦','🦉','🦅','🐦'].forEach((bird,i)=>{const b=document.createElement('button');b.className='t2-item';b.textContent=bird;b.style.left=(8+Math.random()*80)+'%';b.style.top=(25+Math.random()*55)+'%';b.style.animation=`t2bird ${2.4+i*.15}s ease-in-out forwards`;b.addEventListener('click',()=>{if(b.classList.contains('hit'))return;b.classList.add('hit');hit++;q('#travel2Score').textContent='⭐ '+hit;if(hit>=3)winMini()});a.appendChild(b)});runTimer(5,()=>loseLife('Las aves volaron antes de completar el registro.'));
+ }
+ function miniDrag(title,instruction,targetText,icon){
+  miniBase(title,instruction);const a=q('#travel2Arena');const source=document.createElement('div');source.className='t2-drag';source.textContent=icon+' Arrástrame';source.draggable=true;const target=document.createElement('div');target.className='t2-target';target.textContent=targetText;a.append(source,target);source.addEventListener('dragstart',e=>e.dataTransfer.setData('text/plain','ok'));target.addEventListener('dragover',e=>e.preventDefault());target.addEventListener('drop',e=>{e.preventDefault();winMini()});runTimer(5,()=>loseLife('La acción no llegó a tiempo.'));
+ }
+ function miniRiver(){
+  miniBase('💧 Limpia el río','Haz clic en 5 residuos para liberar el agua.');const a=q('#travel2Arena');let hit=0;for(let i=0;i<7;i++){const b=document.createElement('button');b.className='t2-item';b.textContent=['🧴','🗑️','🥤','📦','🧃','🍬','🧻'][i];b.style.left=(5+Math.random()*86)+'%';b.style.top=(15+Math.random()*70)+'%';b.addEventListener('click',()=>{if(b.classList.contains('hit'))return;b.classList.add('hit');hit++;q('#travel2Score').textContent='⭐ '+hit;if(hit>=5)winMini()});a.appendChild(b)}runTimer(5,()=>loseLife('Quedaron residuos en el río.'));
+ }
+ function miniBirdPhoto(){
+  miniBase('📸 Fotografía las aves','Haz clic en 3 aves objetivo; las nubes no cuentan.');const a=q('#travel2Arena');let hit=0;['☁️','🐦','🌿','🦜','☁️','🦅'].forEach((v,i)=>{const b=document.createElement('button');b.className='t2-item';b.textContent=v;b.style.left=(4+Math.random()*88)+'%';b.style.top=(10+Math.random()*75)+'%';b.addEventListener('click',()=>{if(b.classList.contains('hit'))return;if(v==='☁️'||v==='🌿'){b.animate([{transform:'translateX(0)'},{transform:'translateX(10px)'},{transform:'translateX(0)'}],{duration:180});return}b.classList.add('hit');hit++;q('#travel2Score').textContent='⭐ '+hit;if(hit>=3)winMini()});a.appendChild(b)});runTimer(5,()=>loseLife('No alcanzaste a registrar suficientes aves.'));
+ }
+ function startBoss(){
+  if(stopped)return;clearTimers();miniBase('🌎 BOSS FINAL · Protege el paisaje','Durante 15 segundos, haz clic en 8 amenazas para proteger el territorio. ¡Solo necesitas hacer clic!',true);const a=q('#travel2Arena');let hit=0;const threats=['🗑️','🔥','💨','🚗','🧴','🪵','⛏️','🏭','🗑️','🔥','🧴','🚗'];
+  threats.forEach((v,i)=>{const b=document.createElement('button');b.className='t2-item';b.textContent=v;b.style.left=(4+Math.random()*88)+'%';b.style.top=(4+Math.random()*82)+'%';b.style.animation=`t2boss ${1.2+Math.random()*1.8}s ease-in-out ${Math.random()*.5}s infinite alternate`;b.addEventListener('click',()=>{if(b.classList.contains('hit'))return;b.classList.add('hit');hit++;q('#travel2Score').textContent='⭐ '+hit;if(hit>=8){clearTimers();finish(true,'Superaste el BOSS final y completaste todo el recorrido de las tres estaciones.')}});a.appendChild(b)});
+  runTimer(15,()=>{if(hit>=8)finish(true,'Superaste el BOSS final y completaste todo el recorrido.');else loseLife('El BOSS final terminó antes de proteger suficientes elementos.')});
+ }
+ const style=document.createElement('style');style.textContent=`@keyframes t2fall{from{transform:translateY(-30px) rotate(-10deg)}to{transform:translateY(340px) rotate(20deg)}}@keyframes t2bird{0%{transform:translate(0,0)}50%{transform:translate(55px,-25px)}100%{transform:translate(120px,35px)}}@keyframes t2boss{from{transform:translate(0,0) rotate(-4deg)}to{transform:translate(8px,-7px) rotate(4deg)}}`;document.head.appendChild(style);
+ renderStation('El recorrido comienza en la Estación 1. Al iniciar, el tren avanzará con una animación hasta la Parada 1.','🚂 Iniciar viaje');
+}
+
+injectStyle();waitForMenu();
+})();
