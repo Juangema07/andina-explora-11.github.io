@@ -2,6 +2,17 @@ html,body{max-width:100%;overflow-x:hidden;-webkit-tap-highlight-color:transpare
 button,a,input,select,textarea{touch-action:manipulation}
 .settings{overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
 @media(max-width:900px){.section,.band{content-visibility:auto;contain-intrinsic-size:auto 700px}}
+
+/* El selector antiguo de juegos ya no se muestra; queda el selector nuevo. */
+#juegos>.game-cards{display:none!important}
+#juegos>.games-menu:not(:has(+ #gameArena)){display:none!important}
+
+/* Orden solicitado en el mapa: Eje Cafetero → Páramo → Valle del Cauca → Bogotá. */
+#gamePanel .map-hotspot[data-id="cafe"]{left:2.2%!important;top:29.8%!important;width:18%!important;height:9.4%!important}
+#gamePanel .map-hotspot[data-id="paramo"]{left:34.4%!important;top:33.3%!important;width:18%!important;height:10.4%!important}
+#gamePanel .map-hotspot[data-id="valle"]{left:61.2%!important;top:7.5%!important;width:18%!important;height:10.4%!important}
+#gamePanel .map-hotspot[data-id="bogota"]{left:78.2%!important;top:46.8%!important;width:18.2%!important;height:9.6%!important}
+
 @media(max-width:700px){
 .nav{left:8px;right:8px;top:8px;height:58px;padding-left:10px}.nav nav{display:none}.logo{font-size:.82rem}.icon-btn{width:42px;height:42px;flex:0 0 42px}
 .settings{right:8px;top:74px;width:calc(100vw - 16px);max-height:calc(100svh - 84px);overflow:auto;z-index:500}.settings:not(.open){display:none}.settings.open{display:block}.settings select,.settings input,.settings button{font-size:16px}.settings label.upload{cursor:pointer;min-height:44px;display:grid!important;place-items:center}.music-row{min-height:46px}.music-row button{min-width:46px;min-height:44px}
