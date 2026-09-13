@@ -21,6 +21,7 @@ function inject(){if(!document.getElementById('conecta-fix-css')){const s=docume
 function shuffle(a){return a.slice().sort(()=>Math.random()-.5)}
 function normalize(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase()}
 function cardText(pair){return pair[0]}
+function focusGamePanel(){setTimeout(()=>{const panel=document.querySelector('#gamePanel');if(!panel)return;const top=panel.getBoundingClientRect().top+window.scrollY-18;window.scrollTo({top:Math.max(0,top),behavior:'smooth'})},60)}
 function start(root){
  inject();let matched=0,left=null,locked=false,time=210,timer=null;
  const leftDeck=shuffle(pairs.map((p,i)=>({i,text:p[0]})));const rightDeck=shuffle(pairs.map((p,i)=>({i,text:p[1]})));
@@ -40,8 +41,8 @@ function start(root){
  function status(text,type){const el=root.querySelector('#ctStatus');el.textContent=text;el.className='ct-status ct-'+type}
  timer=setInterval(()=>{time--;const m=Math.floor(time/60),s=time%60;root.querySelector('#ctTime').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');root.querySelector('#ctMeter').style.width=(time/210*100)+'%';if(time<=0){clearInterval(timer);all.forEach(x=>x.disabled=true);root.querySelector('#ctStatus').textContent='⏰ Se acabó el tiempo. ¡Inténtalo de nuevo!';root.querySelector('#ctStatus').className='ct-status ct-bad';setTimeout(()=>finish(root,'⏰','Tiempo terminado','Esta vez no alcanzaste a conectar todos los elementos. Puedes volver a jugar.'),800)}},1000);
 }
-function finish(root,emoji,title,text){root.innerHTML=`<div class="ct-panel"><div class="ct-final"><div class="big">${emoji}</div><h4>${title}</h4><p>${text}</p><button class="ct-btn" id="ctAgain">Jugar de nuevo</button></div></div>`;root.querySelector('#ctAgain').onclick=()=>start(root)}
-function intercept(e){const el=e.target.closest?.('.game-choice');if(!el)return;const label=(el.textContent||'').toLowerCase();if(!label.includes('conecta territorio'))return;e.preventDefault();e.stopImmediatePropagation();const root=document.querySelector(ROOT);if(root){root.hidden=false;root.scrollIntoView({behavior:'smooth',block:'start'});start(root)}}
+function finish(root,emoji,title,text){root.innerHTML=`<div class="ct-panel"><div class="ct-final"><div class="big">${emoji}</div><h4>${title}</h4><p>${text}</p><button class="ct-btn" id="ctAgain">Jugar de nuevo</button></div></div>`;root.querySelector('#ctAgain').onclick=()=>{start(root);focusGamePanel()}}
+function intercept(e){const el=e.target.closest?.('.game-choice');if(!el)return;const label=(el.textContent||'').toLowerCase();if(!label.includes('conecta territorio'))return;e.preventDefault();e.stopImmediatePropagation();const root=document.querySelector(ROOT);if(root){root.hidden=false;start(root);focusGamePanel()}}
 function boot(){document.addEventListener('click',intercept,true)}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
