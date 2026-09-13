@@ -72,15 +72,13 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 else repair();
 new MutationObserver(repair).observe(document.body,{childList:true,subtree:true});
 
-// Carga el rediseño completo de Viaje Andino después del juego base.
 const travelScript=document.createElement('script');
 travelScript.src='./viaje-andino-overhaul.js?v=20260913';
 travelScript.defer=true;
 document.head.appendChild(travelScript);
 
-// Carga el atlas visual y reemplaza los emojis de Viaje Andino por sprites reales.
 const atlasScript=document.createElement('script');
-atlasScript.src='./atlas-sprites.js?v=20260913';
+atlasScript.src='./atlas-sprites.js?v=20260913-2';
 atlasScript.defer=true;
 document.head.appendChild(atlasScript);
 })();
