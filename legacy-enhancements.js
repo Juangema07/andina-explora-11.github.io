@@ -3,7 +3,8 @@
 // Bootstrap real game modules. This file is loaded by index.html after app.js.
 const files=[
   'andina-games-fix.js?v=20260913-2',
-  'andina-image-fix.js?v=20260913-2'
+  'andina-image-fix.js?v=20260913-2',
+  'conecta-fix.js?v=20260913-1'
 ];
 function load(src){
   return new Promise((resolve,reject)=>{
