@@ -1,7 +1,7 @@
 (()=>{
 'use strict';
-const LOCAL=new URL('./assets/andina/atlas-viaje-andino.webp?v=20260913',document.baseURI).href;
-const RAW='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/atlas-viaje-andino.webp?v=20260913';
+const LOCAL=new URL('./assets/andina/file_000000004cf881f68c17505c5b1a8b99.png?v=20260913',document.baseURI).href;
+const RAW='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/file_000000004cf881f68c17505c5b1a8b99.png?v=20260913';
 const STYLE='andina-atlas-sprites-style';
 function inject(){
  if(document.getElementById(STYLE))return;
