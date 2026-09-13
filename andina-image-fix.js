@@ -23,6 +23,19 @@ function loadImage(img,name){
   };
 }
 
+function fixHotspots(){
+  const positions={
+    cafe:'left:2.2%;top:29.8%;width:18%;height:9.4%;',
+    paramo:'left:34.4%;top:33.3%;width:18%;height:10.4%;',
+    valle:'left:61.2%;top:7.5%;width:18%;height:10.4%;',
+    bogota:'left:78.2%;top:46.8%;width:18.2%;height:9.6%;'
+  };
+  document.querySelectorAll('.map-hotspot').forEach(btn=>{
+    const css=positions[btn.dataset.id];
+    if(css)btn.style.cssText=css;
+  });
+}
+
 function repair(){
   document.querySelectorAll('.map-image').forEach(img=>loadImage(img,files.map));
   document.querySelectorAll('.mission-panel').forEach(panel=>{
@@ -52,6 +65,7 @@ function repair(){
       panel.insertBefore(o,panel.children[1]||null);
     }
   });
+  fixHotspots();
 }
 
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',repair,{once:true});
