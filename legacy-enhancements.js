@@ -6,7 +6,7 @@ const files=[
   'andina-image-fix.js?v=20260913-3',
   'conecta-fix.js?v=20260913-1',
   'games-position-fix.js?v=20260913-1',
-  'viaje-quality-fix.js?v=20260913-3',
+  'viaje-quality-fix.js?v=20260913-4',
   'viaje-static-threats-fix.js?v=20260913-2'
 ];
 function load(src){
