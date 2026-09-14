@@ -2,4 +2,5 @@
 @import url('performance.css');
 @import url('contenido-andino-2026.css');
 @import url('visual-polish.css');
-/* Legacy styles are intentionally replaced by the focused redesign layer. */
+@import url('visual-layout-final.css');
+/* Capa visual final: fondos generales y bloques informativos con imagen. */
