@@ -6,11 +6,11 @@ const css=`
 /* ===== Correcciones finales móviles / ajustes ===== */
 @media(max-width:700px){
   .nav{
-    position:relative!important;left:8px!important;right:8px!important;width:calc(100% - 16px)!important;
+    position:fixed!important;top:10px!important;left:8px!important;right:8px!important;width:calc(100% - 16px)!important;
     height:auto!important;min-height:58px!important;padding:8px 10px 7px!important;
     display:grid!important;grid-template-columns:minmax(0,1fr) 42px!important;
     grid-template-rows:auto auto!important;align-items:center!important;gap:6px!important;
-    box-sizing:border-box!important;overflow:visible!important;
+    box-sizing:border-box!important;overflow:visible!important;z-index:99990!important;
   }
   .nav .logo{grid-column:1;grid-row:1;min-width:0!important;overflow:hidden;text-overflow:ellipsis}
   .nav .icon-btn{grid-column:2;grid-row:1;width:42px!important;height:42px!important}
@@ -24,10 +24,32 @@ const css=`
   .nav nav a{
     display:inline-flex!important;visibility:visible!important;flex:0 0 auto!important;white-space:nowrap!important;
     min-height:31px!important;padding:6px 10px!important;font-size:.69rem!important;color:#17231e!important;
-    background:rgba(255,255,255,.72)!important;border:1px solid rgba(23,35,30,.10)!important;border-radius:999px!important;
+    background:rgba(255,255,255,.92)!important;border:1px solid rgba(23,35,30,.10)!important;border-radius:999px!important;
   }
   .nav nav a.active{background:#173b30!important;color:#fff!important}
+  body{padding-top:0!important}
   .hero{padding-top:10rem!important}
+}
+
+/* La recomendación acompaña al usuario y permanece visible abajo de la pantalla. */
+.andina-desktop-tip{
+  position:fixed!important;left:50%!important;bottom:14px!important;transform:translateX(-50%)!important;
+  width:min(900px,calc(100vw - 28px))!important;max-width:none!important;margin:0!important;
+  box-sizing:border-box!important;z-index:99980!important;
+  border:1px solid rgba(220,237,146,.35)!important;
+  background:linear-gradient(135deg,rgba(23,62,50,.97),rgba(36,84,67,.97))!important;
+  color:#fff!important;border-radius:16px!important;padding:11px 16px!important;
+  display:flex!important;gap:10px!important;align-items:center!important;
+  box-shadow:0 12px 35px rgba(0,0,0,.28)!important;backdrop-filter:blur(12px)!important;
+}
+.andina-desktop-tip strong{color:#dced92!important}
+.andina-desktop-tip span{opacity:.94!important;line-height:1.35!important}
+@media(max-width:700px){
+  .andina-desktop-tip{left:8px!important;right:8px!important;bottom:8px!important;transform:none!important;width:auto!important;
+    padding:9px 12px!important;border-radius:14px!important;font-size:.72rem!important;gap:8px!important}
+  .andina-desktop-tip b{font-size:1rem!important;flex:0 0 auto!important}
+  .andina-desktop-tip span{line-height:1.28!important}
+  body{padding-bottom:74px!important}
 }
 
 /* Ajustes: texto y opciones siempre legibles. */
