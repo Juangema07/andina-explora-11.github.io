@@ -1,0 +1,18 @@
+/* Fondos fotográficos y acabado visual */
+.pro-hero-bg{background-image:linear-gradient(90deg,rgba(7,20,17,.88),rgba(7,20,17,.58),rgba(7,20,17,.18)),url('./assets/andina/file_000000004cac81f6b568a4826989c123.png')!important;background-position:center;background-size:cover}
+#naturaleza{background-image:linear-gradient(rgba(245,242,232,.93),rgba(245,242,232,.97)),url('./assets/andina/file_00000000006481f684d9007640452d51.png');background-size:cover;background-attachment:fixed}
+#vida{background-image:linear-gradient(rgba(14,29,24,.92),rgba(20,48,39,.96)),url('./assets/andina/file_000000003a8c81f685c4c3177c598939.png');background-size:cover;background-position:center}
+#cultura{background-image:linear-gradient(rgba(245,242,232,.9),rgba(245,242,232,.96)),url('./assets/andina/file_00000000426881f6a792160bee4b88c6.png');background-size:cover;background-position:center}
+#conservacion{background-image:linear-gradient(rgba(12,30,24,.9),rgba(18,45,35,.96)),url('./assets/andina/file_00000000006481f684d9007640452d51.png');background-size:cover;background-position:center}
+#infografia-genially{background-image:linear-gradient(rgba(245,242,232,.9),rgba(245,242,232,.96)),url('./assets/andina/viaje-paramo.png');background-size:cover;background-position:center}
+.opinion-last{background-image:linear-gradient(rgba(8,25,20,.88),rgba(13,35,28,.96)),url('./assets/andina/viaje-cafe.png');background-size:cover;background-position:center}
+.andina-desktop-tip{display:none!important}
+.andina-desktop-tip[hidden]{display:none!important}
+.andina-desktop-tip:not([hidden]){display:flex!important}
+.opinion-reviews{margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.12)}
+.reviews-head{display:flex;justify-content:space-between;gap:1rem;align-items:center}.reviews-head h3{margin:.45rem 0 0;font-size:1.5rem}.reviews-summary{display:flex;align-items:center;gap:.7rem;text-align:right}.reviews-summary strong{font-size:2.5rem;color:#d7edb0}.reviews-summary span{font-size:.78rem;opacity:.72}
+.rating-bars{margin:1.2rem 0;display:grid;gap:.4rem;max-width:520px}.rating-bars>div{display:grid;grid-template-columns:38px 1fr 25px;align-items:center;gap:.5rem;font-size:.78rem}.rating-bars i{height:8px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}.rating-bars b{display:block;height:100%;border-radius:99px;background:#b7d78f}.rating-bars small{opacity:.6}
+.review-list{display:grid;gap:.7rem;max-height:520px;overflow:auto;padding-right:.3rem}.review-list article{padding:1rem 1.1rem;border-radius:16px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}.review-top{display:flex;justify-content:space-between;gap:1rem}.review-top span{color:#d7edb0;letter-spacing:.08em}.review-top small{opacity:.6}.review-list p{margin:.55rem 0 0;line-height:1.55;opacity:.82}.empty-reviews{padding:1.2rem;border-radius:16px;background:rgba(255,255,255,.05);opacity:.72;line-height:1.5}
+@media(max-width:600px) and (pointer:coarse) and (orientation:portrait){.andina-desktop-tip:not([hidden]){display:flex!important}}
+@media(max-width:700px){.reviews-head{align-items:flex-start;flex-direction:column}.reviews-summary{text-align:left}.rating-bars{width:100%}}
+@media(prefers-reduced-motion:reduce){#naturaleza,#vida,#cultura,#conservacion,#infografia-genially,.opinion-last{background-attachment:scroll}}
