@@ -6,7 +6,8 @@ const files=[
   'andina-image-fix.js?v=20260913-2',
   'conecta-fix.js?v=20260913-1',
   'games-position-fix.js?v=20260913-1',
-  'viaje-quality-fix.js?v=20260913-2'
+  'viaje-quality-fix.js?v=20260913-2',
+  'viaje-static-threats-fix.js?v=20260913-1'
 ];
 function load(src){
   return new Promise((resolve,reject)=>{
