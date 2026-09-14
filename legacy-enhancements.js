@@ -12,9 +12,14 @@ const files=[
   'visual-motion.js?v=20260913-1',
   'music-autoplay.js?v=20260913-2',
   'genially-desktop-fix.js?v=20260913-2',
-  'site-final-fixes.js?v=20260913-1'
+  'site-final-fixes.js?v=20260913-1',
+  'visual-content-upgrade.js?v=20260914-1'
 ];
 function load(src){return new Promise((resolve,reject)=>{if(document.querySelector(`script[data-andina-src="${src}"]`)){resolve();return}const s=document.createElement('script');s.src='./'+src;s.dataset.andinaSrc=src;s.defer=false;s.onload=resolve;s.onerror=reject;document.head.appendChild(s)})}
-function loadCss(){if(document.querySelector('link[data-andina-final-css]'))return;const l=document.createElement('link');l.rel='stylesheet';l.href='./site-final-fixes.css?v=20260913-1';l.dataset.andinaFinalCss='1';document.head.appendChild(l)}
+function loadCss(){
+ if(document.querySelector('link[data-andina-final-css]'))return;
+ const l=document.createElement('link');l.rel='stylesheet';l.href='./site-final-fixes.css?v=20260913-1';l.dataset.andinaFinalCss='1';document.head.appendChild(l);
+ const v=document.createElement('link');v.rel='stylesheet';v.href='./visual-content-upgrade.css?v=20260914-1';v.dataset.andinaVisualCss='1';document.head.appendChild(v);
+}
 (async()=>{loadCss();for(const src of files){try{await load(src)}catch(err){console.error('Andina Explora: no se pudo cargar '+src,err)}}})();
 })();
