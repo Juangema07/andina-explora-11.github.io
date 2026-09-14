@@ -1,6 +1,6 @@
 (()=>{
 'use strict';
-// Menú estable para los juegos secundarios. No intercepta ni redispara clicks.
+// Menú estable para los juegos secundarios. No intercepta clicks ni cambia el scroll de la página.
 if(window.__ANDINA_OTHER_GAMES_MENU__) return;
 window.__ANDINA_OTHER_GAMES_MENU__=true;
 function connect(){
@@ -17,25 +17,10 @@ function preload(){
   s.async=false;
   document.head.appendChild(s);
 }
-function focusGamePanel(){
-  setTimeout(()=>{
-    const panel=document.querySelector('#gamePanel');
-    if(!panel)return;
-    const top=panel.getBoundingClientRect().top+window.scrollY-18;
-    window.scrollTo({top:Math.max(0,top),behavior:'smooth'});
-  },70);
-}
-function bindPosition(){
-  const menu=document.querySelector('.games-menu');
-  if(!menu||menu.dataset.positionBound==='1')return;
-  menu.dataset.positionBound='1';
-  menu.addEventListener('click',focusGamePanel);
-}
 function boot(){
   connect();
   preload();
-  bindPosition();
-  new MutationObserver(()=>{connect();bindPosition()}).observe(document.body,{childList:true,subtree:true});
+  new MutationObserver(connect).observe(document.body,{childList:true,subtree:true});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});
 else boot();
