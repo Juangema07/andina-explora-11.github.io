@@ -1,0 +1,15 @@
+/* Territorios: tarjetas limpias, sin imágenes pixeladas y con más contenido al abrir */
+#territorios-andinos .place-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.15rem}
+#territorios-andinos .territory-clean-card{position:relative;min-height:230px;padding:0;border:1px solid rgba(255,255,255,.12);border-radius:26px;background:linear-gradient(145deg,rgba(30,67,54,.98),rgba(12,30,25,.98));color:#eef5ef;text-align:left;cursor:pointer;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+#territorios-andinos .territory-clean-card:before{content:'';position:absolute;inset:auto -12% -55% 28%;height:170px;background:radial-gradient(circle,rgba(183,215,143,.24),transparent 68%);pointer-events:none}
+#territorios-andinos .territory-clean-card:after{content:'ABRIR DETALLE  →';position:absolute;right:1.35rem;bottom:1.25rem;font-size:.65rem;letter-spacing:.14em;font-weight:900;color:#b7d78f;opacity:.85}
+#territorios-andinos .territory-clean-card:hover,#territorios-andinos .territory-clean-card:focus-visible{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.2);border-color:rgba(183,215,143,.4);outline:none}
+#territorios-andinos .territory-clean-card span{display:block;padding:1.7rem 1.7rem 3.2rem}
+#territorios-andinos .territory-clean-card span b{display:block;font-size:.68rem;letter-spacing:.16em;color:#b8d5bd;margin-bottom:.55rem}
+#territorios-andinos .territory-clean-card span strong{display:block;font-size:clamp(1.35rem,2.5vw,2rem);line-height:1.05;margin-bottom:.65rem}
+#territorios-andinos .territory-clean-card span small{display:block;max-width:34rem;line-height:1.55;opacity:.72;font-size:.9rem}
+.place-dialog article{max-height:min(88vh,760px);overflow:auto}
+.territory-facts{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
+.territory-facts span{padding:.45rem .65rem;border-radius:999px;background:rgba(183,215,143,.12);border:1px solid rgba(183,215,143,.2);font-size:.76rem;color:#dcecc9}
+@media(max-width:900px){#territorios-andinos .place-grid{grid-template-columns:1fr}}
+@media(max-width:560px){#territorios-andinos .territory-clean-card{min-height:205px}#territorios-andinos .territory-clean-card span{padding:1.35rem 1.25rem 3rem}.place-dialog article{max-height:86vh}}
