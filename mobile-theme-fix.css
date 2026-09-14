@@ -1,0 +1,95 @@
+/* Ajustes móviles, temas y panel de opinión */
+
+/* Navegación móvil: conserva las secciones y permite desplazarlas horizontalmente. */
+@media(max-width:700px){
+  .nav{
+    height:auto!important;
+    min-height:58px!important;
+    padding:8px 10px 7px!important;
+    display:flex!important;
+    flex-wrap:wrap!important;
+    align-items:center!important;
+    gap:7px!important;
+  }
+  .nav .logo{flex:1 1 auto;min-width:0;white-space:nowrap}
+  .nav .icon-btn{flex:0 0 42px}
+  .nav nav{
+    display:flex!important;
+    order:3!important;
+    flex:0 0 100%!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    gap:5px!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    scrollbar-width:none!important;
+    -webkit-overflow-scrolling:touch!important;
+    padding:2px 1px 3px!important;
+  }
+  .nav nav::-webkit-scrollbar{display:none}
+  .nav nav a{
+    flex:0 0 auto!important;
+    white-space:nowrap!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    min-height:32px!important;
+    padding:7px 10px!important;
+    border-radius:999px!important;
+    font-size:.68rem!important;
+  }
+}
+
+/* El panel de ajustes debe seguir siendo legible en cualquier tema. */
+.settings,.settings label,.settings .eyebrow,.settings h2,.settings hr{color:#17231e}
+.settings select,.settings input[type="range"],.settings option{color:#111!important;background:#fff!important}
+.settings select{border-color:rgba(23,35,30,.18)!important}
+.settings .check,.settings .upload{color:#17231e!important}
+.settings .close{color:#17231e!important}
+
+/* Los tres temas cambian realmente la apariencia de la página. */
+html[data-theme="andino"] body{background:#101b18!important}
+html[data-theme="andino"] .pro-section:not(.pro-section-dark):not(.opinion-section){background-color:#f5f2e8}
+html[data-theme="andino"] .pro-section-dark{background:linear-gradient(135deg,#12251f,#1c352c)!important}
+html[data-theme="andino"] .pro-games{background:#f5f2e8!important}
+
+html[data-theme="noche"] body{background:#07110e!important;color:#edf5ef!important}
+html[data-theme="noche"] .pro-section:not(.pro-section-dark):not(.opinion-section),
+html[data-theme="noche"] .pro-games{background:linear-gradient(145deg,#0b1915,#142a22)!important;color:#edf5ef!important}
+html[data-theme="noche"] .pro-stat-grid>div{background:rgba(255,255,255,.055)!important;border-color:rgba(255,255,255,.1)!important}
+html[data-theme="noche"] .pro-section .pro-heading p{color:#dce8df!important}
+html[data-theme="noche"] .infographic button{background:rgba(255,255,255,.07)!important;color:#edf5ef!important;border-color:rgba(255,255,255,.1)!important}
+html[data-theme="noche"] .infographic-detail{background:#123127!important;color:#edf5ef!important}
+
+html[data-theme="papel"] body{background:#e8dfcd!important;color:#30291f!important}
+html[data-theme="papel"] .pro-section:not(.pro-section-dark):not(.opinion-section),
+html[data-theme="papel"] .pro-games{background:#eee6d6!important;color:#30291f!important}
+html[data-theme="papel"] .pro-section-dark{background:linear-gradient(145deg,#33473d,#516253)!important}
+html[data-theme="papel"] .pro-stat-grid>div{background:rgba(255,255,255,.68)!important;border-color:rgba(65,55,42,.16)!important}
+html[data-theme="papel"] .pro-section .pro-heading p{color:#4c453b!important}
+
+/* Opinión: una composición de dos columnas que en móvil se apila sin cortar el formulario. */
+.opinion-section{padding:6rem 8vw!important;min-height:0!important;background-image:linear-gradient(135deg,rgba(8,25,20,.9),rgba(13,35,28,.97)),url('./assets/andina/viaje-cafe.png')!important;background-size:cover!important;background-position:center!important;color:#eef5ef!important}
+.opinion-card{width:min(1120px,100%);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,520px);gap:clamp(2rem,6vw,5rem);align-items:start}
+.opinion-card>div:first-child{padding-top:1rem}
+.opinion-card .pro-kicker{display:inline-block;color:#b8d5bd;font-size:.72rem;letter-spacing:.18em;font-weight:800}
+.opinion-card h2{font-size:clamp(2.3rem,5vw,4.5rem);line-height:.98;letter-spacing:-.045em;margin:.8rem 0 1rem;color:#fff;max-width:650px}
+.opinion-card h2 em{font-style:normal;color:#b7d78f}
+.opinion-card>div:first-child p{max-width:560px;line-height:1.75;color:#d7e3da;opacity:.86}
+#opinionForm{min-width:0;padding:1.5rem;border-radius:28px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.13);box-shadow:0 22px 60px rgba(0,0,0,.2);backdrop-filter:blur(8px)}
+#opinionForm fieldset{border:0;padding:0;margin:0 0 1.2rem;min-width:0}
+#opinionForm legend,#opinionForm>label{display:block;color:#fff;font-weight:700;font-size:.9rem;margin-bottom:.55rem}
+#opinionForm .rating{display:flex;flex-wrap:wrap;gap:.45rem}
+#opinionForm .rating label{display:inline-flex;align-items:center;gap:.3rem;padding:.55rem .7rem;border-radius:12px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;white-space:nowrap}
+#opinionForm input[type="radio"]{accent-color:#d7edb0;margin:0}
+#opinionForm select,#opinionForm textarea{width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,.14);border-radius:13px;background:rgba(4,18,14,.45);color:#fff;padding:.8rem .9rem;font:inherit;outline:none}
+#opinionForm option{color:#111;background:#fff}
+#opinionForm textarea{min-height:110px;resize:vertical;margin-top:.15rem}
+#opinionForm select:focus,#opinionForm textarea:focus{border-color:#b7d78f;box-shadow:0 0 0 3px rgba(183,215,143,.12)}
+#opinionForm .pro-btn{border:0;cursor:pointer;margin-top:.25rem}
+#opinionStatus{display:block;margin-top:.7rem;color:#d7edb0;font-size:.82rem;line-height:1.4}
+@media(max-width:800px){.opinion-section{padding:4.5rem 6vw!important}.opinion-card{grid-template-columns:1fr;gap:1.5rem}.opinion-card>div:first-child{padding-top:0}.opinion-card h2{font-size:clamp(2.25rem,10vw,3.5rem)}}
+@media(max-width:560px){.opinion-section{padding:3.5rem 1.1rem!important}.opinion-card{gap:1.2rem}.opinion-card h2{font-size:2.35rem}.opinion-card>div:first-child p{font-size:.92rem}.opinion-card #opinionForm{padding:1rem;border-radius:20px}.opinion-card .rating{display:grid;grid-template-columns:1fr 1fr;gap:.4rem}.opinion-card .rating label{justify-content:center;padding:.62rem .45rem;font-size:.82rem}.opinion-card #opinionForm textarea{min-height:100px}}
+
+/* En móvil, el contenido no debe quedar escondido detrás de la navegación expandida. */
+@media(max-width:700px){body{padding-top:0}.hero{padding-top:9rem!important}}
