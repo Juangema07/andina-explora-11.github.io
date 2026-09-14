@@ -7,6 +7,7 @@ const files=[
   'viaje-quality-fix.js?v=20260913-5',
   'viaje-static-threats-fix.js?v=20260913-2',
   'professional-final.js?v=20260913-1',
+  'professional-expansion.js?v=20260913-1',
   'visual-motion.js?v=20260913-1',
   'music-autoplay.js?v=20260913-1'
 ];
