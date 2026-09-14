@@ -8,7 +8,8 @@ const files=[
   'viaje-quality-fix.js?v=20260913-5',
   'viaje-static-threats-fix.js?v=20260913-2',
   'andina-content-enhancement.js?v=20260913-1',
-  'contenido-andino-2026.js?v=20260913-1'
+  'contenido-andino-2026.js?v=20260913-1',
+  'visual-motion.js?v=20260913-1'
 ];
 function load(src){
  return new Promise((resolve,reject)=>{
