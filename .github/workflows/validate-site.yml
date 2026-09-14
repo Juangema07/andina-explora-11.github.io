@@ -30,8 +30,9 @@ jobs:
           import re
           html=Path('index.html').read_text(encoding='utf-8')
           refs=re.findall(r'<script[^>]+src=[\"\']([^\"\']+)[\"\']',html)
-          refs += re.findall(r'<link[^>]+href=[\"\']([^\"\']+\.css)[\"\']',html)
-          missing=[r for r in refs if not r.startswith(('http://','https://','//')) and not Path(r).exists()]
+          refs += re.findall(r'<link[^>]+href=[\"\']([^\"\']+\.css(?:\?[^\"\']*)?)[\"\']',html)
+          clean=[r.split('?',1)[0] for r in refs]
+          missing=[r for r in clean if not r.startswith(('http://','https://','//')) and not Path(r).exists()]
           if missing:
               raise SystemExit('Referencias locales inexistentes: '+', '.join(missing))
           print('Referencias locales OK')
