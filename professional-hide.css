@@ -1,0 +1,10 @@
+/* Oculta la estructura anterior mientras se monta la experiencia final. */
+body:not(.pro-ready) .hero,
+body:not(.pro-ready) .intro,
+body:not(.pro-ready) #fisica,
+body:not(.pro-ready) #humana,
+body:not(.pro-ready) #economia,
+body:not(.pro-ready) #cultura,
+body:not(.pro-ready) #desafios,
+body:not(.pro-ready) #productos,
+body:not(.pro-ready) #recursos{display:none!important}
