@@ -4,6 +4,14 @@ if(window.__ANDINA_TRAVEL_QUALITY_FIX__)return;
 window.__ANDINA_TRAVEL_QUALITY_FIX__=true;
 const state=new WeakMap();
 const STYLE_ID='andina-travel-random-fix-style';
+// Solo bloquea el movimiento automático de las aves. No toca el resto de animaciones.
+const nativeRAF=window.requestAnimationFrame.bind(window);
+window.requestAnimationFrame=function(cb){
+ let src='';
+ try{src=Function.prototype.toString.call(cb)}catch(e){}
+ if(src.includes('document.body.contains(el)')&&src.includes('maxX')&&src.includes('maxY'))return 0;
+ return nativeRAF(cb)
+};
 function inject(){
  if(document.getElementById(STYLE_ID))return;
  const s=document.createElement('style');s.id=STYLE_ID;s.textContent=`
@@ -43,7 +51,6 @@ function coffee(a){
   el.style.setProperty('animation','none','important');
   el.dataset.fallStart=String(performance.now()+delay);
   el.dataset.fallDuration=String(duration);
-  el.dataset.fallX=String(x);
  })
  if(!a.dataset.coffeeLoop){
   a.dataset.coffeeLoop='1';
