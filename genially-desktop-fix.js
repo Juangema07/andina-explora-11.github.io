@@ -17,9 +17,32 @@ function addStyle(){
 `;
   document.head.appendChild(s);
 }
-function navLink(nav,id,label){if(!nav||nav.querySelector(`a[href="#${id}"]`))return;const a=document.createElement('a');a.href='#'+id;a.textContent=label;nav.appendChild(a)}
-function addQuickAccess(){const actions=document.querySelector('.hero .actions');if(!actions||actions.querySelector('.quick-access'))return;const box=document.createElement('div');box.className='quick-access';box.innerHTML=`<a class="btn ghost" href="#infografia-genially">▣ Infografía Genially</a><a class="btn ghost" href="#diapositivas-andina">▶ Diapositivas</a>`;actions.appendChild(box)}
-function reorderSections(main){const wanted=['fisica','humana','economia','cultura','desafios','infografia-genially','diapositivas-andina','juegos','productos','recursos'];const nodes={};wanted.forEach(id=>{const el=document.getElementById(id);if(el)nodes[id]=el});const anchor=document.querySelector('.intro.band');if(!anchor)return;let cursor=anchor;wanted.forEach(id=>{const el=nodes[id];if(!el)return;if(el.previousElementSibling!==cursor)cursor.insertAdjacentElement('afterend',el);cursor=el})}
+function organizeNav(nav){
+  if(!nav)return;
+  let info=nav.querySelector('a[href="#infografia-genially"]');
+  let slides=nav.querySelector('a[href="#diapositivas-andina"]');
+  const anchor=nav.querySelector('a[href="#desafios"]');
+  if(!info){info=document.createElement('a');info.href='#infografia-genially';info.textContent='Infografía'}
+  if(!slides){slides=document.createElement('a');slides.href='#diapositivas-andina';slides.textContent='Diapositivas'}
+  if(info.parentElement===nav)nav.removeChild(info);
+  if(slides.parentElement===nav)nav.removeChild(slides);
+  if(anchor)anchor.insertAdjacentElement('afterend',info);else nav.appendChild(info);
+  info.insertAdjacentElement('afterend',slides);
+}
+function addQuickAccess(){
+  const actions=document.querySelector('.hero .actions');
+  if(!actions||actions.querySelector('.quick-access'))return;
+  const box=document.createElement('div');box.className='quick-access';
+  box.innerHTML=`<a class="btn ghost" href="#infografia-genially">▣ Infografía Genially</a><a class="btn ghost" href="#diapositivas-andina">▶ Diapositivas</a>`;
+  actions.appendChild(box);
+}
+function reorderSections(main){
+  const wanted=['fisica','humana','economia','cultura','desafios','infografia-genially','diapositivas-andina','juegos','productos','recursos'];
+  const nodes={};wanted.forEach(id=>{const el=document.getElementById(id);if(el)nodes[id]=el});
+  const anchor=document.querySelector('.intro.band');if(!anchor)return;
+  let cursor=anchor;
+  wanted.forEach(id=>{const el=nodes[id];if(!el)return;if(el.previousElementSibling!==cursor)cursor.insertAdjacentElement('afterend',el);cursor=el});
+}
 function add(){
   addStyle();
   const main=document.querySelector('main');const games=document.querySelector('#juegos');if(!main)return;
@@ -35,7 +58,9 @@ function add(){
     slides.innerHTML=`<div class="pro-heading"><span class="pro-kicker">PRESENTACIÓN INTERACTIVA</span><h2>Del paisaje a la mesa: <em>el viaje de un producto andino</em></h2><p>Una presentación breve y dinámica que conecta territorio, producción, comercio y cultura sin sobrecargar la pantalla.</p></div><div class="slides-wrap"><iframe class="slides-frame" src="./diapositivas-andina.html" title="Diapositivas interactivas sobre la Región Andina" allowfullscreen loading="lazy"></iframe><div class="slides-fallback">Si no se muestra dentro de la página, puedes abrir las <a href="./diapositivas-andina.html" target="_blank" rel="noopener">diapositivas en pantalla completa</a>.</div></div>`;
     genially.insertAdjacentElement('afterend',slides);
   }
-  const nav=document.querySelector('#navLinks');navLink(nav,'infografia-genially','Infografía');navLink(nav,'diapositivas-andina','Diapositivas');addQuickAccess();reorderSections(main);
+  organizeNav(document.querySelector('#navLinks'));
+  addQuickAccess();
+  reorderSections(main);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(add,650),{once:true});else setTimeout(add,650);
 new MutationObserver(()=>{if(document.querySelector('#infografia-genially')&&document.querySelector('#diapositivas-andina'))reorderSections(document.querySelector('main'))}).observe(document.body,{childList:true,subtree:true});
