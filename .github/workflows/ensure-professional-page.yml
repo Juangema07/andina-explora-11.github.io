@@ -1,0 +1,32 @@
+name: Ensure professional Andina experience
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  ensure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Load professional expansion
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('index.html')
+          s=p.read_text(encoding='utf-8')
+          head='''<link rel="stylesheet" href="professional-expansion.css?v=20260914-2">\n<link rel="stylesheet" href="professional-deep-content.css?v=20260914-1">'''
+          scripts='''<script src="legacy-enhancements.js?v=20260914-2"></script>'''
+          if 'professional-expansion.css?v=20260914-2' not in s:
+              s=s.replace('</head>',head+'\n</head>')
+          if 'legacy-enhancements.js?v=20260914-2' not in s:
+              s=s.replace('</body>',scripts+'\n</body>')
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "chore: ensure professional content loads"
+          git push
