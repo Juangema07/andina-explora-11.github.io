@@ -1,9 +1,10 @@
-/* Fuentes con el mismo tratamiento visual de Opiniones */
-#fuentes.pro-sources{background-image:linear-gradient(90deg,rgba(8,25,20,.88),rgba(13,35,28,.96)),url('./assets/andina/viaje-cafe.png')!important;background-size:cover;background-position:center;color:#eef5ef}
-#fuentes .pro-heading p{color:#eef5ef;opacity:.76}
-#fuentes .source-list a{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.13);color:#fff;backdrop-filter:blur(5px)}
-#fuentes .source-list a:hover{background:rgba(255,255,255,.12);border-color:rgba(183,215,143,.35)}
-#fuentes .source-list span{color:#eef5ef;opacity:.72}
-#fuentes .source-list a::after{color:#b7d78f}
-/* Evita bloques desproporcionados en pantallas pequeñas */
+/* Fondo de bibliografía igual al bloque de Opiniones + legibilidad */
+#fuentes.pro-sources{background:linear-gradient(90deg,rgba(8,25,20,.88),rgba(13,35,28,.96)),url('./assets/andina/viaje-cafe.png') center/cover no-repeat!important;color:#eef5ef!important}
+#fuentes.pro-sources .pro-heading h2,#fuentes.pro-sources .pro-heading p{color:#eef5ef}
+#fuentes .pro-heading p{opacity:.82}
+#fuentes .source-list a{background:rgba(255,255,255,.085)!important;border:1px solid rgba(255,255,255,.15)!important;color:#fff!important;backdrop-filter:blur(7px);box-shadow:0 12px 30px rgba(0,0,0,.15)}
+#fuentes .source-list a:hover{background:rgba(255,255,255,.14)!important;border-color:rgba(183,215,143,.4)!important}
+#fuentes .source-list b{color:#fff!important}#fuentes .source-list span{color:#eef5ef!important;opacity:.78}
+#fuentes .source-list a::after{color:#b7d78f!important}
+.territory-question{margin-top:1rem!important;padding:1rem 1.1rem;border-radius:15px;background:rgba(183,215,143,.08);border:1px solid rgba(183,215,143,.16);line-height:1.6!important;color:#e5f0e4}.territory-question b{color:#cfe7a7}
 @media(max-width:700px){#fuentes{padding-top:4rem;padding-bottom:4rem}#fuentes .pro-heading h2{font-size:2.25rem}.source-list{gap:.65rem}.source-list a{padding:1.1rem 1.15rem}}
