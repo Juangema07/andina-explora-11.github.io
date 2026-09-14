@@ -7,9 +7,7 @@ const STYLE_ID='andina-travel-random-fix-style';
 function inject(){
  if(document.getElementById(STYLE_ID))return;
  const s=document.createElement('style');s.id=STYLE_ID;s.textContent=`
- @keyframes andinaCoffeeFall{from{top:-55px}to{top:calc(100% + 25px)}}
- #travel2Arena .t2-coffee-random{animation:andinaCoffeeFall var(--coffee-duration,2.4s) linear var(--coffee-delay,0s) forwards!important}
- #travel2Arena .t2-trash-random{animation:none!important;transform:none!important}
+ #travel2Arena .t2-bird-static{animation:none!important;transform:none!important}
  `;document.head.appendChild(s)
 }
 function info(){
@@ -28,23 +26,46 @@ function kind(x){
 }
 function reset(a){
  a.querySelectorAll('.t2-item').forEach(el=>{
-  delete el.dataset.randomX;delete el.dataset.randomPlace;delete el.dataset.randomFall;
-  el.classList.remove('t2-coffee-random','t2-trash-random');
-  el.style.removeProperty('transition');el.style.removeProperty('animation');
+  delete el.dataset.randomFall;delete el.dataset.randomPlace;
+  el.classList.remove('t2-bird-static');
+  el.style.removeProperty('transition');
  })
 }
 function coffee(a){
  [...a.querySelectorAll('.t2-item:not(.hit)')].forEach(el=>{
   if(el.dataset.randomFall==='1')return;
   const x=8+Math.random()*84;
-  const duration=1.6+Math.random()*1.7;
-  const delay=Math.random()*1.1;
+  const duration=1700+Math.random()*1800;
+  const delay=Math.random()*900;
   el.dataset.randomFall='1';
   el.style.setProperty('left',x+'%','important');
-  el.style.setProperty('top','-55px','important');
-  el.style.setProperty('--coffee-duration',duration+'s');
-  el.style.setProperty('--coffee-delay',delay+'s');
-  el.classList.add('t2-coffee-random');
+  el.style.setProperty('top','-45px','important');
+  el.style.setProperty('animation','none','important');
+  el.dataset.fallStart=String(performance.now()+delay);
+  el.dataset.fallDuration=String(duration);
+  el.dataset.fallX=String(x);
+ })
+ if(!a.dataset.coffeeLoop){
+  a.dataset.coffeeLoop='1';
+  const tick=now=>{
+   if(!document.body.contains(a)){delete a.dataset.coffeeLoop;return}
+   a.querySelectorAll('.t2-item[data-random-fall="1"]:not(.hit)').forEach(el=>{
+    const start=Number(el.dataset.fallStart)||now,duration=Number(el.dataset.fallDuration)||2200;
+    const p=Math.max(0,Math.min(1,(now-start)/duration));
+    if(p>=1){el.classList.add('hit');el.style.opacity='.12';return}
+    const r=a.clientHeight||250;
+    el.style.setProperty('top',(-45+p*(r+55))+'px','important');
+   });
+   requestAnimationFrame(tick)
+  };
+  requestAnimationFrame(tick)
+ }
+}
+function birds(a){
+ a.querySelectorAll('.t2-item').forEach(el=>{
+  el.classList.add('t2-bird-static');
+  el.style.setProperty('animation','none','important');
+  el.style.setProperty('transform','none','important');
  })
 }
 function trash(a){
@@ -57,7 +78,8 @@ function trash(a){
   el.dataset.randomPlace='1';
   el.style.setProperty('left',Math.max(3,Math.min(91,x))+'%','important');
   el.style.setProperty('top',Math.max(5,Math.min(82,y))+'%','important');
-  el.classList.add('t2-trash-random');
+  el.style.setProperty('animation','none','important');
+  el.style.setProperty('transform','none','important');
  })
 }
 function run(){
@@ -68,13 +90,14 @@ function run(){
  const s=state.get(x.a);
  if(!s||s.kind!==k){reset(x.a);state.set(x.a,{kind:k})}
  if(k==='coffee')coffee(x.a);
+ else if(k==='bird')birds(x.a);
  else if(k==='trash')trash(x.a);
 }
 function boot(){
  inject();run();
  const mo=new MutationObserver(()=>{clearTimeout(boot._t);boot._t=setTimeout(run,25)});
  mo.observe(document.body,{childList:true,subtree:true});
- window.addEventListener('resize',()=>{const x=info();if(!x)return;if(kind(x)==='coffee')x.a.querySelectorAll('.t2-item').forEach(el=>{delete el.dataset.randomFall;el.classList.remove('t2-coffee-random')});else if(kind(x)==='trash')x.a.querySelectorAll('.t2-item').forEach(el=>{delete el.dataset.randomPlace;el.classList.remove('t2-trash-random')});run()})
+ window.addEventListener('resize',()=>{const x=info();if(!x)return;if(kind(x)==='coffee')x.a.querySelectorAll('.t2-item').forEach(el=>delete el.dataset.randomFall);else if(kind(x)==='trash')x.a.querySelectorAll('.t2-item').forEach(el=>delete el.dataset.randomPlace);run()})
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
