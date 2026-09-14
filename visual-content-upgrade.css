@@ -15,22 +15,31 @@ body{background:var(--paper)!important}
 .pro-card-content p{max-width:58ch}.pro-card h3{letter-spacing:-.025em}
 .pro-life-grid article{min-height:245px}.pro-highlight{box-shadow:0 18px 40px rgba(10,40,30,.15)}
 .pro-culture-grid article{min-height:400px;box-shadow:0 18px 45px rgba(20,45,35,.12)}
-/* Nuevas ayudas visuales */
 .andina-learning{padding:5.5rem 8vw;background:#edf1e5;color:var(--ink)}
 .andina-learning-inner{max-width:1180px;margin:auto}.andina-learning h2{font-size:clamp(2rem,4vw,3.6rem);letter-spacing:-.045em;margin:.6rem 0 1rem}.andina-learning-intro{max-width:760px;line-height:1.75;opacity:.75}
 .learning-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem;margin-top:2rem;min-width:0}.learning-card{padding:1.7rem;border-radius:26px;background:rgba(255,255,255,.78);border:1px solid var(--line);box-shadow:0 15px 35px rgba(25,55,43,.08);min-width:0;box-sizing:border-box}
 .learning-card h3{font-size:1.35rem;margin:.35rem 0 .8rem}.learning-card p{line-height:1.7;opacity:.78}.source-mini{margin-top:1rem;font-size:.76rem;opacity:.58}.source-mini a{color:inherit;font-weight:800}
-/* Escala de altura: cuatro tarjetas estables en escritorio, sin comprimirse */
 .andina-ladder{display:grid;grid-template-columns:repeat(4,minmax(145px,1fr));gap:.7rem;align-items:stretch;margin-top:1rem;width:100%;min-width:0;box-sizing:border-box}
 .ladder-step{min-width:0;min-height:180px;width:100%;box-sizing:border-box;border-radius:22px;padding:1.2rem;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;background:linear-gradient(145deg,#2e6b53,#123b30);position:relative;overflow:hidden}
 .ladder-step:before{content:"";position:absolute;inset:auto -15% -40% -15%;height:75%;background:rgba(207,231,167,.18);transform:skewY(-8deg)}.ladder-step strong,.ladder-step span{position:relative}.ladder-step strong{font-size:1.25rem}.ladder-step span{font-size:.82rem;line-height:1.45;margin-top:.35rem;opacity:.84}
 .andina-data-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem}.data-chip{padding:1.25rem 1.35rem;border-radius:22px;background:#173f32;color:#fff}.data-chip strong{display:block;font-size:1.7rem;color:var(--lime)}.data-chip span{display:block;margin-top:.35rem;font-size:.85rem;line-height:1.5;opacity:.78}
 .andina-explainer{display:grid;grid-template-columns:.8fr 1.2fr;gap:1rem;margin-top:2rem}.explainer-art{min-height:320px;border-radius:28px;background:url('./assets/andina/file_000000004cac81f6b568a4826989c123.png') center/cover;position:relative;overflow:hidden}.explainer-art:after{content:"ALTURA → AGUA → VIDA";position:absolute;left:1.2rem;bottom:1.2rem;padding:.7rem .9rem;border-radius:999px;background:rgba(10,31,25,.8);color:#fff;font-weight:800;font-size:.72rem;letter-spacing:.1em}.explainer-copy{padding:2rem;border-radius:28px;background:#173f32;color:#fff}.explainer-copy h3{font-size:1.7rem;margin:.5rem 0 1rem}.explainer-copy p{line-height:1.75;opacity:.84}.explainer-points{display:grid;gap:.6rem;margin-top:1rem}.explainer-points div{padding:.8rem 1rem;border:1px solid rgba(255,255,255,.12);border-radius:15px;background:rgba(255,255,255,.05)}
-/* Configuración más clara */
 .settings{backdrop-filter:blur(18px);box-shadow:0 25px 80px rgba(0,0,0,.28)}
 .settings .settings-note{display:block;font-size:.72rem;line-height:1.45;opacity:.62;margin-top:.7rem}.settings .reset-settings{margin-top:.8rem;width:100%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:inherit;border-radius:12px;padding:.7rem;font-weight:800}
 .music-status{display:block;margin-top:.65rem;font-size:.72rem;line-height:1.4;opacity:.7}.music-status.ok{color:#cfe7a7;opacity:1}
-/* Evita tarjetas gigantes en celular */
 @media(max-width:900px){.andina-learning{padding:4.5rem 6vw}.learning-grid,.andina-explainer{grid-template-columns:1fr}.andina-ladder{grid-template-columns:repeat(2,minmax(0,1fr))}.andina-data-strip{grid-template-columns:1fr}.explainer-art{min-height:240px}}
 @media(max-width:560px){.andina-learning{padding:3.5rem 1.2rem}.andina-ladder{grid-template-columns:1fr 1fr}.ladder-step{min-height:145px;padding:1rem}.pro-section{padding-top:4rem;padding-bottom:4rem}.pro-heading h2{font-size:2.15rem}.pro-heading p{font-size:.94rem}.pro-stat-grid{gap:.7rem}.pro-stat-grid>div{min-height:120px}.pro-card.wide{min-height:390px}.pro-card{min-height:300px}.pro-culture-grid article{min-height:320px}}
 @media(prefers-reduced-motion:reduce){.pro-card{transition:none}.andina-learning,#panorama,#naturaleza,#vida,#cultura,#conservacion{background-attachment:scroll!important}}
+
+/* Responsive fix: evita que las tarjetas de CLAVES se aplasten o desborden en escritorio/tablet. */
+@media (min-width:901px){
+  .learning-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .learning-card{min-width:0;overflow:hidden}
+  .andina-ladder{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .ladder-step{min-width:0}
+  .andina-data-strip{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .data-chip{min-width:0;overflow:hidden;box-sizing:border-box}
+}
+@media (min-width:901px) and (max-width:1150px){
+  .learning-grid{grid-template-columns:1fr}
+}
