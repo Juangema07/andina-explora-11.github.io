@@ -4,10 +4,10 @@ if(window.__ANDINA_LEGACY_ENHANCEMENTS__)return;
 window.__ANDINA_LEGACY_ENHANCEMENTS__=true;
 const isKids=location.pathname.endsWith('/modo-ninos.html')||location.pathname.endsWith('modo-ninos.html');
 
-/* La versión infantil no necesita cargar toda la cadena pesada de mejoras de la web normal.
+/* La versión infantil no necesita cargar toda la cadena pesada de la web normal.
    Esto evita que el navegador móvil quede esperando recursos y mantiene la copia infantil ligera. */
 if(isKids){
-  const kidsFiles=['modo-ninos.js?v=20260916-5','guia-cobertura-andina.js?v=20260916-2','modo-ninos-final.js?v=20260916-2'];
+  const kidsFiles=['modo-ninos.js?v=20260916-5','guia-cobertura-andina.js?v=20260916-2','modo-ninos-final.js?v=20260916-2','modo-ninos-contenido.js?v=20260916-1'];
   function loadKids(src){
     const s=document.createElement('script');
     s.src='./'+src;
