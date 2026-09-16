@@ -5,12 +5,8 @@ window.__ANDINA_MODE_MANAGER_V4__=true;
 const KEY='andina-explora-mode';
 const isFrame=window.top!==window.self;
 const isChildPage=/modo-ninos\.html$/i.test(location.pathname);
-const saved=(()=>{try{return localStorage.getItem(KEY)}catch(e){return null}})();
 
-if(!isFrame && !isChildPage && saved==='children'){
-  location.replace('modo-ninos.html');
-  return;
-}
+/* La página principal siempre abre en modo normal. No redirigirla al modo niños por memoria previa. */
 function remember(mode){try{localStorage.setItem(KEY,mode)}catch(e){}}
 function addNormalButton(){
   if(isFrame || isChildPage)return;
