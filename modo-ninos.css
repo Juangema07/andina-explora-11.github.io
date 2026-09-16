@@ -1,0 +1,26 @@
+/* Modo niños: cambia solo la presentación y la cantidad de texto visible. */
+html.modo-ninos body{font-family:"Trebuchet MS","Arial Rounded MT Bold",Arial,sans-serif}
+html.modo-ninos .nav{border-bottom:3px solid rgba(255,193,7,.35)}
+html.modo-ninos .mode-switch{background:#fff7d6;border-color:#e6b84a;color:#5c4310;box-shadow:0 6px 18px rgba(0,0,0,.12)}
+html.modo-ninos .mode-switch .mode-icon{font-size:1.15em}
+html.modo-ninos .section-head>p,
+html.modo-ninos .intro p,
+html.modo-ninos .map-panel>p,
+html.modo-ninos .altitude-panel>p,
+html.modo-ninos .visual-facts p,
+html.modo-ninos .people-card>p,
+html.modo-ninos .media-section .section-head>p,
+html.modo-ninos .culture .section-head>p,
+html.modo-ninos .challenges .section-head>p{display:none}
+html.modo-ninos .section-head h2{max-width:760px}
+html.modo-ninos .topic-grid,.modo-ninos .sector-tabs,.modo-ninos .culture-grid,.modo-ninos .challenge-grid{gap:12px}
+html.modo-ninos .topic,.modo-ninos .culture-card,.modo-ninos .challenge-grid button,.modo-ninos .sector-tabs button{border-radius:20px}
+html.modo-ninos .info-cards small,html.modo-ninos .city-pills+*{display:none}
+html.modo-ninos .hero-copy p{max-width:560px}
+html.modo-ninos .game-arena{font-size:1.04rem}
+html.modo-ninos .game-arena .game-question>p:first-of-type{margin-bottom:.55rem}
+html.modo-ninos .mode-note{display:block}
+.mode-switch{display:inline-flex;align-items:center;gap:7px;margin-left:8px;padding:9px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.1);color:inherit;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap;transition:.2s ease}
+.mode-switch:hover{transform:translateY(-1px)}
+.mode-note{display:none}
+@media(max-width:760px){.mode-switch{padding:8px 10px;font-size:.84rem}.mode-switch .mode-label{display:none}}
