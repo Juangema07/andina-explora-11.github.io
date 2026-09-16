@@ -19,19 +19,17 @@ html.modo-ninos-child .child-note{display:block;margin:0 auto;padding:10px 18px;
 html.modo-ninos-child .child-secondary{display:none!important}
 html.modo-ninos-child .section-head>p{display:block}
 
-/* SEGURIDAD DE CARGA: nunca dejamos una pantalla de carga bloqueando el modo niños. */
+/* La versión infantil debe cargar y ser utilizable desde el primer momento. */
 html.modo-ninos-child body.standalone-kids-web #loader,
 body.standalone-kids-web #loader{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}
 
-/* MENSAJE DE PANTALLA COMPLETA: queda por encima del contenido, pero debajo del menú. */
-body.standalone-kids-web::after{content:"🧸 MODO NIÑOS\A\AExplicaciones cortas y fáciles para aprender la Región Andina";white-space:pre-wrap;position:fixed;inset:0;z-index:2147483640;display:flex;align-items:center;justify-content:center;padding:28px;text-align:center;background:rgba(255,247,214,.96);color:#5c4310;font:700 clamp(22px,5vw,42px)/1.35 "Trebuchet MS","Arial Rounded MT Bold",Arial,sans-serif;box-shadow:inset 0 0 0 6px rgba(230,184,74,.35);pointer-events:none}
-
-/* PRIORIDAD MÁXIMA DEL MENÚ: siempre visible, por encima del mensaje y totalmente interactivo. */
-body.standalone-kids-web .nav,body.standalone-kids-web header nav,body.standalone-kids-web .navbar{position:relative!important;z-index:2147483647!important;pointer-events:auto!important}
-body.standalone-kids-web .nav *{position:relative;z-index:2147483647!important;pointer-events:auto}
-body.standalone-kids-web .mode-switch,body.standalone-kids-web .child-return{position:relative;z-index:2147483647!important;pointer-events:auto!important}
-
-/* Sin otro pseudo-overlay de desarrollo. */
+/* No usamos una capa que bloquee la página: el contenido, botones y menú quedan libres. */
+body.standalone-kids-web::after{content:none!important;display:none!important;pointer-events:none!important}
 html.modo-ninos-child::before{content:none!important;display:none!important;pointer-events:none!important}
 
-@media(max-width:760px){html.modo-ninos-child .section{padding-top:54px;padding-bottom:54px}.child-return{font-size:.85rem}body.standalone-kids-web::after{font-size:clamp(20px,7vw,32px);padding:22px}}
+/* El menú y el botón para volver al modo normal quedan siempre utilizables. */
+body.standalone-kids-web .nav,body.standalone-kids-web header nav,body.standalone-kids-web .navbar{position:relative!important;z-index:100!important;pointer-events:auto!important}
+body.standalone-kids-web .nav *{pointer-events:auto}
+body.standalone-kids-web .mode-switch,body.standalone-kids-web .child-return{position:relative;z-index:101!important;pointer-events:auto!important}
+
+@media(max-width:760px){html.modo-ninos-child .section{padding-top:54px;padding-bottom:54px}.child-return{font-size:.85rem}}
