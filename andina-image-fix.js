@@ -3,9 +3,11 @@
 const BASE=new URL('./assets/andina/',document.baseURI).href;
 const RAW='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/';
 const files={map:'mapa.png',bogota:'bogota.png',cafe:'eje-cafetero.png',paramo:'paramo.png',valle:'valle-del-cauca.png'};
-const bust='?v=20260916-3';
+const bust='?v=20260916-4';
 const local=n=>BASE+n+bust;const raw=n=>RAW+n+bust;
 const idle=fn=>('requestIdleCallback'in window?requestIdleCallback(fn,{timeout:1400}):setTimeout(fn,250));
+function warmOrigin(href){if(document.head.querySelector(`link[data-andina-origin="${href}"]`))return;const l=document.createElement('link');l.rel='preconnect';l.href=href;l.crossOrigin='anonymous';l.dataset.andinaOrigin=href;document.head.appendChild(l);const d=document.createElement('link');d.rel='dns-prefetch';d.href=href;document.head.appendChild(d)}
+warmOrigin('https://upload.wikimedia.org');warmOrigin('https://commons.wikimedia.org');
 function loadImage(img,name,priority='low'){
   if(!img||img.dataset.andinaFixed==='1')return;
   img.dataset.andinaFixed='1';img.dataset.andinaName=name;img.decoding='async';img.loading='lazy';img.fetchPriority=priority;img.src=local(name);
@@ -33,10 +35,12 @@ new MutationObserver(mutations=>{
   if(relevant)queueRepair()
 }).observe(document.body,{childList:true,subtree:true});
 
-// La página ya carga estos módulos desde index.html. Evitamos descargarlos y ejecutarlos una segunda vez.
-// Solo el refuerzo visual V2 se conserva como carga adicional porque no forma parte del bloque principal.
+// index.html ya carga los módulos principales. Evitamos descargarlos y ejecutarlos por segunda vez.
 function loadOnce(src){if([...document.scripts].some(s=>s.src&&s.src.includes(src.split('?')[0])))return;const s=document.createElement('script');s.src=src;s.async=true;document.head.appendChild(s)}
 idle(()=>loadOnce('./visual-fix-v2.js?v=20260916-2'));
+
+// Caché local para que las visitas posteriores reutilicen CSS/JS/imagenes ya descargados.
+if('serviceWorker'in navigator)idle(()=>navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{}));
 
 const CORDS={
  occidental:{name:'Cordillera Occidental',place:'Pico Pance · Farallones de Cali',img:'https://commons.wikimedia.org/wiki/Special:Redirect/file/76001_(18)Pico_Pance.jpg',source:'https://commons.wikimedia.org/wiki/File:76001_(18)Pico_Pance.jpg',credit:'Foto: Pico Pance · Wikimedia Commons'},
