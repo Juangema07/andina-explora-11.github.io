@@ -6,6 +6,7 @@ on:
     paths-ignore:
       - 'modo-ninos.html'
       - 'modo-ninos-standalone.js'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -21,23 +22,15 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re, html
+          import re
 
           source = Path('index.html').read_text(encoding='utf-8')
           child = source
 
-          # This is a REAL standalone copy of index.html. Only the text content
-          # is simplified here; structure, IDs, links, game hooks and behavior
-          # stay available to the copied page.
           replacements = {
             'Andina Explora: experiencia educativa e interactiva sobre la Región Andina de Colombia.': 'Andina Explora: aprende sobre la Región Andina de Colombia de forma sencilla y divertida.',
             'Andina Explora · Región Andina': 'Andina Explora · Modo niños',
             'Preparando el recorrido…': 'Preparando tu recorrido…',
-            'PERSONALIZA': 'PERSONALIZA',
-            'Tu recorrido': 'Tu recorrido',
-            'Tamaño del texto': 'Tamaño del texto',
-            'Reducir animaciones': 'Menos animaciones',
-            '＋ Añadir mis MP3': '＋ Añadir mis MP3',
             'CIENCIAS SOCIALES · GRADO 11°': 'CIENCIAS SOCIALES',
             'Una ventana digital a las montañas, los páramos, las ciudades, los sabores, los oficios y los desafíos del corazón de Colombia.': 'Explora las montañas, las ciudades, la naturaleza, las comidas y la cultura de la Región Andina.',
             'Empezar recorrido ↓': 'Empezar ↓',
@@ -52,7 +45,6 @@ jobs:
             'Páramos y bosques': 'Naturaleza',
             'Un territorio de contrastes': 'Muchas formas de relieve',
             'Las cordilleras Occidental, Central y Oriental forman una compleja red de montañas, valles y altiplanos.': 'Las cordilleras Occidental, Central y Oriental forman muchas montañas, valles y altiplanos.',
-            'Elige una altura': 'Elige una altura',
             'Ahora sí: cambiar una altura cambia toda la experiencia, no solo una frase.': 'Al cambiar la altura también cambian el clima, las plantas y los animales.',
             'La altitud ayuda a explicar cambios de temperatura y vegetación.': 'La altura ayuda a explicar por qué cambia la temperatura y la vegetación.',
             'Los ecosistemas de montaña son fundamentales para la regulación hídrica.': 'Los ecosistemas de montaña ayudan a cuidar y guardar el agua.',
@@ -100,26 +92,16 @@ jobs:
             'También creamos.': 'Nuestros materiales',
             'Aquí quedarán integrados el video, podcast, infografías y presentación exigidos por el proyecto.': 'Aquí puedes ver los materiales creados para el proyecto.',
             'Video original': 'Video',
-            'documental, reportaje, entrevista o magazine.': 'Un video creado por el grupo.',
             'Podcast': 'Audio',
-            'historia, cultura, economía o problemática.': 'Un audio creado por el grupo.',
             'PowerPoint': 'Presentación',
-            '10–15 diapositivas disponibles desde la web.': 'Presentación del proyecto.',
           }
 
-          # Longest phrases first prevents a shorter phrase from breaking a longer one.
           for old, new in sorted(replacements.items(), key=lambda x: len(x[0]), reverse=True):
               child = child.replace(old, new)
 
-          # Make this copy self-contained as the kids page, not an iframe.
-          child = re.sub(r'<link rel="stylesheet" href="modo-ninos\.css\?v=[^"]+">', '<link rel="stylesheet" href="modo-ninos.css?v=20260916-5">', child)
+          child = re.sub(r'<link rel="stylesheet" href="modo-ninos\\.css\\?v=[^"]+">', '<link rel="stylesheet" href="modo-ninos.css?v=20260916-5">', child)
           child = child.replace('<body>', '<body class="standalone-kids-web">')
-          child = child.replace('<title>Andina Explora · Modo niños</title>', '<title>Andina Explora · Modo niños</title>')
           child = child.replace('<script src="modo-ninos.js?v=20260916-2" defer></script>', '<script src="modo-ninos-standalone.js?v=20260916-1" defer></script>')
-          # Legacy enhancement loads the normal mode manager dynamically; the standalone controller
-          # neutralizes any normal-mode switch and supplies only the return-to-normal button.
-          child += '\n'
-
           Path('modo-ninos.html').write_text(child, encoding='utf-8')
           PY
 
