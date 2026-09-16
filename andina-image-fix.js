@@ -1,9 +1,12 @@
 (()=>{
 'use strict';
+// Hay dos referencias históricas a este archivo en index.html. Conservamos la primera y anulamos la siguiente antes de que se ejecute.
+const current=document.currentScript;
+[...document.scripts].forEach(s=>{if(s!==current&&s.src.includes('andina-image-fix.js'))s.remove()});
 const BASE=new URL('./assets/andina/',document.baseURI).href;
 const RAW='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/';
 const files={map:'mapa.png',bogota:'bogota.png',cafe:'eje-cafetero.png',paramo:'paramo.png',valle:'valle-del-cauca.png'};
-const bust='?v=20260916-4';
+const bust='?v=20260916-5';
 const local=n=>BASE+n+bust;const raw=n=>RAW+n+bust;
 const idle=fn=>('requestIdleCallback'in window?requestIdleCallback(fn,{timeout:1400}):setTimeout(fn,250));
 function warmOrigin(href){if(document.head.querySelector(`link[data-andina-origin="${href}"]`))return;const l=document.createElement('link');l.rel='preconnect';l.href=href;l.crossOrigin='anonymous';l.dataset.andinaOrigin=href;document.head.appendChild(l);const d=document.createElement('link');d.rel='dns-prefetch';d.href=href;document.head.appendChild(d)}
@@ -38,8 +41,6 @@ new MutationObserver(mutations=>{
 // index.html ya carga los módulos principales. Evitamos descargarlos y ejecutarlos por segunda vez.
 function loadOnce(src){if([...document.scripts].some(s=>s.src&&s.src.includes(src.split('?')[0])))return;const s=document.createElement('script');s.src=src;s.async=true;document.head.appendChild(s)}
 idle(()=>loadOnce('./visual-fix-v2.js?v=20260916-2'));
-
-// Caché local para que las visitas posteriores reutilicen CSS/JS/imagenes ya descargados.
 if('serviceWorker'in navigator)idle(()=>navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{}));
 
 const CORDS={
