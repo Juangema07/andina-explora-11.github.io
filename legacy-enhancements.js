@@ -4,9 +4,24 @@ if(window.__ANDINA_LEGACY_ENHANCEMENTS__)return;
 window.__ANDINA_LEGACY_ENHANCEMENTS__=true;
 const isKids=location.pathname.endsWith('/modo-ninos.html')||location.pathname.endsWith('modo-ninos.html');
 
-/* La versión infantil no necesita cargar toda la cadena pesada de la web normal.
-   Esto evita que el navegador móvil quede esperando recursos y mantiene la copia infantil ligera. */
+/* La versión infantil no necesita cargar toda la cadena pesada de la web normal. */
 if(isKids){
+  /* Failsafe: aunque algún recurso infantil tarde o falle, la pantalla nunca queda cargando eternamente. */
+  const finishKidsLoader=()=>{
+    document.body.classList.add('loaded');
+    const loader=document.getElementById('loader');
+    if(loader){loader.style.opacity='0';loader.style.visibility='hidden';loader.style.pointerEvents='none';}
+  };
+  setTimeout(finishKidsLoader,1800);
+
+  /* El HTML infantil antiguo llegó a contener varias copias de este cargador. Elimina las repetidas
+     para evitar trabajo innecesario en móviles, conservando la primera instancia. */
+  const cleanDuplicateLegacy=()=>{
+    const tags=[...document.querySelectorAll('script[src*="legacy-enhancements.js"]')];
+    tags.slice(1).forEach(s=>s.remove());
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',cleanDuplicateLegacy,{once:true});else cleanDuplicateLegacy();
+
   const kidsFiles=['modo-ninos.js?v=20260916-5','guia-cobertura-andina.js?v=20260916-2','modo-ninos-final.js?v=20260916-2','modo-ninos-contenido.js?v=20260916-1'];
   function loadKids(src){
     const s=document.createElement('script');
