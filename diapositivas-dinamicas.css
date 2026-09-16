@@ -1,0 +1,116 @@
+/* Andina Explora — mejora visual de la presentación */
+:root{
+  --gold:#f2c94c;
+  --gold-soft:rgba(242,201,76,.18);
+  --glass:rgba(8,20,16,.48);
+  --line:rgba(255,255,255,.18);
+}
+
+/* Movimiento suave del paisaje sin cambiar el contenido */
+.slide{
+  isolation:isolate;
+  background-color:#10241d;
+  background-blend-mode:normal;
+  animation:andinaBreath 16s ease-in-out infinite alternate;
+}
+.slide.active{animation:andinaBreath 16s ease-in-out infinite alternate}
+
+@keyframes andinaBreath{
+  0%{background-position:48% 50%;background-size:cover}
+  50%{background-position:52% 48%;background-size:104%}
+  100%{background-position:49% 52%;background-size:cover}
+}
+
+/* Capa cinematográfica: conserva la foto pero mejora profundidad y lectura */
+.slide::before{
+  background:
+    linear-gradient(105deg,rgba(5,18,13,.91) 0%,rgba(8,25,19,.68) 39%,rgba(8,22,18,.24) 72%,rgba(8,18,14,.38) 100%),
+    radial-gradient(circle at 82% 18%,rgba(242,201,76,.22),transparent 24%),
+    radial-gradient(circle at 18% 86%,rgba(39,145,113,.18),transparent 28%);
+  mix-blend-mode:normal;
+  animation:lightSweep 10s ease-in-out infinite alternate;
+}
+
+.slide::after{
+  background:
+    radial-gradient(circle at 78% 24%,rgba(255,255,255,.16) 0 1px,transparent 2px),
+    radial-gradient(circle at 84% 62%,rgba(255,255,255,.12) 0 1px,transparent 2px),
+    radial-gradient(circle at 62% 78%,rgba(242,201,76,.14) 0 2px,transparent 3px),
+    linear-gradient(120deg,transparent 0 38%,rgba(255,255,255,.035) 50%,transparent 62%);
+  background-size:auto,auto,auto,220% 220%;
+  animation:particles 12s linear infinite;
+  opacity:.9;
+}
+
+@keyframes lightSweep{
+  from{filter:brightness(.96);transform:translate3d(-.5%,0,0)}
+  to{filter:brightness(1.06);transform:translate3d(.7%,0,0)}
+}
+@keyframes particles{
+  0%{background-position:0 0,0 0,0 0,0 0}
+  50%{background-position:8px -12px,-10px 14px,12px -8px,55% 45%}
+  100%{background-position:0 0,0 0,0 0,100% 55%}
+}
+
+/* Identidad visual distinta para cada diapositiva */
+.s1::before{background:linear-gradient(105deg,rgba(4,20,14,.86),rgba(12,39,29,.48) 52%,rgba(242,201,76,.13)),radial-gradient(circle at 80% 20%,rgba(242,201,76,.25),transparent 28%)}
+.s2::before{background:linear-gradient(105deg,rgba(7,27,22,.91),rgba(13,57,44,.54) 50%,rgba(15,45,35,.22)),radial-gradient(circle at 78% 20%,rgba(91,174,150,.2),transparent 30%)}
+.s3::before{background:linear-gradient(105deg,rgba(5,22,24,.9),rgba(15,60,62,.5) 52%,rgba(53,143,147,.16)),radial-gradient(circle at 82% 18%,rgba(104,222,213,.2),transparent 30%)}
+.s4::before{background:linear-gradient(105deg,rgba(31,21,9,.9),rgba(70,46,17,.52) 50%,rgba(241,183,54,.14)),radial-gradient(circle at 80% 22%,rgba(242,201,76,.3),transparent 29%)}
+.s5::before{background:linear-gradient(105deg,rgba(13,26,25,.9),rgba(24,61,56,.5) 52%,rgba(70,156,142,.13)),radial-gradient(circle at 80% 18%,rgba(92,202,181,.18),transparent 30%)}
+.s6::before{background:linear-gradient(105deg,rgba(28,18,12,.9),rgba(68,43,24,.52) 52%,rgba(217,153,79,.12)),radial-gradient(circle at 78% 22%,rgba(242,201,76,.22),transparent 28%)}
+.s7::before{background:linear-gradient(105deg,rgba(17,22,19,.91),rgba(47,58,39,.52) 50%,rgba(150,180,90,.13)),radial-gradient(circle at 80% 20%,rgba(190,218,111,.17),transparent 30%)}
+.s8::before{background:linear-gradient(105deg,rgba(37,18,24,.9),rgba(77,35,42,.52) 52%,rgba(210,111,130,.13)),radial-gradient(circle at 80% 20%,rgba(245,171,111,.2),transparent 30%)}
+.s9::before{background:linear-gradient(105deg,rgba(10,24,21,.92),rgba(28,59,47,.55) 50%,rgba(242,201,76,.1)),radial-gradient(circle at 80% 20%,rgba(242,201,76,.22),transparent 30%)}
+.s10::before{background:linear-gradient(105deg,rgba(7,20,16,.92),rgba(18,52,39,.52) 50%,rgba(242,201,76,.15)),radial-gradient(circle at 78% 20%,rgba(242,201,76,.32),transparent 32%)}
+
+/* Contenido con efecto de cristal muy sutil */
+.content{max-width:820px;text-shadow:0 2px 18px rgba(0,0,0,.2)}
+.content h1,.content h2{filter:drop-shadow(0 8px 24px rgba(0,0,0,.22))}
+.callout,.pill,.step{
+  border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 14px 38px rgba(0,0,0,.2),inset 0 1px rgba(255,255,255,.08);
+}
+.pill{transition:transform .25s ease,background .25s ease,border-color .25s ease}
+.pill:hover{transform:translateY(-3px);background:rgba(242,201,76,.16);border-color:rgba(242,201,76,.48)}
+.step{transition:transform .3s ease,box-shadow .3s ease}
+.step:hover{transform:translateY(-6px) rotate(-.5deg);box-shadow:0 20px 44px rgba(0,0,0,.28)}
+
+/* Barra de progreso más visible */
+.progress{height:5px;box-shadow:0 0 18px rgba(242,201,76,.5)}
+.controls{box-shadow:0 12px 40px rgba(0,0,0,.32),inset 0 1px rgba(255,255,255,.08)}
+.controls button{transition:transform .2s ease,background .2s ease}
+.controls button:hover{transform:scale(1.08)}
+
+/* Entrada más dinámica al cambiar de diapositiva */
+.active .content{animation:slideContent .8s cubic-bezier(.2,.75,.2,1) both}
+@keyframes slideContent{
+  from{opacity:0;transform:translate3d(0,30px,0) scale(.985);filter:blur(5px)}
+  to{opacity:1;transform:none;filter:none}
+}
+
+/* Decoración geométrica inspirada en mapas/topografía */
+.slide .content::before{
+  content:"";
+  position:absolute;
+  left:-34px;top:-30px;
+  width:90px;height:90px;
+  border:1px solid rgba(242,201,76,.25);
+  border-radius:50%;
+  box-shadow:0 0 0 12px rgba(242,201,76,.035),0 0 0 24px rgba(242,201,76,.025);
+  pointer-events:none;
+  animation:orbitMark 8s ease-in-out infinite alternate;
+}
+@keyframes orbitMark{to{transform:translate(9px,7px) scale(1.08);opacity:.7}}
+
+@media(max-width:700px){
+  .slide{animation:none!important}
+  .slide::before{animation:none}
+  .slide::after{opacity:.55}
+  .slide .content::before{left:-16px;top:-20px;width:60px;height:60px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .slide,.slide.active,.slide::before,.slide::after,.slide .content::before{animation:none!important}
+  .pill,.step,.controls button{transition:none!important}
+}
