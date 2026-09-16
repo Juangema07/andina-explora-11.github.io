@@ -15,6 +15,9 @@ function addBlock(id,data){
  wrap.innerHTML=`<div class="kids-extra-head"><span class="eyebrow">SIGUE EXPLORANDO</span><h3>${data.title}</h3><p>Un poco más de información, explicada de forma sencilla.</p></div><div class="kids-extra-grid">${data.items.map(x=>`<article><span class="kids-extra-icon">${x[0]}</span><h4>${x[1]}</h4><p>${x[2]}</p></article>`).join('')}</div>`;
  section.appendChild(wrap);
 }
-function init(){Object.entries(extra).forEach(([id,data])=>addBlock(id,data));document.documentElement.classList.add('kids-dynamic-ready');}
+function keepKidsPresentation(){
+ document.querySelectorAll('a[href="diapositivas-andina.html"],a[href^="diapositivas-andina.html?"]').forEach(a=>{a.href='diapositivas-andina-ninos.html';});
+}
+function init(){Object.entries(extra).forEach(([id,data])=>addBlock(id,data));keepKidsPresentation();setTimeout(keepKidsPresentation,900);document.documentElement.classList.add('kids-dynamic-ready');}
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(init,300),{once:true}); else setTimeout(init,300);
 })();
