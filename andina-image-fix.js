@@ -3,20 +3,40 @@
 const BASE=new URL('./assets/andina/',document.baseURI).href;
 const RAW='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/';
 const files={map:'mapa.png',bogota:'bogota.png',cafe:'eje-cafetero.png',paramo:'paramo.png',valle:'valle-del-cauca.png'};
-const bust='?v=20260916-2';
+const bust='?v=20260916-3';
 const local=n=>BASE+n+bust;const raw=n=>RAW+n+bust;
-function loadImage(img,name){if(!img||img.dataset.andinaFixed==='1')return;img.dataset.andinaFixed='1';img.dataset.andinaName=name;img.decoding='async';img.loading='lazy';img.fetchPriority='low';img.src=local(name);img.onerror=()=>{if(img.dataset.andinaRaw==='1')return;img.dataset.andinaRaw='1';img.src=raw(name)}}
+const idle=fn=>('requestIdleCallback'in window?requestIdleCallback(fn,{timeout:1400}):setTimeout(fn,250));
+function loadImage(img,name,priority='low'){
+  if(!img||img.dataset.andinaFixed==='1')return;
+  img.dataset.andinaFixed='1';img.dataset.andinaName=name;img.decoding='async';img.loading='lazy';img.fetchPriority=priority;img.src=local(name);
+  img.onerror=()=>{if(img.dataset.andinaRaw==='1')return;img.dataset.andinaRaw='1';img.src=raw(name)}
+}
 function fixHotspots(){const positions={cafe:'left:2.2%;top:29.8%;width:18%;height:9.4%;',paramo:'left:34.4%;top:33.3%;width:18%;height:10.4%;',valle:'left:61.2%;top:7.5%;width:18%;height:10.4%;',bogota:'left:78.2%;top:46.8%;width:18.2%;height:9.6%;'};document.querySelectorAll('.map-hotspot').forEach(btn=>{const css=positions[btn.dataset.id];if(css)btn.style.cssText=css})}
-function repair(){document.querySelectorAll('.map-image').forEach(img=>loadImage(img,files.map));document.querySelectorAll('.mission-panel').forEach(panel=>{const title=(panel.querySelector('h3')?.textContent||'').toLowerCase();let name=files.bogota;if(title.includes('valle'))name=files.valle;else if(title.includes('cafetero'))name=files.cafe;else if(title.includes('páramo')||title.includes('paramo'))name=files.paramo;panel.style.backgroundImage='none';let bg=panel.querySelector('.andina-real-bg');if(!bg){bg=document.createElement('img');bg.className='andina-real-bg';bg.alt='';bg.setAttribute('aria-hidden','true');bg.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0;';panel.prepend(bg)}bg.dataset.andinaFixed='0';loadImage(bg,name);const overlay=panel.querySelector(':scope > .andina-image-overlay');if(!overlay){const o=document.createElement('div');o.className='andina-image-overlay';o.style.cssText='position:absolute;inset:0;background:linear-gradient(180deg,#07181255,#071812dd 72%);z-index:1;pointer-events:none;';panel.insertBefore(o,panel.children[1]||null)}});fixHotspots()}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',repair,{once:true});else repair();new MutationObserver(repair).observe(document.body,{childList:true,subtree:true});
-const gameTimeScript=document.createElement('script');gameTimeScript.src='./game-time-extension.js?v=20260916-1';gameTimeScript.defer=true;document.head.appendChild(gameTimeScript);
-const travelScript=document.createElement('script');travelScript.src='./viaje-andino-overhaul.js?v=20260913-2';travelScript.defer=true;document.head.appendChild(travelScript);
-const assetsScript=document.createElement('script');assetsScript.src='./viaje-assets.js?v=20260913-2';assetsScript.defer=true;document.head.appendChild(assetsScript);
-const otherGamesScript=document.createElement('script');otherGamesScript.src='./otros-juegos.js?v=20260913-3';otherGamesScript.defer=true;document.head.appendChild(otherGamesScript);
-const professorUpgrade=document.createElement('script');professorUpgrade.src='./professor-upgrade.js?v=20260916-1';professorUpgrade.defer=true;document.head.appendChild(professorUpgrade);
-const territoryPlacement=document.createElement('script');territoryPlacement.src='./territory-placement-fix.js?v=20260916-1';territoryPlacement.defer=true;document.head.appendChild(territoryPlacement);
-const expandableSmallBlocks=document.createElement('script');expandableSmallBlocks.src='./expandable-small-blocks.js?v=20260916-1';expandableSmallBlocks.defer=true;document.head.appendChild(expandableSmallBlocks);
-const visualV2=document.createElement('script');visualV2.src='./visual-fix-v2.js?v=20260916-1';visualV2.defer=true;document.head.appendChild(visualV2);
+function repair(){
+  document.querySelectorAll('.map-image').forEach(img=>loadImage(img,files.map));
+  document.querySelectorAll('.mission-panel').forEach(panel=>{
+    const title=(panel.querySelector('h3')?.textContent||'').toLowerCase();let name=files.bogota;
+    if(title.includes('valle'))name=files.valle;else if(title.includes('cafetero'))name=files.cafe;else if(title.includes('páramo')||title.includes('paramo'))name=files.paramo;
+    panel.style.backgroundImage='none';let bg=panel.querySelector('.andina-real-bg');
+    if(!bg){bg=document.createElement('img');bg.className='andina-real-bg';bg.alt='';bg.setAttribute('aria-hidden','true');bg.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0;';panel.prepend(bg)}
+    bg.dataset.andinaFixed='0';loadImage(bg,name)
+    const overlay=panel.querySelector(':scope > .andina-image-overlay');
+    if(!overlay){const o=document.createElement('div');o.className='andina-image-overlay';o.style.cssText='position:absolute;inset:0;background:linear-gradient(180deg,#07181255,#071812dd 72%);z-index:1;pointer-events:none;';panel.insertBefore(o,panel.children[1]||null)}
+  });
+  fixHotspots()
+}
+let repairQueued=false;
+function queueRepair(){if(repairQueued)return;repairQueued=true;setTimeout(()=>{repairQueued=false;repair()},80)}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',repair,{once:true});else repair();
+new MutationObserver(mutations=>{
+  const relevant=mutations.some(m=>[...m.addedNodes].some(n=>n.nodeType===1&&(n.matches?.('.map-image,.mission-panel,.map-hotspot')||n.querySelector?.('.map-image,.mission-panel,.map-hotspot'))));
+  if(relevant)queueRepair()
+}).observe(document.body,{childList:true,subtree:true});
+
+// La página ya carga estos módulos desde index.html. Evitamos descargarlos y ejecutarlos una segunda vez.
+// Solo el refuerzo visual V2 se conserva como carga adicional porque no forma parte del bloque principal.
+function loadOnce(src){if([...document.scripts].some(s=>s.src&&s.src.includes(src.split('?')[0])))return;const s=document.createElement('script');s.src=src;s.async=true;document.head.appendChild(s)}
+idle(()=>loadOnce('./visual-fix-v2.js?v=20260916-2'));
 
 const CORDS={
  occidental:{name:'Cordillera Occidental',place:'Pico Pance · Farallones de Cali',img:'https://commons.wikimedia.org/wiki/Special:Redirect/file/76001_(18)Pico_Pance.jpg',source:'https://commons.wikimedia.org/wiki/File:76001_(18)Pico_Pance.jpg',credit:'Foto: Pico Pance · Wikimedia Commons'},
@@ -34,9 +54,9 @@ function cordStyle(){if(document.getElementById('cord-direct-css'))return;const 
 .hero-art .mountain{display:none!important}
 @media(max-width:760px){#cordilleras-reales-direct{padding:0 16px;margin-bottom:3rem}#cordilleras-reales-direct .cr-head{display:block}.cr-head p{margin-top:12px}#cordilleras-reales-direct .cr-view{grid-template-columns:1fr;min-height:0}#cordilleras-reales-direct figure,#cordilleras-reales-direct img{min-height:280px;height:280px}.cr-info{padding:24px!important}}
 `;document.head.appendChild(s)}
-function buildCordDirect(){if(document.getElementById('cordilleras-reales-direct'))return;const fis=document.getElementById('fisica');if(!fis)return;cordStyle();const sec=document.createElement('section');sec.id='cordilleras-reales-direct';sec.className='section';sec.innerHTML=`<div class="cr-head"><div><span class="eyebrow">RELIEVE · TRES CORDILLERAS</span><h2>Las tres cordilleras, <em>en fotos reales.</em></h2></div><p>Toca una cordillera para cambiar la fotografía. Aquí reemplazamos las montañas dibujadas por paisajes reales.</p></div><div class="cr-tabs" role="tablist"><button class="active" data-cr="occidental">Occidental</button><button data-cr="central">Central</button><button data-cr="oriental">Oriental</button></div><div class="cr-view"><figure><img id="crPhoto" alt="Paisaje real de la Cordillera Occidental"><figcaption id="crCaption"></figcaption></figure><div class="cr-info"><span class="eyebrow" id="crEyebrow">CORDILLERA OCCIDENTAL</span><h3 id="crTitle">Cordillera Occidental</h3><p id="crPlace"></p><a id="crSource" target="_blank" rel="noopener">Ver fuente y licencia ↗</a></div></div>`;fis.parentNode.insertBefore(sec,fis.nextSibling);sec.querySelectorAll('[data-cr]').forEach(b=>b.addEventListener('click',()=>showCord(b.dataset.cr)));showCord('occidental')}
-function showCord(k){const d=CORDS[k];if(!d)return;document.querySelectorAll('#cordilleras-reales-direct [data-cr]').forEach(b=>{b.classList.toggle('active',b.dataset.cr===k)});const im=document.getElementById('crPhoto');if(im){im.src=d.img;im.alt=`Paisaje real de la ${d.name}`}document.getElementById('crEyebrow').textContent=d.name.toUpperCase();document.getElementById('crTitle').textContent=d.name;document.getElementById('crPlace').textContent=d.place;document.getElementById('crCaption').innerHTML=`${d.credit} · <a href="${d.source}" target="_blank" rel="noopener">fuente</a>`;document.getElementById('crSource').href=d.source}
+function buildCordDirect(){if(document.getElementById('cordilleras-reales-direct'))return;const fis=document.getElementById('fisica');if(!fis)return;cordStyle();const sec=document.createElement('section');sec.id='cordilleras-reales-direct';sec.className='section';sec.innerHTML=`<div class="cr-head"><div><span class="eyebrow">RELIEVE · TRES CORDILLERAS</span><h2>Las tres cordilleras, <em>en fotos reales.</em></h2></div><p>Toca una cordillera para cambiar la fotografía. Aquí reemplazamos las montañas dibujadas por paisajes reales.</p></div><div class="cr-tabs" role="tablist"><button class="active" data-cr="occidental">Occidental</button><button data-cr="central">Central</button><button data-cr="oriental">Oriental</button></div><div class="cr-view"><figure><img id="crPhoto" loading="lazy" decoding="async" fetchpriority="low" alt="Paisaje real de la Cordillera Occidental"><figcaption id="crCaption"></figcaption></figure><div class="cr-info"><span class="eyebrow" id="crEyebrow">CORDILLERA OCCIDENTAL</span><h3 id="crTitle">Cordillera Occidental</h3><p id="crPlace"></p><a id="crSource" target="_blank" rel="noopener">Ver fuente y licencia ↗</a></div></div>`;fis.parentNode.insertBefore(sec,fis.nextSibling);sec.querySelectorAll('[data-cr]').forEach(b=>b.addEventListener('click',()=>showCord(b.dataset.cr)));showCord('occidental')}
+function showCord(k){const d=CORDS[k];if(!d)return;document.querySelectorAll('#cordilleras-reales-direct [data-cr]').forEach(b=>b.classList.toggle('active',b.dataset.cr===k));const im=document.getElementById('crPhoto');if(im){im.src=d.img;im.alt=`Paisaje real de la ${d.name}`;im.loading='lazy';im.decoding='async'}document.getElementById('crEyebrow').textContent=d.name.toUpperCase();document.getElementById('crTitle').textContent=d.name;document.getElementById('crPlace').textContent=d.place;document.getElementById('crCaption').innerHTML=`${d.credit} · <a href="${d.source}" target="_blank" rel="noopener">fuente</a>`;document.getElementById('crSource').href=d.source}
 function replaceHero(){document.querySelectorAll('.hero-art .mountain').forEach(m=>{m.style.display='none'});const art=document.querySelector('.hero-art');if(art)art.classList.add('real-mountains-replaced')}
 function runCord(){buildCordDirect();replaceHero()}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(runCord,350),{once:true});else setTimeout(runCord,350);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(runCord,300),{once:true});else setTimeout(runCord,300);
 })();
