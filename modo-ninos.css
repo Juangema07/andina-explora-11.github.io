@@ -18,4 +18,9 @@ html.modo-ninos-child .child-return:hover{transform:translateY(-1px)}
 html.modo-ninos-child .child-note{display:block;margin:0 auto;padding:10px 18px;text-align:center;font-weight:700;background:#fff4cf}
 html.modo-ninos-child .child-secondary{display:none!important}
 html.modo-ninos-child .section-head>p{display:block}
+
+/* Aviso temporal: el modo niños está en desarrollo. Solo aparece en esta subweb. */
+html.modo-ninos-child::before{content:"🧸 MODO NIÑOS EN DESARROLLO\\A\\AEstamos preparando esta versión para que sea más sencilla, clara y divertida.\\A\\APuedes seguir explorando la web mientras terminamos los ajustes.";white-space:pre-wrap;position:fixed;z-index:2147483647;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;box-sizing:border-box;background:rgba(10,25,21,.72);backdrop-filter:blur(7px);color:#fff;font-family:"Trebuchet MS","Arial Rounded MT Bold",Arial,sans-serif;font-size:clamp(1rem,2.2vw,1.35rem);font-weight:700;line-height:1.55;pointer-events:none}
+html.modo-ninos-child::after{content:"MODO EN DESARROLLO";position:fixed;z-index:2147483647;left:50%;top:50%;transform:translate(-50%,-50%);margin-top:-105px;padding:11px 20px;border-radius:999px;background:#f5c542;color:#26352f;font-size:clamp(.8rem,1.5vw,1rem);font-weight:900;letter-spacing:.08em;pointer-events:none;box-shadow:0 10px 35px rgba(0,0,0,.22)}
+
 @media(max-width:760px){html.modo-ninos-child .section{padding-top:54px;padding-bottom:54px}.child-return{font-size:.85rem}}
