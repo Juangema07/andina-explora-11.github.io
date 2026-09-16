@@ -4,152 +4,94 @@ if(window.__ANDINA_STANDALONE_KIDS__)return;
 window.__ANDINA_STANDALONE_KIDS__=true;
 try{localStorage.setItem('andina-explora-mode','children')}catch(e){}
 
-/* Solo afecta la copia independiente del modo niños. La versión normal no usa este archivo. */
+/* MODO NIÑOS: esta capa SOLO se carga en la copia infantil. Convierte el contenido en explicaciones cortas, claras y apropiadas para 5°–8°. */
 const simple={
- 'Explora las montañas, las ciudades, la naturaleza, las comidas y la cultura de la Región Andina.':'¡Vamos a conocer la Región Andina! Aquí aprenderás sobre sus montañas, sus ciudades, la naturaleza, sus comidas y sus tradiciones.',
- 'Aprende paso a paso.':'Aprende poco a poco.',
- 'Descubre y conecta.':'Descubre cómo se relaciona todo.',
- 'Las montañas, el agua, el trabajo y la cultura están conectados. Aquí puedes aprender, jugar y descubrir por qué.':'Las montañas, el agua, el trabajo y las costumbres están relacionados. Aquí puedes aprender jugando y entender cómo una cosa influye en otra.',
- 'Montañas, valles y altiplanos':'Montañas, valles y lugares altos',
- 'Agua y ecosistemas':'Agua y naturaleza',
- 'Trabajo, ciudades y cultura':'Trabajo, ciudades y costumbres',
- '02 · GEOGRAFÍA FÍSICA':'02 · GEOGRAFÍA',
- 'La altura cambia el clima.':'Cuando subimos, el clima cambia.',
+ 'Explora las montañas, las ciudades, la naturaleza, las comidas y la cultura de la Región Andina.':'¡Vamos a conocer la Región Andina! Aquí aprenderás sobre sus montañas, ciudades, naturaleza, comidas y tradiciones.',
+ 'Aprende paso a paso.':'Aprende poco a poco.', 'Descubre y conecta.':'Descubre cómo se relaciona todo.',
+ 'Las montañas, el agua, el trabajo y la cultura están conectados. Aquí puedes aprender, jugar y descubrir por qué.':'Las montañas, el agua, el trabajo y las costumbres están relacionados. Aquí aprenderás jugando.',
+ 'Montañas, valles y altiplanos':'Montañas, valles y lugares altos','Agua y ecosistemas':'Agua y naturaleza','Trabajo, ciudades y cultura':'Trabajo, ciudades y costumbres',
+ '02 · GEOGRAFÍA FÍSICA':'02 · GEOGRAFÍA','La altura cambia el clima.':'Cuando subimos, el clima cambia.',
  'Aprende dónde está la Región Andina, cómo son sus montañas, cómo se mueve el agua y qué seres vivos habitan allí.':'Descubre dónde está la Región Andina, cómo son sus montañas, de dónde viene el agua y qué animales y plantas viven allí.',
- '¿Dónde queda?':'¿Dónde está?',
- 'Las cordilleras':'Las tres cordilleras',
- 'Agua y cuencas':'Ríos y agua',
- 'Páramos y bosques':'Páramos y bosques',
- 'Muchas formas de relieve':'Montañas, valles y altiplanos',
- 'Las cordilleras Occidental, Central y Oriental forman muchas montañas, valles y altiplanos.':'La Región Andina tiene tres grandes cordilleras: Occidental, Central y Oriental. Entre ellas hay montañas, valles y altiplanos.',
- 'Elige una altura':'Elige un piso térmico',
- 'Al cambiar la altura también cambian el clima, las plantas y los animales.':'Cuando cambia la altura, también cambia la temperatura. Por eso encontramos diferentes plantas y animales.',
- 'La altura ayuda a explicar por qué cambia la temperatura y la vegetación.':'Entre más alta es una zona, normalmente hace más frío y cambia la vegetación.',
- 'Los ecosistemas de montaña ayudan a cuidar y guardar el agua.':'Los páramos y otros ecosistemas de montaña ayudan a guardar y regular el agua.',
- 'Los páramos y bosques tienen plantas y animales de diferentes alturas.':'En los páramos y bosques viven muchas plantas y animales.',
- '03 · GEOGRAFÍA HUMANA':'03 · PERSONAS Y LUGARES',
- 'Las montañas también tienen gente.':'En las montañas también viven muchas personas.',
- 'Conoce personas, ciudades, comunidades y culturas de la Región Andina.':'Conoce cómo viven las personas, cuáles son sus ciudades y qué costumbres tienen.',
- 'Es una referencia histórica del DANE para el Atlas Estadístico de 2005. No es una cifra actual.':'El DANE registró cerca del 70 % de la población en la Región Andina en su Atlas de 2005. Es un dato histórico, no una cifra de hoy.',
- 'Ver contexto':'Ver más',
- 'Ciudades conectadas':'Ciudades importantes',
- 'Tradiciones y formas de vivir':'Costumbres y formas de vivir',
- 'Cómo viven las personas':'Vida en la ciudad y el campo',
- 'Oportunidades para todos':'Que todos tengan oportunidades',
- '04 · GEOGRAFÍA ECONÓMICA':'04 · ECONOMÍA',
- '¿Qué producimos?':'¿Qué hacemos y producimos?',
- 'Descubre qué producen las personas, cómo trabajan y qué servicios ofrecen.':'Mira qué cultivan y fabrican las personas, en qué trabajan y qué servicios ofrecen.',
- '🌱 Primario':'🌱 Campo y naturaleza',
- '🏭 Secundario':'🏭 Fábricas y productos',
- '🛍️ Terciario':'🛍️ Servicios',
- 'Producto importante':'Un producto muy conocido',
- 'Cultivo en zonas altas':'Se cultiva en zonas altas',
- 'Servicios y conexiones':'Trabajos y servicios',
- 'Naturaleza y cultura':'Naturaleza y tradiciones',
- '05 · CULTURA Y DIVERSIDAD':'05 · CULTURA',
- 'La cultura también se come y se escucha.':'La cultura está en la comida, la música y las costumbres.',
- 'Descubre comidas, música, artesanías, fiestas y otras tradiciones.':'Conoce comidas típicas, música, artesanías, fiestas y otras costumbres de la Región Andina.',
- 'Comidas y sabores':'Comidas y sabores',
- 'Música y tradiciones':'Música y costumbres',
- 'Trabajos y materiales':'Objetos hechos a mano',
- 'Fiestas y comunidad':'Fiestas y celebraciones',
- 'Ropa y tejidos':'Ropa y tejidos',
- 'El tiple es un instrumento colombiano.':'El tiple es un instrumento de cuerda muy usado en la música andina.',
- 'Ligado al paisaje y al trabajo rural.':'El café está relacionado con el paisaje y el trabajo de muchas familias.',
- 'Es una planta de los páramos.':'El frailejón es una planta que crece en los páramos.',
- '06 · PROBLEMÁTICAS Y DESAFÍOS':'06 · RETOS',
- 'Entender para cuidar y mejorar.':'Conocer los problemas para poder ayudar.',
- 'Conoce cada problema y piensa en posibles soluciones.':'Mira qué problemas existen, por qué ocurren y qué podemos hacer para ayudar.',
- 'Cuidar las fuentes de agua':'Cuidar los ríos y las fuentes de agua',
- 'Proteger bosques y páramos':'Proteger los bosques y los páramos',
- 'Servicios y oportunidades':'Servicios y oportunidades para las personas',
- 'Piensa una solución':'Piensa en una idea',
- 'Escribe una idea para ayudar a la Región Andina.':'Escribe una idea sencilla para ayudar a cuidar la Región Andina.',
- 'Mi idea…':'Mi idea para ayudar…',
- '07 · ACTIVIDADES INTERACTIVAS':'07 · JUEGOS',
- '¡Aprende jugando!':'¡Aprende mientras juegas!',
- 'Juega y aprende sobre la Región Andina.':'Pon a prueba lo que aprendiste sobre la Región Andina.',
- '08 · PRODUCTOS DEL GRUPO':'08 · NUESTROS MATERIALES',
- 'Nuestros materiales.':'Nuestros trabajos',
- 'Aquí puedes ver los materiales creados para el proyecto.':'Aquí puedes encontrar los trabajos que hicimos para este proyecto.',
- 'Un video creado por el grupo.':'Un video hecho por nuestro grupo.',
- 'Un audio creado por el grupo.':'Un audio hecho por nuestro grupo.',
- 'Material visual del proyecto.':'Imágenes que ayudan a explicar el tema.',
- 'Presentación del proyecto.':'Las diapositivas del proyecto.',
- 'Agregar video':'Agregar nuestro video',
- 'Agregar audio':'Agregar nuestro audio',
- 'Agregar infografías':'Ver nuestras infografías',
- 'Ver presentación':'Ver nuestras diapositivas',
- 'Aprende con fuentes confiables.':'Mira de dónde sale la información.',
- 'La información del proyecto se apoya en fuentes institucionales y académicas.':'Usamos información de instituciones y fuentes académicas para explicar el tema.',
- 'Revisa el origen de cada imagen.':'Aquí puedes revisar de dónde salió cada imagen.',
- 'Delimitación y ubicación':'¿Dónde está la Región Andina?',
- 'Delimitación':'¿Dónde está?',
- 'Relieve':'Montañas y relieve',
- 'Pisos térmicos':'Climas según la altura',
- 'Precipitación':'Lluvia',
- 'Hidrografía':'Ríos y agua',
- 'Ecosistemas':'Lugares donde vive la naturaleza',
- 'Biodiversidad':'Animales y plantas',
- 'Especies amenazadas y conservación':'Animales y plantas que debemos cuidar',
- 'Población y distribución':'¿Dónde vive la gente?',
- 'Distribución urbana y rural':'Ciudad y campo',
- 'Diversidad cultural':'Culturas y tradiciones',
- 'Problemas sociales':'Problemas de las personas',
- 'Urbanización':'Crecimiento de las ciudades',
- 'Sectores económicos':'Formas de trabajo',
- 'Cadenas productivas':'Del producto al consumidor',
- 'Comercio y exportaciones':'Comercio con otros lugares',
- 'Infraestructura y conectividad':'Caminos y conexiones',
- 'Problemáticas económicas':'Retos de la economía',
- 'Causas':'¿Por qué pasa?',
- 'Consecuencias':'¿Qué puede pasar?',
- 'Afectados':'¿A quién afecta?',
- 'Posibles respuestas':'¿Qué podemos hacer?',
- 'Presión sobre el agua':'Cuidemos el agua',
- 'Pérdida de ecosistemas':'Cuidemos la naturaleza',
- 'Cambio climático':'Cuidemos el clima',
- 'Desigualdad territorial':'Oportunidades para todos',
- 'Participación comunitaria':'Trabajemos juntos',
- 'Conectividad':'¿Cómo nos conectamos?',
- 'producción y consumo':'cómo hacemos y usamos productos',
- 'regulación hídrica':'cómo se guarda y regula el agua',
- 'transformación del paisaje':'cambios en el paisaje'
+ '¿Dónde queda?':'¿Dónde está?','Las cordilleras':'Las tres cordilleras','Agua y cuencas':'Ríos y agua','Páramos y bosques':'Páramos y bosques',
+ 'Muchas formas de relieve':'Montañas, valles y altiplanos','Las cordilleras Occidental, Central y Oriental forman muchas montañas, valles y altiplanos.':'Hay tres cordilleras principales: Occidental, Central y Oriental. También hay valles y altiplanos.',
+ 'Elige una altura':'Elige un piso térmico','Al cambiar la altura también cambian el clima, las plantas y los animales.':'Al cambiar la altura, cambia la temperatura y también la vida que encontramos.',
+ 'La altura ayuda a explicar por qué cambia la temperatura y la vegetación.':'A mayor altura, normalmente hace más frío y cambia la vegetación.',
+ 'Los ecosistemas de montaña ayudan a cuidar y guardar el agua.':'Los páramos y otros ecosistemas ayudan a guardar el agua.',
+ 'Los páramos y bosques tienen plantas y animales de diferentes alturas.':'En páramos y bosques viven muchas plantas y animales.',
+ '03 · GEOGRAFÍA HUMANA':'03 · PERSONAS Y LUGARES','Las montañas también tienen gente.':'En las montañas también viven muchas personas.',
+ 'Conoce personas, ciudades, comunidades y culturas de la Región Andina.':'Conoce cómo viven las personas, sus ciudades y sus costumbres.',
+ 'Es una referencia histórica del DANE para el Atlas Estadístico de 2005. No es una cifra actual.':'En el Atlas del DANE de 2005, cerca del 70 % de la población estaba en la Región Andina. Es un dato histórico.',
+ 'Ver contexto':'Ver más','Ciudades conectadas':'Ciudades importantes','Tradiciones y formas de vivir':'Costumbres y formas de vivir','Cómo viven las personas':'Vida en ciudad y campo','Oportunidades para todos':'Oportunidades para todos',
+ '04 · GEOGRAFÍA ECONÓMICA':'04 · ECONOMÍA','¿Qué producimos?':'¿Qué hacemos y producimos?','Descubre qué producen las personas, cómo trabajan y qué servicios ofrecen.':'Mira qué cultivan, qué fabrican y qué servicios ofrecen.',
+ '🌱 Primario':'🌱 Campo','🏭 Secundario':'🏭 Fábricas','🛍️ Terciario':'🛍️ Servicios','Producto importante':'Producto conocido','Cultivo en zonas altas':'Cultivo de zonas altas','Servicios y conexiones':'Trabajos y servicios','Naturaleza y cultura':'Naturaleza y tradiciones',
+ '05 · CULTURA Y DIVERSIDAD':'05 · CULTURA','La cultura también se come y se escucha.':'La cultura está en la comida, la música y las costumbres.','Descubre comidas, música, artesanías, fiestas y otras tradiciones.':'Conoce comidas, música, artesanías, fiestas y costumbres.',
+ 'Música y tradiciones':'Música y costumbres','Trabajos y materiales':'Objetos hechos a mano','Fiestas y comunidad':'Fiestas y celebraciones','Ropa y tejidos':'Ropa y tejidos',
+ 'El tiple es un instrumento colombiano.':'El tiple es un instrumento de cuerda usado en la música andina.','Ligado al paisaje y al trabajo rural.':'El café está relacionado con el paisaje y el trabajo rural.','Es una planta de los páramos.':'El frailejón crece en los páramos.',
+ '06 · PROBLEMÁTICAS Y DESAFÍOS':'06 · RETOS','Entender para cuidar y mejorar.':'Conocer los problemas para ayudar.','Conoce cada problema y piensa en posibles soluciones.':'Mira el problema y piensa qué podemos hacer.',
+ 'Cuidar las fuentes de agua':'Cuidar los ríos y el agua','Proteger bosques y páramos':'Proteger bosques y páramos','Servicios y oportunidades':'Servicios y oportunidades','Piensa una solución':'Piensa una idea','Escribe una idea para ayudar a la Región Andina.':'Escribe una idea para ayudar a la Región Andina.','Mi idea…':'Mi idea…',
+ '07 · ACTIVIDADES INTERACTIVAS':'07 · JUEGOS','¡Aprende jugando!':'¡Aprende jugando!','Juega y aprende sobre la Región Andina.':'Pon a prueba lo que aprendiste.',
+ '08 · PRODUCTOS DEL GRUPO':'08 · NUESTROS MATERIALES','Nuestros materiales.':'Nuestros trabajos','Aquí puedes ver los materiales creados para el proyecto.':'Aquí están los trabajos del proyecto.','Un video creado por el grupo.':'Video hecho por el grupo.','Un audio creado por el grupo.':'Audio hecho por el grupo.','Material visual del proyecto.':'Imágenes para explicar el tema.','Presentación del proyecto.':'Diapositivas del proyecto.',
+ 'Agregar video':'Agregar video','Agregar audio':'Agregar audio','Agregar infografías':'Ver infografías','Ver presentación':'Ver presentación','Aprende con fuentes confiables.':'Mira de dónde sale la información.','La información del proyecto se apoya en fuentes institucionales y académicas.':'Usamos fuentes de instituciones y universidades.','Revisa el origen de cada imagen.':'Mira de dónde salió cada imagen.',
+ 'Delimitación y ubicación':'¿Dónde está la Región Andina?','Delimitación':'¿Dónde está?','Relieve':'Montañas y relieve','Pisos térmicos':'Climas según la altura','Precipitación':'Lluvia','Hidrografía':'Ríos y agua','Ecosistemas':'Lugares de la naturaleza','Biodiversidad':'Animales y plantas','Especies amenazadas y conservación':'Animales y plantas que debemos cuidar','Población y distribución':'¿Dónde vive la gente?','Distribución urbana y rural':'Ciudad y campo','Diversidad cultural':'Culturas y tradiciones','Problemas sociales':'Problemas de las personas','Urbanización':'Crecimiento de las ciudades','Sectores económicos':'Formas de trabajo','Cadenas productivas':'Del producto al consumidor','Comercio y exportaciones':'Comercio con otros lugares','Infraestructura y conectividad':'Caminos y conexiones','Problemáticas económicas':'Retos de la economía','Causas':'¿Por qué pasa?','Consecuencias':'¿Qué puede pasar?','Afectados':'¿A quién afecta?','Posibles respuestas':'¿Qué podemos hacer?','Presión sobre el agua':'Cuidemos el agua','Pérdida de ecosistemas':'Cuidemos la naturaleza','Cambio climático':'Cuidemos el clima','Desigualdad territorial':'Oportunidades para todos','Participación comunitaria':'Trabajemos juntos','Conectividad':'¿Cómo nos conectamos?','producción y consumo':'cómo hacemos y usamos productos','regulación hídrica':'cómo se guarda el agua','transformación del paisaje':'cambios en el paisaje',
+ /* Textos que aparecen después, desde app.js y la ampliación de la guía. */
+ 'Ocupa gran parte del centro y occidente de Colombia alrededor del sistema de los Andes. Su territorio reúne cordilleras, valles interandinos, altiplanos y laderas.':'Está en buena parte del centro y occidente de Colombia. Tiene cordilleras, valles, altiplanos y laderas.',
+ 'Los Andes colombianos se organizan principalmente en las cordilleras Occidental, Central y Oriental. Entre ellas aparecen valles, cañones, mesetas y altiplanos.':'Hay tres cordilleras: Occidental, Central y Oriental. Entre ellas hay valles y lugares altos.',
+ 'El relieve influye en clima, transporte, asentamientos, agricultura y biodiversidad.':'Las montañas influyen en el clima, los caminos, las ciudades, los cultivos y la naturaleza.',
+ 'Los valles de los ríos Magdalena y Cauca son elementos destacados del paisaje andino. Las cuencas conectan ecosistemas, población y actividades productivas.':'Los ríos Magdalena y Cauca forman valles importantes. El agua conecta la naturaleza, las personas y el trabajo.',
+ 'La variedad de alturas crea numerosos ambientes. Páramos y bosques de montaña albergan especies adaptadas a condiciones diferentes.':'Las diferentes alturas crean distintos lugares para vivir. En páramos y bosques viven muchas especies.',
+ 'La población se concentra en grandes ciudades, corredores urbanos, valles y zonas rurales productivas. Las cifras cambian según el año y la delimitación utilizada.':'Muchas personas viven en ciudades, valles y zonas rurales. Las cifras cambian según el año.',
+ 'Bogotá, Medellín, Cali, Bucaramanga, Manizales, Pereira, Armenia y Popayán son ciudades destacadas del espacio andino o de su área de influencia.':'Bogotá, Medellín, Cali, Bucaramanga, Manizales, Pereira, Armenia y Popayán son ciudades destacadas.',
+ 'La diversidad se expresa en gastronomía, música, fiestas, artesanías, formas de trabajo, memoria y tradiciones locales.':'La diversidad se ve en la comida, música, fiestas, artesanías y tradiciones.',
+ 'El crecimiento urbano transforma vivienda, movilidad, uso del suelo y relaciones entre ciudad y campo.':'Cuando crecen las ciudades cambian las viviendas, los caminos y la relación con el campo.',
+ 'Existen diferencias territoriales en ingresos, conectividad, servicios, educación y empleo.':'Hay lugares con diferentes oportunidades de empleo, educación, servicios y conexión.',
+ 'Ajiaco, tamales, arepas y café son ejemplos de preparaciones y productos asociados a distintos territorios andinos.':'El ajiaco, los tamales, las arepas y el café son ejemplos de alimentos andinos.',
+ 'El tiple, el bambuco y otras expresiones musicales forman parte del patrimonio sonoro colombiano.':'El tiple y el bambuco son ejemplos de música colombiana.',
+ 'Tejidos, cerámica, madera y otros oficios conservan materiales, técnicas y conocimientos transmitidos entre generaciones.':'Los tejidos, la cerámica y la madera muestran conocimientos que pasan de una generación a otra.',
+ 'La contaminación, transformación de ecosistemas y cambios en disponibilidad pueden afectar fuentes y usuarios.':'La contaminación y los cambios en la naturaleza pueden afectar el agua.',
+ 'La transformación del suelo y expansión de actividades productivas pueden reducir bosques y hábitats.':'Cambiar el uso del suelo puede reducir bosques y lugares donde viven animales.',
+ 'No todos los municipios tienen las mismas oportunidades de conectividad, empleo, educación o servicios.':'No todos los lugares tienen las mismas oportunidades de empleo, educación, servicios y conexión.',
+ /* Ampliación de guía */
+ 'Esta ampliación reúne los puntos que exige la guía y conserva la delimitación regional del DANE: la Región Andina comprende las zonas centrales, las tres cordilleras y los valles interandinos de los ríos Magdalena y Cauca.':'Aquí reunimos los puntos principales de la guía: ubicación, montañas, clima, agua y naturaleza.',
+ 'La región se estructura alrededor de las cordilleras Oriental, Central y Occidental y de los valles interandinos de los ríos Magdalena y Cauca. Limita y se conecta con otras regiones mediante corredores de montaña y valle.':'La región se organiza alrededor de tres cordilleras y los valles de los ríos Magdalena y Cauca.',
+ 'El Atlas del DANE incluye Cundinamarca, Boyacá, Huila, Tolima, Santander, Norte de Santander, Antioquia, Caldas, Quindío, Risaralda y territorios del centro-oriente de Nariño, Cauca y Valle del Cauca; también registra municipios de otros departamentos. Por eso la web evita presentar una lista rígida como si fuera universal.':'El DANE usa una delimitación que incluye varios departamentos y territorios. La lista puede cambiar según la fuente.',
+ 'Destacan las cordilleras Occidental, Central y Oriental, además de valles interandinos, cañones, mesetas y altiplanos como el cundiboyacense y el nariñense.':'Destacan las tres cordilleras, los valles y los altiplanos.',
+ 'La altitud produce cambios de temperatura y vegetación y permite distinguir ambientes cálidos, templados, fríos y de páramo. Las condiciones locales también dependen del relieve, humedad y exposición.':'La altura cambia la temperatura y la vegetación. Por eso hay zonas cálidas, templadas, frías y de páramo.',
+ 'Las precipitaciones no son uniformes: cambian con la altitud, el relieve y la ubicación de cada valle o vertiente.':'No llueve igual en toda la región. La lluvia cambia según la altura y el relieve.',
+ 'Los ríos Magdalena y Cauca articulan grandes valles. Páramos, humedales, lagunas y bosques de alta montaña participan en la regulación y disponibilidad del agua.':'El Magdalena y el Cauca recorren valles importantes. Los páramos, humedales y bosques ayudan a conservar el agua.',
+ 'La información disponible en la web incluye bosque seco, bosque andino, bosque de niebla, bosque altoandino, humedales, páramos y ambientes de alta montaña.':'Hay bosques, humedales, páramos y otros lugares de alta montaña.',
+ 'Se destacan frailejones y otras plantas de páramo, además de especies como cóndor de los Andes, oso de anteojos y tapir de páramo. La conservación depende de mantener hábitats y conectividad.':'Hay frailejones, cóndores, osos de anteojos y otras especies. Debemos proteger sus hogares.',
+ 'La web aborda la presión sobre ecosistemas y especies mediante áreas protegidas y restauración. No se asignan categorías de amenaza sin una ficha específica de la fuente.':'Para cuidar las especies se protegen sus hábitats y se restauran ecosistemas.',
+ 'El Atlas Estadístico del DANE registra que en 2005 la región Andina concentraba 70,1 % de la población nacional y 69,2 % de los municipios, según esa delimitación regional. Es un dato histórico, no una cifra actual.':'En 2005, el Atlas del DANE registró 70,1 % de la población nacional en la Región Andina. Es un dato histórico.',
+ 'El DANE describe una distribución principalmente urbana, con áreas rurales vinculadas a agricultura, minería, ganadería y otros recursos. Las densidades cambian mucho entre ciudades, valles, altiplanos y zonas rurales.':'Hay muchas personas en ciudades y también en zonas rurales donde se realizan actividades del campo.',
+ 'La región reúne población campesina, comunidades indígenas y poblaciones urbanas, con prácticas culturales que cambian entre territorios. La delimitación étnica concreta debe consultarse en las estadísticas del DANE para cada departamento o municipio.':'Hay comunidades campesinas, indígenas y urbanas. Sus costumbres pueden ser diferentes.',
+ 'Gastronomía, música, danzas, vestuario, fiestas y artesanías se explican mediante ejemplos como ajiaco, tamales, café, bambuco, pasillo, carranga, tiple, ruana y tejidos.':'La cultura incluye comida, música, bailes, ropa, fiestas y artesanías. Algunos ejemplos son el ajiaco, café, bambuco, tiple y ruana.',
+ 'Los grandes centros urbanos concentran servicios, educación, comercio y movilidad; a su alrededor existen municipios y zonas rurales conectadas funcionalmente.':'Las grandes ciudades reúnen muchos servicios y se conectan con municipios y zonas rurales.',
+ 'La guía exige considerar pobreza, desigualdad, desplazamiento, acceso a educación y salud y conflictos territoriales. La web los trata como dimensiones sociales que deben analizarse junto con datos locales, sin inventar cifras generales.':'Algunos retos sociales son la pobreza, la desigualdad y el acceso a educación y salud.',
+ 'Café, papa, maíz, flores, frutas, caña y panela, fique, leche y otros productos se relacionan con distintos pisos térmicos. También aparecen ganadería y minería en territorios específicos.':'Se producen café, papa, maíz, flores, frutas, panela y leche, entre otros. También hay ganadería y minería.',
+ 'Industria de alimentos y bebidas, textiles, manufacturas y otras actividades urbanas transforman materias primas y abastecen mercados.':'Las fábricas transforman materias primas en alimentos, textiles y otros productos.',
+ 'Comercio, transporte, turismo, educación, salud, tecnología, cultura y actividades financieras tienen gran peso, especialmente en las ciudades.':'Los servicios incluyen comercio, transporte, turismo, educación, salud y tecnología.',
+ 'El café, la papa, el maíz, las flores, el fique, la panela, la leche, el cacao y frutas aparecen en el contenido del proyecto. Cada producto se conecta con producción, transformación y comercialización.':'Café, papa, maíz, flores, panela, leche, cacao y frutas forman parte de las cadenas productivas.',
+ 'La región concentra importantes corredores de circulación y transporte. Algunos productos, como flores y café, participan en cadenas comerciales y de exportación; el detalle de valores debe consultarse en las estadísticas económicas del DANE.':'Las carreteras y otros medios conectan productos con los mercados. Café y flores participan en el comercio y las exportaciones.',
+ 'Las ciudades, municipios rurales y mercados se conectan por carreteras, terminales, aeropuertos y corredores interurbanos. La web evita afirmar puertos marítimos propios de la región porque la Región Andina es interior.':'Las carreteras, terminales y aeropuertos ayudan a conectar ciudades, campos y mercados.',
+ 'Bogotá y otras ciudades aportan turismo cultural; el Eje Cafetero integra paisaje y cultura cafetera; páramos y parques aportan turismo de naturaleza y alta montaña.':'Hay turismo cultural, cafetero y de naturaleza.',
+ 'La guía exige considerar desempleo, economía informal, dependencia de recursos, impactos ambientales y desigualdad económica. Estos problemas se presentan como líneas de análisis y no como cifras sin fuente.':'Algunos retos económicos son el desempleo, el trabajo informal, los impactos ambientales y la desigualdad.',
+ 'Presiones sobre ecosistemas hídricos, contaminación y cambios en disponibilidad o calidad.':'El agua puede verse afectada por contaminación y cambios en los ecosistemas.','Transformación del territorio, actividades productivas y deterioro de ecosistemas reguladores.':'El uso del territorio y algunas actividades pueden afectar el agua.','Pérdida de servicios ecosistémicos, riesgos para abastecimiento y afectación de actividades humanas.':'Puede haber menos agua disponible y daños a la naturaleza.','Comunidades urbanas y rurales, actividades productivas y ecosistemas.':'Afecta a personas, actividades y ecosistemas.','Protección de páramos y cuencas, restauración, uso responsable, educación ambiental y seguimiento de la calidad del agua.':'Podemos proteger páramos y cuencas, ahorrar agua y evitar la contaminación.',
+ 'Transformación y fragmentación de bosques, páramos y otros hábitats.':'Los bosques y páramos pueden perder espacio y quedar separados.','Expansión de actividades humanas, cambios de uso del suelo y presión productiva.':'Las actividades humanas pueden cambiar el uso del suelo.','Pérdida de conectividad, biodiversidad y servicios ambientales.':'Se pierden hogares de especies y beneficios de la naturaleza.','Especies, comunidades que dependen de servicios ecosistémicos y el territorio en general.':'Afecta a animales, plantas y personas.','Áreas protegidas, restauración, corredores ecológicos y manejo sostenible.':'Podemos proteger áreas, restaurar bosques y usar los recursos con cuidado.',
+ 'La alta montaña y sus ecosistemas son sensibles a cambios ambientales y climáticos.':'La alta montaña puede ser sensible a los cambios del clima.','Calentamiento global y variabilidad climática, junto con presiones locales.':'El calentamiento global y otras presiones cambian las condiciones.','Cambios en ecosistemas, disponibilidad de agua y condiciones de glaciares y páramos.':'Puede cambiar la naturaleza y la disponibilidad de agua.','Ecosistemas de alta montaña, especies y poblaciones que dependen del agua.':'Afecta a ecosistemas, especies y personas.','Adaptación, conservación, restauración y reducción de presiones ambientales.':'Podemos cuidar ecosistemas, restaurar zonas y reducir daños.'
 };
 
 function simplify(root=document){
- const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
- const nodes=[];let n;
+ const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);const nodes=[];let n;
  while(n=walker.nextNode())nodes.push(n);
- nodes.forEach(node=>{
-   let t=node.nodeValue;
-   Object.keys(simple).sort((a,b)=>b.length-a.length).forEach(k=>{t=t.split(k).join(simple[k])});
-   node.nodeValue=t;
- });
+ nodes.forEach(node=>{let t=node.nodeValue;Object.keys(simple).sort((a,b)=>b.length-a.length).forEach(k=>{t=t.split(k).join(simple[k])});node.nodeValue=t});
 }
-
 function init(){
- document.documentElement.classList.add('modo-ninos-child');
- document.body.classList.add('standalone-kids-web');
+ document.documentElement.classList.add('modo-ninos-child');document.body.classList.add('standalone-kids-web');
  document.querySelectorAll('#modeSwitch,.mode-switch,.child-return').forEach(el=>el.remove());
- const nav=document.querySelector('.nav');
- if(nav){
-   const b=document.createElement('a');
-   b.className='child-return'; b.href='index.html'; b.textContent='📘 Modo normal';
-   b.setAttribute('aria-label','Volver al modo normal');
-   b.addEventListener('click',()=>{try{localStorage.setItem('andina-explora-mode','normal')}catch(e){}});
-   nav.appendChild(b);
- }
- document.querySelectorAll('.child-note').forEach((el,i)=>{if(i>0)el.remove()});
- if(!document.querySelector('.child-note')){
-   const note=document.createElement('div'); note.className='child-note';
-   note.textContent='🧸 Modo niños · explicaciones pensadas para estudiantes de 5° a 8°';
-   document.body.prepend(note);
- }
+ const nav=document.querySelector('.nav');if(nav){const b=document.createElement('a');b.className='child-return';b.href='index.html';b.textContent='📘 Modo normal';b.setAttribute('aria-label','Volver al modo normal');b.addEventListener('click',()=>{try{localStorage.setItem('andina-explora-mode','normal')}catch(e){}});nav.appendChild(b)}
+ if(!document.querySelector('.child-note')){const note=document.createElement('div');note.className='child-note';note.textContent='🧸 Modo niños · explicaciones cortas para estudiantes de 5° a 8°';document.body.prepend(note)}
  simplify(document.body);
- new MutationObserver(mutations=>mutations.forEach(m=>m.addedNodes.forEach(node=>{
-   if(node.nodeType===Node.ELEMENT_NODE)simplify(node);
- }))).observe(document.body,{childList:true,subtree:true});
+ new MutationObserver(ms=>ms.forEach(m=>m.addedNodes.forEach(node=>{if(node.nodeType===Node.ELEMENT_NODE)simplify(node)}))).observe(document.body,{childList:true,subtree:true});
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
