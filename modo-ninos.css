@@ -2,30 +2,20 @@
 html.modo-ninos body{font-family:"Trebuchet MS","Arial Rounded MT Bold",Arial,sans-serif}
 html.modo-ninos .nav{border-bottom:3px solid rgba(255,193,7,.35)}
 html.modo-ninos .mode-switch{background:#fff7d6;border-color:#e6b84a;color:#5c4310;box-shadow:0 6px 18px rgba(0,0,0,.12)}
-html.modo-ninos .mode-switch .mode-icon{font-size:1.15em}
-html.modo-ninos .section-head>p,html.modo-ninos .intro p,html.modo-ninos .map-panel>p,html.modo-ninos .altitude-panel>p,html.modo-ninos .visual-facts p,html.modo-ninos .people-card>p,html.modo-ninos .media-section .section-head>p,html.modo-ninos .culture .section-head>p,html.modo-ninos .challenges .section-head>p{display:none}
-html.modo-ninos .section-head h2{max-width:760px}
-html.modo-ninos .topic-grid,.modo-ninos .sector-tabs,.modo-ninos .culture-grid,.modo-ninos .challenge-grid{gap:12px}
-html.modo-ninos .topic,.modo-ninos .culture-card,.modo-ninos .challenge-grid button,.modo-ninos .sector-tabs button{border-radius:20px}
-html.modo-ninos .info-cards small{display:none}
-html.modo-ninos .hero-copy p{max-width:560px}
-html.modo-ninos .game-arena{font-size:1.04rem}
-html.modo-ninos .game-arena .game-question>p:first-of-type{margin-bottom:.55rem}
-html.modo-ninos .mode-note{display:block}
-.mode-switch{display:inline-flex;align-items:center;gap:7px;margin-left:8px;padding:9px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.1);color:inherit;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap;transition:.2s ease}
-.mode-switch:hover{transform:translateY(-1px)}
-.mode-note{display:none}
+.mode-switch{display:inline-flex;align-items:center;gap:7px;margin-left:8px;padding:9px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.1);color:inherit;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap;transition:.2s ease}.mode-switch:hover{transform:translateY(-1px)}
 
-/* Subweb infantil */
+/* Subweb infantil: conserva la estructura y funcionalidad de la web normal. */
 html.modo-ninos-child{font-size:105%}
-html.modo-ninos-child body{background:#fffdf7;color:#24342e}
+html.modo-ninos-child body{background:#fffdf7;color:#24342e;font-family:"Trebuchet MS","Arial Rounded MT Bold",Arial,sans-serif}
 html.modo-ninos-child .section{padding-top:72px;padding-bottom:72px}
 html.modo-ninos-child .section-head h2{font-size:clamp(2rem,4vw,3rem);letter-spacing:-.02em}
 html.modo-ninos-child .section-head>p,html.modo-ninos-child .intro p{font-size:1.05rem;line-height:1.75}
-html.modo-ninos-child .topic,html.modo-ninos-child .info-cards button,html.modo-ninos-child .culture-card,html.modo-ninos-child .challenge-grid button{border-radius:22px;transition:transform .2s ease,box-shadow .2s ease}
+html.modo-ninos-child .topic,html.modo-ninos-child .info-cards button,html.modo-ninos-child .culture-card,html.modo-ninos-child .challenge-grid button,html.modo-ninos-child .sector-tabs button{border-radius:22px;transition:transform .2s ease,box-shadow .2s ease}
 html.modo-ninos-child .topic:hover,html.modo-ninos-child .info-cards button:hover,html.modo-ninos-child .culture-card:hover,html.modo-ninos-child .challenge-grid button:hover{transform:translateY(-3px)}
 html.modo-ninos-child .hero-lines{opacity:.22}
 html.modo-ninos-child .child-return{display:inline-flex!important;align-items:center;gap:7px;padding:9px 13px;border:1px solid rgba(22,59,49,.18);border-radius:999px;background:#fff;color:#24342e;font:inherit;font-weight:700;cursor:pointer}
 html.modo-ninos-child .child-return:hover{transform:translateY(-1px)}
 html.modo-ninos-child .child-note{display:block;margin:0 auto;padding:10px 18px;text-align:center;font-weight:700;background:#fff4cf}
+html.modo-ninos-child .child-secondary{display:none!important}
+html.modo-ninos-child .section-head>p{display:block}
 @media(max-width:760px){html.modo-ninos-child .section{padding-top:54px;padding-bottom:54px}.child-return{font-size:.85rem}}
