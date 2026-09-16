@@ -12,4 +12,5 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 const travelScript=document.createElement('script');travelScript.src='./viaje-andino-overhaul.js?v=20260913-2';travelScript.defer=true;document.head.appendChild(travelScript);
 const assetsScript=document.createElement('script');assetsScript.src='./viaje-assets.js?v=20260913-2';assetsScript.defer=true;document.head.appendChild(assetsScript);
 const otherGamesScript=document.createElement('script');otherGamesScript.src='./otros-juegos.js?v=20260913-3';otherGamesScript.defer=true;document.head.appendChild(otherGamesScript);
+const professorUpgrade=document.createElement('script');professorUpgrade.src='./professor-upgrade.js?v=20260915-1';professorUpgrade.defer=true;document.head.appendChild(professorUpgrade);
 })();
