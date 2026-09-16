@@ -3,7 +3,7 @@
 const BASE=new URL('./assets/andina/',document.baseURI).href;
 const RAW='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/';
 const files={map:'mapa.png',bogota:'bogota.png',cafe:'eje-cafetero.png',paramo:'paramo.png',valle:'valle-del-cauca.png'};
-const bust='?v=20260916-1';
+const bust='?v=20260916-2';
 const local=n=>BASE+n+bust;const raw=n=>RAW+n+bust;
 function loadImage(img,name){if(!img||img.dataset.andinaFixed==='1')return;img.dataset.andinaFixed='1';img.dataset.andinaName=name;img.decoding='async';img.loading='lazy';img.fetchPriority='low';img.src=local(name);img.onerror=()=>{if(img.dataset.andinaRaw==='1')return;img.dataset.andinaRaw='1';img.src=raw(name)}}
 function fixHotspots(){const positions={cafe:'left:2.2%;top:29.8%;width:18%;height:9.4%;',paramo:'left:34.4%;top:33.3%;width:18%;height:10.4%;',valle:'left:61.2%;top:7.5%;width:18%;height:10.4%;',bogota:'left:78.2%;top:46.8%;width:18.2%;height:9.6%;'};document.querySelectorAll('.map-hotspot').forEach(btn=>{const css=positions[btn.dataset.id];if(css)btn.style.cssText=css})}
@@ -15,6 +15,7 @@ const assetsScript=document.createElement('script');assetsScript.src='./viaje-as
 const otherGamesScript=document.createElement('script');otherGamesScript.src='./otros-juegos.js?v=20260913-3';otherGamesScript.defer=true;document.head.appendChild(otherGamesScript);
 const professorUpgrade=document.createElement('script');professorUpgrade.src='./professor-upgrade.js?v=20260916-1';professorUpgrade.defer=true;document.head.appendChild(professorUpgrade);
 const territoryPlacement=document.createElement('script');territoryPlacement.src='./territory-placement-fix.js?v=20260916-1';territoryPlacement.defer=true;document.head.appendChild(territoryPlacement);
+const expandableSmallBlocks=document.createElement('script');expandableSmallBlocks.src='./expandable-small-blocks.js?v=20260916-1';expandableSmallBlocks.defer=true;document.head.appendChild(expandableSmallBlocks);
 
 /* Refuerzo directo: no dependemos de que otro script cree las cordilleras. */
 const CORDS={
