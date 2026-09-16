@@ -1,4 +1,4 @@
-const CACHE='andina-explora-static-v4';
+const CACHE='andina-explora-static-v5';
 const STATIC_EXT=/\.(?:css|js|png|jpg|jpeg|webp|svg|woff2?|mp3)$/i;
 self.addEventListener('install',event=>{self.skipWaiting()});
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
