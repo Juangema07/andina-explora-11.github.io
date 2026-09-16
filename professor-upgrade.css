@@ -10,3 +10,32 @@
 .visual-credits{background:#f8f7f1}.credits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.credits-grid article{background:#fff;border:1px solid rgba(24,61,49,.1);border-radius:20px;padding:1.2rem;box-shadow:0 10px 28px rgba(20,45,35,.05)}.credits-grid b{display:block;color:#183d31;margin-bottom:.45rem}.credits-grid p{line-height:1.6;opacity:.75}.credits-grid a{color:#183d31;font-weight:800}
 .guide-coverage{background:#edf2e8}.coverage-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}.game-duration-note{margin:0 0 1rem;padding:.85rem 1rem;border-radius:14px;background:#e3edcf;color:#183d31;font-size:.9rem}
 @media(max-width:1000px){.aec-grid,.coverage-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.credits-grid{grid-template-columns:1fr 1fr}}@media(max-width:620px){.aec-grid,.coverage-grid,.credits-grid{grid-template-columns:1fr}.andina-expand-card{min-height:155px}.territory-tabs{overflow:auto;flex-wrap:nowrap;padding-bottom:.25rem}.territory-tabs button{white-space:nowrap}.real-mountain-figure,.real-mountain-figure img{min-height:290px}.inline-image-credit{font-size:.53rem}.credits-grid{grid-template-columns:1fr}}
+
+/* FIX VISUAL: el ave nunca debe ocupar el tamaño de una sección. */
+img[src*="blue_bird.png"]{width:clamp(58px,7vw,96px)!important;height:clamp(58px,7vw,96px)!important;max-width:96px!important;max-height:96px!important;min-width:0!important;min-height:0!important;object-fit:contain!important;display:block!important;flex:none!important}
+img[src*="blue_bird.png"].andina-v2-asset{width:74px!important;height:74px!important;max-width:74px!important;max-height:74px!important}
+
+/* ASSETS DECORATIVOS: aparecen alrededor de las secciones sin modificar contenido ni controles. */
+#inicio,#fisica,#humana,#economia,#cultura,#desafios,#juegos,#productos,#recursos{position:relative;isolation:isolate}
+#inicio::before,#inicio::after,#fisica::before,#fisica::after,#humana::before,#humana::after,#economia::before,#economia::after,#cultura::before,#cultura::after,#desafios::before,#desafios::after,#juegos::before,#juegos::after,#productos::before,#productos::after,#recursos::before,#recursos::after{pointer-events:none;position:absolute;z-index:4;display:block;background-repeat:no-repeat;background-position:center;background-size:contain;content:"";filter:drop-shadow(0 8px 9px rgba(0,0,0,.13));animation:andinaAssetFloat 6.5s ease-in-out infinite;will-change:transform}
+#inicio::before{width:76px;height:76px;left:-8px;top:18%;background-image:url('./assets/andina/coffee_plant.png')}
+#inicio::after{width:72px;height:72px;right:-5px;bottom:10%;background-image:url('./assets/andina/tree_02.png');animation-delay:-2s}
+#fisica::before{width:70px;height:70px;right:-4px;top:13%;background-image:url('./assets/andina/hummingbird.png');animation-delay:-1s}
+#fisica::after{width:68px;height:68px;left:-3px;bottom:8%;background-image:url('./assets/andina/waterfall.png');animation-delay:-3s}
+#humana::before{width:74px;height:74px;left:-6px;top:20%;background-image:url('./assets/andina/toucan.png');animation-delay:-2.5s}
+#humana::after{width:66px;height:66px;right:-2px;bottom:12%;background-image:url('./assets/andina/tree_01.png');animation-delay:-4s}
+#economia::before{width:70px;height:70px;right:-3px;top:15%;background-image:url('./assets/andina/coffee_cup.png');animation-delay:-1.5s}
+#economia::after{width:62px;height:62px;left:-2px;bottom:9%;background-image:url('./assets/andina/coffee_bean_02.png');animation-delay:-3.5s}
+#cultura::before{width:72px;height:72px;left:-4px;top:16%;background-image:url('./assets/andina/blue_bird.png');animation-delay:-4.5s}
+#cultura::after{width:70px;height:70px;right:-4px;bottom:8%;background-image:url('./assets/andina/succulent.png');animation-delay:-2s}
+#desafios::before{width:68px;height:68px;right:-3px;top:17%;background-image:url('./assets/andina/water_patch.png');animation-delay:-3s}
+#desafios::after{width:70px;height:70px;left:-4px;bottom:10%;background-image:url('./assets/andina/mossy_rock_01.png');animation-delay:-1s}
+#juegos::before{width:78px;height:78px;left:-5px;top:14%;background-image:url('./assets/andina/train_02.png');animation-delay:-2s}
+#juegos::after{width:78px;height:78px;right:-5px;bottom:10%;background-image:url('./assets/andina/station.png');animation-delay:-4s}
+#productos::before{width:74px;height:74px;right:-4px;top:15%;background-image:url('./assets/andina/factory.png');animation-delay:-1.5s}
+#productos::after{width:66px;height:66px;left:-3px;bottom:10%;background-image:url('./assets/andina/bottle.png');animation-delay:-3.5s}
+#recursos::before{width:72px;height:72px;left:-4px;top:16%;background-image:url('./assets/andina/sprout.png');animation-delay:-2.5s}
+#recursos::after{width:72px;height:72px;right:-4px;bottom:10%;background-image:url('./assets/andina/bottom_grass.png');animation-delay:-4s}
+@keyframes andinaAssetFloat{0%,100%{transform:translate3d(0,0,0) rotate(-2deg)}50%{transform:translate3d(0,-8px,0) rotate(2deg)}}
+@media(max-width:760px){#inicio::before,#inicio::after,#fisica::before,#fisica::after,#humana::before,#humana::after,#economia::before,#economia::after,#cultura::before,#cultura::after,#desafios::before,#desafios::after,#juegos::before,#juegos::after,#productos::before,#productos::after,#recursos::before,#recursos::after{width:50px;height:50px;opacity:.72}img[src*="blue_bird.png"]{width:62px!important;height:62px!important;max-width:62px!important;max-height:62px!important}img[src*="blue_bird.png"].andina-v2-asset{width:56px!important;height:56px!important;max-width:56px!important;max-height:56px!important}}
+@media(prefers-reduced-motion:reduce){#inicio::before,#inicio::after,#fisica::before,#fisica::after,#humana::before,#humana::after,#economia::before,#economia::after,#cultura::before,#cultura::after,#desafios::before,#desafios::after,#juegos::before,#juegos::after,#productos::before,#productos::after,#recursos::before,#recursos::after{animation:none!important}}
