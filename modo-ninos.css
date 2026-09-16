@@ -15,9 +15,9 @@ html.modo-ninos-child .topic:hover,html.modo-ninos-child .info-cards button:hove
 html.modo-ninos-child .hero-lines{opacity:.22}
 html.modo-ninos-child .child-return{display:inline-flex!important;align-items:center;gap:7px;padding:9px 13px;border:1px solid rgba(22,59,49,.18);border-radius:999px;background:#fff;color:#24342e;font:inherit;font-weight:700;cursor:pointer}
 html.modo-ninos-child .child-return:hover{transform:translateY(-1px)}
-html.modo-ninos-child .child-note{display:block;margin:0 auto;padding:10px 18px;text-align:center;font-weight:700;background:#fff4cf}
-html.modo-ninos-child .child-secondary{display:none!important}
-html.modo-ninos-child .section-head>p{display:block}
+
+/* La frase de ayuda infantil no debe aparecer como una franja en medio de la página. */
+html.modo-ninos-child .child-note{display:none!important}
 
 /* Sin mensaje/capa que cubra la pantalla. El loader original queda disponible para las transiciones. */
 body.standalone-kids-web::after{content:none!important;display:none!important;pointer-events:none!important}
