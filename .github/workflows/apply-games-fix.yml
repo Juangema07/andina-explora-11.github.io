@@ -4,6 +4,7 @@ on:
     paths:
       - 'andina-games-fix.js'
       - 'andina-image-fix.js'
+      - 'floating-assets-fix.js'
       - 'mobile-fixes.css'
       - '.github/workflows/apply-games-fix.yml'
       - '.github/workflows/Mapa.png'
@@ -48,16 +49,14 @@ jobs:
           p=Path('andina-image-fix.js')
           s=p.read_text(encoding='utf-8')
           s=s.replace("const good=local(files.map);", "const good=raw(files.map);")
-          s=s.replace("img.src=good;", "img.src=good;")
           s=s.replace("panel.style.backgroundImage=`url(\"${local(file)}\"),url(\"${raw(file)}\")`;", "panel.style.backgroundImage=`url(\"${raw(file)}\"),url(\"${local(file)}\")`;")
           s=s.replace("probe.src=local(file);", "probe.src=raw(file);")
           p.write_text(s,encoding='utf-8')
 
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
-          # Limpia únicamente duplicados conocidos; conserva el resto del funcionamiento.
           s=s.replace('<script src="legacy-enhancements.js?v=20260914-2"></script>','')
-          for src in ('andina-games-fix.js','andina-image-fix.js'):
+          for src in ('andina-games-fix.js','andina-image-fix.js','floating-assets-fix.js'):
               s=re.sub(r'\s*<script[^>]+src=["\'][^"\']*'+re.escape(src)+r'[^"\']*["\'][^>]*></script>', '', s)
               tag=f'<script src="{src}" defer></script>'
               s=s.replace('</body>',tag+'\n</body>')
@@ -67,6 +66,6 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add index.html andina-games-fix.js andina-image-fix.js assets/andina .nojekyll
-          git diff --cached --quiet || git commit -m 'Fix Andina map and background images [skip ci]'
+          git add index.html andina-games-fix.js andina-image-fix.js floating-assets-fix.js assets/andina .nojekyll
+          git diff --cached --quiet || git commit -m 'Add floating Andina assets and fix giant bird [skip ci]'
           git push
