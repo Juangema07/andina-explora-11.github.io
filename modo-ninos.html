@@ -12,14 +12,14 @@
 <link rel="stylesheet" href="professional-deep-content.css?v=20260914-1">
 <link rel="stylesheet" href="professor-upgrade.css?v=20260916-2">
 <link rel="stylesheet" href="guia-cobertura-andina.css?v=20260916-1">
-<link rel="stylesheet" href="modo-ninos.css?v=20260916-3">
+<link rel="stylesheet" href="modo-ninos.css?v=20260916-2">
 </head>
 <body class="standalone-kids-web">
 <div id="loader"><strong>ANDINA</strong><span>Preparando tu recorrido…</span><i></i></div>
 <header class="nav">
   <a class="logo" href="#inicio"><span>▲</span> ANDINA <small>EXPLORA</small></a>
   <nav id="navLinks" aria-label="Secciones">
-    <a href="#fisica">Geografía</a><a href="#humana">Población</a><a href="#economia">Economía</a><a href="#cultura">Cultura</a><a href="#desafios">Desafíos</a><a href="#juegos">Juegos</a><a href="#productos">Productos</a><a href="#recursos">Fuentes</a>
+    <a href="#fisica">Geografía</a><a href="#humana">Población</a><a href="#economia">Economía</a><a href="#cultura">Cultura</a><a href="#desafios">Desafíos</a><a href="#juegos">Juegos</a><a href="#recursos">Fuentes</a>
   </nav>
   <button class="icon-btn" id="settingsBtn" aria-label="Personalización">⚙</button>
 </header>
@@ -46,7 +46,7 @@
 <section id="fisica" class="section">
   <div class="section-head"><div><span class="eyebrow">02 · GEOGRAFÍA FÍSICA</span><h2>La altura cambia <em>todo.</em></h2></div><p>Aprende sobre las montañas, el clima, el agua y la naturaleza con imágenes.</p></div>
   <div class="topic-grid"><button class="topic active" data-detail="ubicacion"><span>01</span><b>Ubicación</b><small>¿Dónde queda?</small></button><button class="topic" data-detail="relieve"><span>02</span><b>Relieve</b><small>Montañas</small></button><button class="topic" data-detail="agua"><span>03</span><b>Hidrografía</b><small>Ríos</small></button><button class="topic" data-detail="biodiversidad"><span>04</span><b>Biodiversidad</b><small>Naturaleza</small></button></div>
-  <div class="physical-grid"><article class="map-panel photo-card"><div class="photo-label">PAISAJE ANDINO</div><h3>Muchas formas de relieve</h3><p>Las cordilleras Occidental, Central y Oriental forman muchas montañas, valles y altiplanos.</p><div class="map-drawing"><span>OCCIDENTAL</span><i></i><b></b><em></em><strong>CENTRAL</strong><small>ORIENTAL</small></div></article>
+  <div class="physical-grid"><article class="map-panel photo-card"><div class="photo-label">PAISAJE ANDINO</div><h3>Muchas formas de relieve</h3><p>Montañas Occidental, Central y Oriental forman muchas montañas, valles y altiplanos.</p><div class="map-drawing"><span>OCCIDENTAL</span><i></i><b></b><em></em><strong>CENTRAL</strong><small>ORIENTAL</small></div></article>
   <article class="altitude-panel"><span class="eyebrow light">PISOS TÉRMICOS</span><h3>Elige una altura</h3><p>Ahora sí: cambiar una altura cambia <b>toda la experiencia</b>, no solo una frase.</p><div class="alt-tabs"><button class="active" data-alt="calido">Cálido</button><button data-alt="templado">Templado</button><button data-alt="frio">Frío</button><button data-alt="paramo">Páramo</button></div><div id="altitudeView" class="altitude-view"></div></article></div>
   <div class="visual-facts" id="physicalFacts"><article><span>🌡️</span><b>Clima</b><p>La altura ayuda a explicar por qué cambia la temperatura y la vegetación.</p></article><article><span>💧</span><b>Agua</b><p>Los ecosistemas de montaña ayudan a cuidar y guardar el agua.</p></article><article><span>🌿</span><b>Vida</b><p>Los páramos y bosques tienen plantas y animales que viven en diferentes alturas.</p></article></div>
 </section>
@@ -80,27 +80,50 @@
   <div id="gameArena" class="game-arena" hidden></div>
 </section>
 
-<section class="section media-section" id="productos"><div class="section-head"><div><span class="eyebrow">08 · PRODUCTOS DEL GRUPO</span><h2>También <em>creamos.</em></h2></div><p>Aquí puedes ver los materiales creados para el proyecto.</p></div><div class="media-grid"><article><span>🎬</span><h3>Video</h3><p>3–5 minutos · documental, reportaje, entrevista o magazine.</p><button class="placeholder">Agregar video</button></article><article><span>🎙️</span><h3>Audio</h3><p>5–8 minutos · historia, cultura, economía o problemática.</p><button class="placeholder">Agregar audio</button></article><article><span>📊</span><h3>Infografías</h3><p>Geografía física + geografía humana y económica.</p><a class="btn primary" href="infografias-andina.html">Ver infografías ↗</a></article><article><span>🖥️</span><h3>Presentación</h3><p>10 diapositivas disponibles desde la web.</p><a class="btn primary" href="diapositivas-andina.html">Ver diapositivas ↗</a></article></div></section>
+<section class="section media-section" id="productos"><div class="section-head"><div><span class="eyebrow">08 · PRODUCTOS DEL GRUPO</span><h2>También <em>creamos.</em></h2></div><p>Aquí puedes ver los materiales creados para el proyecto.</p></div><div class="media-grid"><article><span>🎬</span><h3>Video</h3><p>3–5 minutos · documental, reportaje, entrevista o magazine.</p><button class="placeholder">Agregar video</button></article><article><span>🎙️</span><h3>Audio</h3><p>5–8 minutos · historia, cultura, economía o problemática.</p><button class="placeholder">Agregar audio</button></article><article><span>📊</span><h3>Infografías</h3><p>Geografía física + geografía humana y económica.</p><button class="placeholder">Agregar infografías</button></article><article><span>🖥️</span><h3>Presentación</h3><p>10–15 diapositivas disponibles desde la web.</p><button class="placeholder">Agregar presentación</button></article></div></section>
 
-<section id="recursos" class="section resources"><div class="section-head"><div><span class="eyebrow">09 · PARA SEGUIR EXPLORANDO</span><h2>Fuentes que <em>sí ayudan.</em></h2></div><p>Usa instituciones y organizaciones confiables para contrastar datos y construir las fuentes bibliográficas del proyecto.</p></div><div class="source-grid"><a href="https://www.dane.gov.co/" target="_blank" rel="noopener">DANE</a><a href="https://www.igac.gov.co/" target="_blank" rel="noopener">IGAC</a><a href="https://www.minambiente.gov.co/" target="_blank" rel="noopener">Ministerio de Ambiente</a></div></section>
+<section id="recursos" class="section resources"><div class="section-head"><div><span class="eyebrow">09 · PARA SEGUIR EXPLORANDO</span><h2>Fuentes que <em>sí ayudan.</em></h2></div><p>Usa instituciones y organizaciones confiables para contrastar datos y construir las fuentes bibliográficas del proyecto.</p></div><div class="source-grid"><a href="https://www.dane.gov.co/" target="_blank" rel="noopener"><b>DANE</b><span>Datos de población, territorio y estadísticas.</span></a><a href="https://www.igac.gov.co/" target="_blank" rel="noopener"><b>IGAC</b><span>Cartografía, geografía y mapas de Colombia.</span></a><a href="https://www.parquesnacionales.gov.co/" target="_blank" rel="noopener"><b>Parques Nacionales</b><span>Áreas protegidas y biodiversidad.</span></a><a href="https://www.minambiente.gov.co/" target="_blank" rel="noopener"><b>MinAmbiente</b><span>Ambiente, conservación y territorio.</span></a><a href="https://www.mincultura.gov.co/" target="_blank" rel="noopener"><b>MinCultura</b><span>Patrimonio, cultura y expresiones tradicionales.</span></a></div></section>
+
+<footer><div><b>ANDINA EXPLORA</b><p>Región Andina de Colombia · Ciencias Sociales · Grado 11°</p></div><a href="CREDITOS-IMAGENES.md">Créditos de imágenes</a><span>Hecho como proyecto educativo interactivo.</span></footer>
 </main>
 
-<script src="app.js"></script>
-<script src="legacy-enhancements.js?v=20260916-3"></script>
+<div class="modal" id="modal" aria-hidden="true"><div class="backdrop"></div><article class="modal-box"><button class="close" id="modalClose">×</button><span class="eyebrow" id="modalEyebrow"></span><h2 id="modalTitle"></h2><div id="modalBody"></div></article></div>
+<script src="app.js" defer></script>
+<script src="legacy-enhancements.js"></script>
 <script src="games-menu.js"></script>
-<script src="conecta-fix.js"></script>
-<script src="game-time-extension.js"></script>
-<script src="viaje-andino-overhaul.js"></script>
-<script src="viaje-assets.js"></script>
-<script src="otros-juegos.js"></script>
-<script src="professor-upgrade.js"></script>
-<script src="territory-placement-fix.js"></script>
-<script src="expandable-small-blocks.js"></script>
-<script src="andina-games-fix.js"></script>
-<script src="andina-image-fix.js"></script>
+<script src="conecta-fix.js?v=20260913-2"></script>
+
+
+<script src="game-time-extension.js?v=20260916-2" defer></script>
+<script src="viaje-andino-overhaul.js?v=20260913-2" defer></script>
+<script src="viaje-assets.js?v=20260913-2" defer></script>
+<script src="otros-juegos.js?v=20260913-3" defer></script>
+<script src="professor-upgrade.js?v=20260916-2" defer></script>
+<script src="territory-placement-fix.js?v=20260916-2" defer></script>
+<script src="expandable-small-blocks.js?v=20260916-2" defer></script>
+
+<script src="andina-games-fix.js" defer></script>
+<script src="andina-image-fix.js" defer></script>
 <script src="remove-floating-assets.js" defer></script>
-<script src="guia-cobertura-andina.js"></script>
-<script src="modo-ninos-standalone.js"></script>
-<script src="modo-ninos-final.js"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="guia-cobertura-andina.js?v=20260916-1" defer></script>
+<script src="modo-ninos-standalone.js?v=20260916-1" defer></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
+<script src="legacy-enhancements.js?v=20260916-3"></script>
 </body>
 </html>
