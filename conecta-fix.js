@@ -1,5 +1,7 @@
 (()=>{
 'use strict';
+// El HTML histórico incluye dos referencias a legacy-enhancements.js. La segunda no aporta funcionalidad y duplica trabajo.
+[...document.scripts].forEach(s=>{if(s!==document.currentScript&&s.src.includes('legacy-enhancements.js'))s.remove()});
 const ROOT='#andina-other-games';
 const pairs=[
  ['Cordillera de los Andes','Gran sistema montañoso que atraviesa la región y explica buena parte de sus pisos térmicos y paisajes.'],
