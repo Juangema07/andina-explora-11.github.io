@@ -1,0 +1,17 @@
+/* Sustituye las montañas geométricas de portada por la imagen real aportada al repositorio. */
+.hero-art{
+  background-image:url('file_00000000bff081f69e70d37ed24e7686.png');
+  background-repeat:no-repeat;
+  background-position:center bottom;
+  background-size:contain;
+}
+.hero-art .mountain{
+  display:none !important;
+}
+/* Conserva los elementos decorativos de la portada sin cubrir la fotografía. */
+.hero-art .sun{z-index:0;}
+.hero-art .coffee-doodle,
+.hero-art .frailejon-doodle{z-index:3;}
+@media (max-width: 700px){
+  .hero-art{background-size:92% auto;background-position:center bottom;}
+}
