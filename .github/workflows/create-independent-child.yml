@@ -1,0 +1,133 @@
+name: Create independent kids web
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'modo-ninos.html'
+      - 'modo-ninos-standalone.js'
+
+permissions:
+  contents: write
+
+jobs:
+  build-child-copy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build independent kids copy
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, html
+
+          source = Path('index.html').read_text(encoding='utf-8')
+          child = source
+
+          # This is a REAL standalone copy of index.html. Only the text content
+          # is simplified here; structure, IDs, links, game hooks and behavior
+          # stay available to the copied page.
+          replacements = {
+            'Andina Explora: experiencia educativa e interactiva sobre la Región Andina de Colombia.': 'Andina Explora: aprende sobre la Región Andina de Colombia de forma sencilla y divertida.',
+            'Andina Explora · Región Andina': 'Andina Explora · Modo niños',
+            'Preparando el recorrido…': 'Preparando tu recorrido…',
+            'PERSONALIZA': 'PERSONALIZA',
+            'Tu recorrido': 'Tu recorrido',
+            'Tamaño del texto': 'Tamaño del texto',
+            'Reducir animaciones': 'Menos animaciones',
+            '＋ Añadir mis MP3': '＋ Añadir mis MP3',
+            'CIENCIAS SOCIALES · GRADO 11°': 'CIENCIAS SOCIALES',
+            'Una ventana digital a las montañas, los páramos, las ciudades, los sabores, los oficios y los desafíos del corazón de Colombia.': 'Explora las montañas, las ciudades, la naturaleza, las comidas y la cultura de la Región Andina.',
+            'Empezar recorrido ↓': 'Empezar ↓',
+            'No memorices datos sueltos.': 'Aprende paso a paso.',
+            'Conecta territorio y vida.': 'Descubre cómo se relacionan las personas y el territorio.',
+            'El relieve cambia la temperatura; el agua conecta comunidades; la economía transforma el paisaje; la cultura guarda memoria. Esta página convierte esos vínculos en una experiencia para explorar, jugar y pensar.': 'Las montañas, el agua, el trabajo y la cultura están conectados. Aquí puedes aprender, jugar y descubrir por qué.',
+            'La altura cambia todo.': 'La altura cambia el clima y la vida.',
+            'Explora ubicación, relieve, clima, agua y biodiversidad. La información se acompaña de imágenes y recursos visuales.': 'Aprende sobre las montañas, el clima, el agua y la naturaleza con imágenes.',
+            '¿Dónde está?': '¿Dónde queda?',
+            'Las cordilleras': 'Montañas',
+            'Ríos y cuencas': 'Ríos',
+            'Páramos y bosques': 'Naturaleza',
+            'Un territorio de contrastes': 'Muchas formas de relieve',
+            'Las cordilleras Occidental, Central y Oriental forman una compleja red de montañas, valles y altiplanos.': 'Las cordilleras Occidental, Central y Oriental forman muchas montañas, valles y altiplanos.',
+            'Elige una altura': 'Elige una altura',
+            'Ahora sí: cambiar una altura cambia toda la experiencia, no solo una frase.': 'Al cambiar la altura también cambian el clima, las plantas y los animales.',
+            'La altitud ayuda a explicar cambios de temperatura y vegetación.': 'La altura ayuda a explicar por qué cambia la temperatura y la vegetación.',
+            'Los ecosistemas de montaña son fundamentales para la regulación hídrica.': 'Los ecosistemas de montaña ayudan a cuidar y guardar el agua.',
+            'Páramos y bosques albergan especies adaptadas a distintas alturas.': 'Los páramos y bosques tienen plantas y animales que viven en diferentes alturas.',
+            'Las montañas también se habitan.': 'Las montañas también tienen gente.',
+            'Personas, ciudades, comunidades rurales y expresiones culturales construyen territorios diferentes.': 'Conoce personas, ciudades, comunidades y culturas de la Región Andina.',
+            'Ciudades que conectan territorios': 'Ciudades conectadas',
+            'Diversidad cultural': 'Culturas',
+            'Identidades, memorias y tradiciones': 'Tradiciones y formas de vivir',
+            'Urbanización': 'Ciudad y campo',
+            'Ciudad, campo y territorio': 'Cómo viven las personas',
+            'Retos sociales': 'Retos de las personas',
+            'Oportunidades y desigualdad': 'Oportunidades para todos',
+            'Del territorio a lo que producimos.': '¿Qué producimos?',
+            'La economía se entiende mejor cuando conectamos recursos, transformación, servicios, transporte y consumo.': 'Descubre qué producen las personas, cómo trabajan y qué servicios ofrecen.',
+            'Producto emblemático': 'Producto importante',
+            'Agricultura de altura': 'Cultivo en zonas altas',
+            'Ciudades y conectividad': 'Servicios y conexiones',
+            'Naturaleza + cultura': 'Naturaleza y cultura',
+            'Lo andino también se saborea y se escucha.': 'La cultura también se come, se escucha y se celebra.',
+            'Las expresiones culturales cambian entre territorios. Aquí cada tarjeta funciona como una pequeña ventana.': 'Descubre comidas, música, artesanías, fiestas y otras tradiciones.',
+            'Ajiaco, tamales, café y más': 'Comidas y sabores',
+            'Tiple, bambuco y memoria': 'Música y tradiciones',
+            'Oficios y materiales': 'Trabajos y materiales',
+            'Encuentro e identidad': 'Fiestas y comunidad',
+            'Ruana y tejidos de montaña': 'Ropa y tejidos',
+            'El tiple es un símbolo musical colombiano': 'El tiple es un instrumento de la música colombiana.',
+            'Un producto ligado al paisaje y al trabajo rural': 'El café está ligado al paisaje y al trabajo rural.',
+            'Ícono de los ecosistemas de páramo': 'El frailejón es una planta de los páramos.',
+            'Comprender para proponer.': 'Entender para cuidar y mejorar.',
+            'Cada reto incluye problema, causas, consecuencias, afectados y posibles respuestas.': 'Conoce cada problema y piensa en posibles soluciones.',
+            'Presión sobre el agua': 'Cuidemos el agua',
+            'Fuentes, contaminación y disponibilidad': 'Cuidar las fuentes de agua',
+            'Pérdida de ecosistemas': 'Cuidemos la naturaleza',
+            'Bosques, páramos y transformación': 'Proteger bosques y páramos',
+            'Desigualdad territorial': 'Oportunidades para todos',
+            'Servicios y oportunidades': 'Acceso a servicios y oportunidades',
+            'ESPACIO DE REFLEXIÓN': 'PIENSA Y PROPÓN',
+            'Diseña una solución': 'Piensa una solución',
+            'Escribe una idea y conviértela en una propuesta concreta.': 'Escribe una idea para ayudar a la Región Andina.',
+            'Mi propuesta…': 'Mi idea…',
+            'Guardar propuesta': 'Guardar idea',
+            'Aprende jugando.': '¡Aprende jugando!',
+            'Explora cinco experiencias nuevas: mapa, viaje, conexiones, misterio y decisiones comunitarias.': 'Juega y aprende sobre la Región Andina.',
+            'También creamos.': 'Nuestros materiales',
+            'Aquí quedarán integrados el video, podcast, infografías y presentación exigidos por el proyecto.': 'Aquí puedes ver los materiales creados para el proyecto.',
+            'Video original': 'Video',
+            'documental, reportaje, entrevista o magazine.': 'Un video creado por el grupo.',
+            'Podcast': 'Audio',
+            'historia, cultura, economía o problemática.': 'Un audio creado por el grupo.',
+            'PowerPoint': 'Presentación',
+            '10–15 diapositivas disponibles desde la web.': 'Presentación del proyecto.',
+          }
+
+          # Longest phrases first prevents a shorter phrase from breaking a longer one.
+          for old, new in sorted(replacements.items(), key=lambda x: len(x[0]), reverse=True):
+              child = child.replace(old, new)
+
+          # Make this copy self-contained as the kids page, not an iframe.
+          child = re.sub(r'<link rel="stylesheet" href="modo-ninos\.css\?v=[^"]+">', '<link rel="stylesheet" href="modo-ninos.css?v=20260916-5">', child)
+          child = child.replace('<body>', '<body class="standalone-kids-web">')
+          child = child.replace('<title>Andina Explora · Modo niños</title>', '<title>Andina Explora · Modo niños</title>')
+          child = child.replace('<script src="modo-ninos.js?v=20260916-2" defer></script>', '<script src="modo-ninos-standalone.js?v=20260916-1" defer></script>')
+          # Legacy enhancement loads the normal mode manager dynamically; the standalone controller
+          # neutralizes any normal-mode switch and supplies only the return-to-normal button.
+          child += '\n'
+
+          Path('modo-ninos.html').write_text(child, encoding='utf-8')
+          PY
+
+      - name: Commit generated standalone copy
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add modo-ninos.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Create independent text copy for kids mode"
+          git push
