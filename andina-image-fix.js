@@ -15,4 +15,5 @@ const assetsScript=document.createElement('script');assetsScript.src='./viaje-as
 const otherGamesScript=document.createElement('script');otherGamesScript.src='./otros-juegos.js?v=20260913-3';otherGamesScript.defer=true;document.head.appendChild(otherGamesScript);
 const professorUpgrade=document.createElement('script');professorUpgrade.src='./professor-upgrade.js?v=20260915-1';professorUpgrade.defer=true;document.head.appendChild(professorUpgrade);
 const territoryPlacement=document.createElement('script');territoryPlacement.src='./territory-placement-fix.js?v=20260915-1';territoryPlacement.defer=true;document.head.appendChild(territoryPlacement);
+const cordillerasReal=document.createElement('script');cordillerasReal.src='./cordilleras-real.js?v=20260915-2';cordillerasReal.defer=true;document.head.appendChild(cordillerasReal);
 })();
