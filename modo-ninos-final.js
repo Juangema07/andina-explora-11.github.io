@@ -1,8 +1,7 @@
 (()=>{
 'use strict';
 if(!location.pathname.endsWith('modo-ninos.html')) return;
-function set(sel,text){const el=document.querySelector(sel);if(el&&text)el.textContent=text}
-function setAll(sel,text){document.querySelectorAll(sel).forEach(el=>{if(text)el.textContent=text})}
+function set(sel,text){const el=document.querySelector(sel);if(el&&text&&el.textContent!==text)el.textContent=text}
 function apply(){
   set('#inicio .hero-copy p','¡Vamos a conocer la Región Andina! Aprenderás sobre sus montañas, ciudades, naturaleza, comidas y tradiciones.');
   set('#inicio .hero-stats span:nth-child(1)','3 cordilleras');set('#inicio .hero-stats span:nth-child(2)','4 climas según la altura');set('#inicio .hero-stats span:nth-child(3)','Muchas historias');
@@ -33,6 +32,5 @@ function apply(){
   document.body.classList.add('kids-final-content');
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();
-[500,1500,3000,5000].forEach(ms=>setTimeout(apply,ms));
-new MutationObserver(()=>apply()).observe(document.body,{childList:true,subtree:true});
+setTimeout(apply,800);setTimeout(apply,2000);setTimeout(apply,4000);
 })();
