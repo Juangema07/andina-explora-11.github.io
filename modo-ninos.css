@@ -3,8 +3,6 @@ html.modo-ninos body{font-family:"Trebuchet MS","Arial Rounded MT Bold",Arial,sa
 html.modo-ninos .nav{border-bottom:3px solid rgba(255,193,7,.35)}
 html.modo-ninos .mode-switch{background:#fff7d6;border-color:#e6b84a;color:#5c4310;box-shadow:0 6px 18px rgba(0,0,0,.12)}
 .mode-switch{display:inline-flex;align-items:center;gap:7px;margin-left:8px;padding:9px 12px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.1);color:inherit;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap;transition:.2s ease}.mode-switch:hover{transform:translateY(-1px)}
-
-/* Subweb infantil: conserva la estructura y funcionalidad de la web normal. */
 html.modo-ninos-child{font-size:105%}
 html.modo-ninos-child body{background:#fffdf7;color:#24342e;font-family:"Trebuchet MS","Arial Rounded MT Bold",Arial,sans-serif}
 html.modo-ninos-child .section{padding-top:72px;padding-bottom:72px}
@@ -15,17 +13,31 @@ html.modo-ninos-child .topic:hover,html.modo-ninos-child .info-cards button:hove
 html.modo-ninos-child .hero-lines{opacity:.22}
 html.modo-ninos-child .child-return{display:inline-flex!important;align-items:center;gap:7px;padding:9px 13px;border:1px solid rgba(22,59,49,.18);border-radius:999px;background:#fff;color:#24342e;font:inherit;font-weight:700;cursor:pointer}
 html.modo-ninos-child .child-return:hover{transform:translateY(-1px)}
-
-/* La frase de ayuda infantil no debe aparecer como una franja en medio de la página. */
 html.modo-ninos-child .child-note{display:none!important}
-
-/* Sin mensaje/capa que cubra la pantalla. El loader original queda disponible para las transiciones. */
 body.standalone-kids-web::after{content:none!important;display:none!important;pointer-events:none!important}
 html.modo-ninos-child::before{content:none!important;display:none!important;pointer-events:none!important}
-
-/* El menú y el botón para volver al modo normal quedan siempre utilizables. */
 body.standalone-kids-web .nav,body.standalone-kids-web header nav,body.standalone-kids-web .navbar{position:relative!important;z-index:100!important;pointer-events:auto!important}
 body.standalone-kids-web .nav *{pointer-events:auto}
 body.standalone-kids-web .mode-switch,body.standalone-kids-web .child-return{position:relative;z-index:101!important;pointer-events:auto!important}
 
-@media(max-width:760px){html.modo-ninos-child .section{padding-top:54px;padding-bottom:54px}.child-return{font-size:.85rem}}
+/* FONDOS DINÁMICOS: la versión infantil conserva el lenguaje visual de la web normal. */
+html.modo-ninos-child .hero,html.modo-ninos-child .intro,html.modo-ninos-child #fisica,html.modo-ninos-child #humana,html.modo-ninos-child #economia,html.modo-ninos-child #cultura,html.modo-ninos-child #desafios{position:relative;overflow:hidden}
+html.modo-ninos-child .hero:before,html.modo-ninos-child .intro:before,html.modo-ninos-child #fisica:before,html.modo-ninos-child #humana:before,html.modo-ninos-child #economia:before,html.modo-ninos-child #cultura:before,html.modo-ninos-child #desafios:before{content:"";position:absolute;inset:-7%;background-size:cover;background-position:center;opacity:.16;animation:kidsBgDrift 18s ease-in-out infinite alternate;transform:scale(1.06);pointer-events:none}
+html.modo-ninos-child .hero:before{background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/aa/Panorama_Pe%C3%B1a_de_Ot%C3%AD_-_P%C3%A1ramo_de_Ocet%C3%A1.jpg');opacity:.42;animation-duration:24s}
+html.modo-ninos-child .intro:before{background-image:url('https://upload.wikimedia.org/wikipedia/commons/8/84/Paisaje_monta%C3%B1oso_Andino.jpg')}
+html.modo-ninos-child #fisica:before{background-image:url('https://upload.wikimedia.org/wikipedia/commons/4/42/Paisaje_de_p%C3%A1ramo_con_neblina%2C_P%C3%A1ramo_Ocet%C3%A1%2C_Boyac%C3%A1.jpg')}
+html.modo-ninos-child #humana:before{background-image:url('https://upload.wikimedia.org/wikipedia/commons/5/5d/Coffee_farm_in_Colombia.jpg');opacity:.12}
+html.modo-ninos-child #economia:before{background-image:url('https://upload.wikimedia.org/wikipedia/commons/5/5d/Coffee_farm_in_Colombia.jpg');opacity:.13}
+html.modo-ninos-child #cultura:before{background-image:url('https://upload.wikimedia.org/wikipedia/commons/a/aa/Panorama_Pe%C3%B1a_de_Ot%C3%AD_-_P%C3%A1ramo_de_Ocet%C3%A1.jpg');opacity:.12}
+html.modo-ninos-child #desafios:before{background-image:url('https://upload.wikimedia.org/wikipedia/commons/4/42/Paisaje_de_p%C3%A1ramo_con_neblina%2C_P%C3%A1ramo_Ocet%C3%A1%2C_Boyac%C3%A1.jpg');opacity:.11}
+html.modo-ninos-child .hero>* ,html.modo-ninos-child .intro>* ,html.modo-ninos-child #fisica>* ,html.modo-ninos-child #humana>* ,html.modo-ninos-child #economia>* ,html.modo-ninos-child #cultura>* ,html.modo-ninos-child #desafios>*{position:relative;z-index:1}
+@keyframes kidsBgDrift{0%{background-position:45% 48%;transform:scale(1.06)}100%{background-position:55% 52%;transform:scale(1.13)}}
+
+/* Contenido ampliado, pero con lenguaje corto y fácil. */
+.kids-extra-explore{margin-top:28px;padding:26px;border-radius:28px;background:rgba(255,255,255,.72);border:1px solid rgba(24,61,50,.10);box-shadow:0 16px 40px rgba(20,45,35,.08);backdrop-filter:blur(5px)}
+.dark .kids-extra-explore{background:rgba(10,35,29,.68);border-color:rgba(255,255,255,.10)}
+.kids-extra-head{margin-bottom:18px}.kids-extra-head h3{font-size:clamp(1.55rem,3vw,2.25rem);margin:7px 0}.kids-extra-head p{margin:0;opacity:.72;line-height:1.6}
+.kids-extra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.kids-extra-grid article{padding:20px;border-radius:20px;background:rgba(255,255,255,.8);border:1px solid rgba(24,61,50,.08);min-height:170px}.dark .kids-extra-grid article{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
+.kids-extra-icon{font-size:1.8rem}.kids-extra-grid h4{font-size:1.05rem;margin:10px 0 7px}.kids-extra-grid p{font-size:.82rem;line-height:1.65;opacity:.76;margin:0}
+@media(max-width:760px){html.modo-ninos-child .section{padding-top:54px;padding-bottom:54px}.child-return{font-size:.85rem}.kids-extra-grid{grid-template-columns:1fr}.kids-extra-explore{padding:20px}.kids-extra-grid article{min-height:0}}
+@media(prefers-reduced-motion:reduce){html.modo-ninos-child .hero:before,html.modo-ninos-child .intro:before,html.modo-ninos-child #fisica:before,html.modo-ninos-child #humana:before,html.modo-ninos-child #economia:before,html.modo-ninos-child #cultura:before,html.modo-ninos-child #desafios:before{animation:none}}
