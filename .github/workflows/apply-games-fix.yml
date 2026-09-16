@@ -54,10 +54,12 @@ jobs:
 
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
+          # Solo normalizamos las dos correcciones que este workflow administra.
+          # Los demás scripts permanecen intactos para no romper funciones de la web.
           for src in ('andina-games-fix.js','andina-image-fix.js'):
+              import re
+              s=re.sub(r'\s*<script[^>]+src=["\'][^"\']*'+re.escape(src)+r'[^"\']*["\'][^>]*></script>', '', s)
               tag=f'<script src="{src}" defer></script>'
-              s=s.replace(f'<script src="{src}"></script>','')
-              s=s.replace(tag,'')
               s=s.replace('</body>',tag+'\n</body>')
           p.write_text(s,encoding='utf-8')
           PY
