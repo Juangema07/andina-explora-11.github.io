@@ -3,9 +3,10 @@
 if(window.__ANDINA_LEGACY_ENHANCEMENTS__)return;
 window.__ANDINA_LEGACY_ENHANCEMENTS__=true;
 const isKids=location.pathname.endsWith('/modo-ninos.html')||location.pathname.endsWith('modo-ninos.html');
-/* En modo niños cargamos primero la versión actualizada del texto. Esto no cambia el contenido ni la experiencia del modo normal. */
+/* La copia infantil recibe su propia capa de texto. El modo normal no entra aquí. */
 if(isKids){const s=document.createElement('script');s.src='./modo-ninos-standalone.js?v=20260916-4';s.dataset.andinaKidsText='current';document.head.appendChild(s)}
 const files=['andina-games-fix.js?v=20260913-2','andina-image-fix.js?v=20260913-3','conecta-fix.js?v=20260913-1','viaje-quality-fix.js?v=20260913-5','viaje-static-threats-fix.js?v=20260913-2','professional-final.js?v=20260913-1','professional-expansion.js?v=20260914-3','opinion-restore.js?v=20260914-2','verified-sources.js?v=20260913-2','visual-motion.js?v=20260913-1','music-autoplay.js?v=20260914-9','genially-desktop-fix.js?v=20260914-1','site-final-fixes.js?v=20260914-6','visual-content-upgrade.js?v=20260914-2','territorios-upgrade.js?v=20260914-2','final-mobile-ux.js?v=20260914-3','section-numbering.js?v=20260914-1','guia-cobertura-andina.js?v=20260916-1','modo-ninos.js?v=20260916-4'];
+if(isKids)files.push('modo-ninos-final.js?v=20260916-1');
 function load(src){return new Promise((resolve,reject)=>{if(document.querySelector(`script[data-andina-src="${src}"]`)){resolve();return}const s=document.createElement('script');s.src='./'+src;s.dataset.andinaSrc=src;s.async=false;s.onload=resolve;s.onerror=reject;document.head.appendChild(s)})}
 function addCss(href,key){if(document.querySelector(`link[data-andina-css="${key}"]`))return;const l=document.createElement('link');l.rel='stylesheet';l.href=href;l.dataset.andinaCss=key;document.head.appendChild(l)}
 function loadCss(){addCss('./site-final-fixes.css?v=20260914-6','final');addCss('./visual-content-upgrade.css?v=20260914-3','visual');addCss('./territorios-upgrade.css?v=20260914-2','territories');addCss('./ux-fixes.css?v=20260914-3','ux');addCss('./mobile-theme-fix.css?v=20260914-3','mobile-theme');addCss('./guia-cobertura-andina.css?v=20260916-1','guide-coverage');addCss('./hero-montanas-reales.css?v=20260916-2','hero-mountains');addCss('./modo-ninos.css?v=20260916-4','modo-ninos')}
