@@ -1,0 +1,43 @@
+name: Apply presentation visual style
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'diapositivas-dinamicas.css'
+      - '.github/workflows/apply-slides-style.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add dynamic stylesheet to presentation
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('diapositivas-andina.html')
+          s = p.read_text(encoding='utf-8')
+          link = '<link rel="stylesheet" href="diapositivas-dinamicas.css?v=20260915-1">'
+          if link not in s:
+              marker = '<link rel="stylesheet" href="diapositivas-dinamicas.css">'
+              if marker not in s:
+                  s = s.replace('</head>', '  ' + link + '\n</head>', 1)
+                  p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit if changed
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if git diff --quiet; then
+            echo 'No changes needed.'
+          else
+            git add diapositivas-andina.html
+            git commit -m 'style: upgrade presentation backgrounds'
+            git push
+          fi
