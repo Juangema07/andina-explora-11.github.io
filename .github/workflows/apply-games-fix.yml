@@ -32,6 +32,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
           p=Path('andina-games-fix.js')
           s=p.read_text(encoding='utf-8')
           s=s.replace("const asset=(name)=>({primary:PAGES_BASE+name+'?v=20260912',fallback:RAW_BASE+name+'?v=20260912'});", "const asset=(name)=>({primary:RAW_BASE+name+'?v=20260912',fallback:PAGES_BASE+name+'?v=20260912'});")
@@ -54,10 +55,9 @@ jobs:
 
           p=Path('index.html')
           s=p.read_text(encoding='utf-8')
-          # Solo normalizamos las dos correcciones que este workflow administra.
-          # Los demás scripts permanecen intactos para no romper funciones de la web.
+          # Limpia únicamente duplicados conocidos; conserva el resto del funcionamiento.
+          s=s.replace('<script src="legacy-enhancements.js?v=20260914-2"></script>','')
           for src in ('andina-games-fix.js','andina-image-fix.js'):
-              import re
               s=re.sub(r'\s*<script[^>]+src=["\'][^"\']*'+re.escape(src)+r'[^"\']*["\'][^>]*></script>', '', s)
               tag=f'<script src="{src}" defer></script>'
               s=s.replace('</body>',tag+'\n</body>')
