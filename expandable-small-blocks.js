@@ -18,17 +18,18 @@ const DETAILS={
 const GENERIC='Este bloque contiene una idea breve. Tócalo para ampliar la explicación y relacionarla con el territorio, las personas, la economía o los ecosistemas de la Región Andina.';
 function detailFor(el){const text=(el.textContent||'').replace(/\s+/g,' ').trim();for(const [key,value] of Object.entries(DETAILS)){if(text===key||text.includes(key))return value;}return GENERIC}
 function enhance(){
- document.querySelectorAll('.mission-panel .pill,.mission-panel .tag,.mission-panel .chip,.mission-panel .badge,.mission-panel [class*="pill"],.mission-panel [class*="chip"]').forEach(el=>make(el));
+ document.querySelectorAll('.mission-panel button,.mission-panel [role="button"],.mission-panel .pill,.mission-panel .tag,.mission-panel .chip,.mission-panel .badge,.mission-panel [class*="pill"],.mission-panel [class*="chip"]').forEach(el=>make(el));
  document.querySelectorAll('.mini-facts > div,.visual-facts > article,.illustration-row .doodle-card,.product-strip .product,.info-cards > button,.culture-grid > button,.challenge-grid > button,.media-grid > article').forEach(el=>make(el));
 }
 function make(el){
  if(el.dataset.expandSmall==='1'||!el.textContent.trim())return;
  if(el.closest('#gameArena'))return;
+ if(el.parentElement?.dataset.expandSmall==='1')return;
  el.dataset.expandSmall='1';el.setAttribute('role','button');el.setAttribute('tabindex','0');el.setAttribute('aria-expanded','false');el.classList.add('small-expandable');
  const detail=document.createElement('div');detail.className='small-expand-detail';detail.textContent=detailFor(el);el.appendChild(detail);
  const hint=document.createElement('span');hint.className='small-expand-hint';hint.textContent='Toca para ampliar';el.appendChild(hint);
  const toggle=()=>{const open=el.classList.toggle('small-expanded');el.setAttribute('aria-expanded',String(open));hint.textContent=open?'Toca para cerrar':'Toca para ampliar'};
- el.addEventListener('click',e=>{if(e.target.closest('a,button,textarea,input,select'))return;toggle()});el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
+ el.addEventListener('click',e=>{if(e.target.closest('a,button,textarea,input,select')&&e.target!==el)return;toggle()});el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}});
 }
 function style(){if(document.getElementById('small-expandable-css'))return;const s=document.createElement('style');s.id='small-expandable-css';s.textContent=`
 .small-expandable{cursor:pointer!important;position:relative;transition:transform .22s ease,background .22s ease,box-shadow .22s ease!important}
