@@ -19,7 +19,14 @@ html.modo-ninos-child .child-note{display:block;margin:0 auto;padding:10px 18px;
 html.modo-ninos-child .child-secondary{display:none!important}
 html.modo-ninos-child .section-head>p{display:block}
 
-/* Sin bloqueo: el modo niños debe poder cargarse, desplazarse y usarse normalmente. */
-html.modo-ninos-child::before,html.modo-ninos-child::after{content:none!important;display:none!important;pointer-events:none!important}
+/* SEGURIDAD DE CARGA: nunca dejamos una pantalla de carga bloqueando el modo niños. */
+html.modo-ninos-child body.standalone-kids-web #loader,
+body.standalone-kids-web #loader{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}
 
-@media(max-width:760px){html.modo-ninos-child .section{padding-top:54px;padding-bottom:54px}.child-return{font-size:.85rem}}
+/* Mensaje informativo: visible pero NO cubre el menú ni bloquea clics/scroll. */
+body.standalone-kids-web::after{content:"🧸 Modo niños · explicaciones cortas y fáciles";position:fixed;left:50%;bottom:10px;transform:translateX(-50%);z-index:20;max-width:calc(100% - 28px);padding:7px 13px;border:1px solid rgba(92,67,16,.16);border-radius:999px;background:rgba(255,247,214,.94);color:#5c4310;font:700 12px/1.25 "Trebuchet MS","Arial Rounded MT Bold",Arial,sans-serif;box-shadow:0 5px 18px rgba(0,0,0,.1);pointer-events:none;text-align:center;white-space:nowrap}
+
+/* Sin bloqueo: el modo niños debe poder cargarse, desplazarse y usarse normalmente. */
+html.modo-ninos-child::before{content:none!important;display:none!important;pointer-events:none!important}
+
+@media(max-width:760px){html.modo-ninos-child .section{padding-top:54px;padding-bottom:54px}.child-return{font-size:.85rem}body.standalone-kids-web::after{bottom:7px;font-size:11px;max-width:calc(100% - 18px);white-space:normal}}
