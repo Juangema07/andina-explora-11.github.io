@@ -19,11 +19,7 @@ html.modo-ninos-child .child-note{display:block;margin:0 auto;padding:10px 18px;
 html.modo-ninos-child .child-secondary{display:none!important}
 html.modo-ninos-child .section-head>p{display:block}
 
-/* La versión infantil debe cargar y ser utilizable desde el primer momento. */
-html.modo-ninos-child body.standalone-kids-web #loader,
-body.standalone-kids-web #loader{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}
-
-/* No usamos una capa que bloquee la página: el contenido, botones y menú quedan libres. */
+/* Sin mensaje/capa que cubra la pantalla. El loader original queda disponible para las transiciones. */
 body.standalone-kids-web::after{content:none!important;display:none!important;pointer-events:none!important}
 html.modo-ninos-child::before{content:none!important;display:none!important;pointer-events:none!important}
 
