@@ -3,28 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#173c31">
 <title>Andina Explora · Presentación</title>
 <style>
-:root{--green:#173c31;--yellow:#e7bd45;--cream:#f4ead7;--ink:#17231e}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Arial,Helvetica,sans-serif;background:#101915;color:#fff}body{overflow:hidden}.page{height:100vh;display:flex;flex-direction:column}.top{height:64px;flex:0 0 64px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 18px;background:rgba(16,25,21,.97);border-bottom:1px solid rgba(255,255,255,.12);position:relative;z-index:5}.brand{font-weight:800;letter-spacing:.08em}.brand span{color:var(--yellow)}.actions{display:flex;gap:8px;align-items:center}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);padding:9px 13px;border-radius:999px;font-size:.78rem;font-weight:700}.btn.primary{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}.viewer{position:relative;flex:1;min-height:0;background:#202622;overflow:auto}.pdf-stage{min-height:100%;display:flex;justify-content:center;align-items:flex-start;padding:22px}.pdf-stage canvas{display:block;background:#fff;box-shadow:0 8px 35px rgba(0,0,0,.35);max-width:100%;height:auto}.loading{position:absolute;inset:0;display:grid;place-items:center;background:#202622;color:#fff;font-weight:700;z-index:2}.error{display:none;position:absolute;inset:0;place-items:center;padding:30px;text-align:center;background:var(--cream);color:var(--ink);z-index:3}.error-box{max-width:620px}.error a{color:var(--ink);font-weight:800}.controls{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:999px;background:rgba(16,25,21,.94);box-shadow:0 8px 25px rgba(0,0,0,.3);z-index:6}.controls button{border:0;background:rgba(255,255,255,.1);color:#fff;border-radius:50%;width:34px;height:34px;cursor:pointer;font-weight:800}.controls span{min-width:70px;text-align:center;font-size:.8rem;font-weight:700}@media(max-width:600px){.top{height:58px;flex-basis:58px;padding:8px 10px}.brand{font-size:.68rem}.btn{font-size:.62rem;padding:8px 10px}.pdf-stage{padding:8px}.controls{bottom:10px}.controls span{min-width:58px}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#111;color:#fff;font-family:Arial,sans-serif}.page{height:100vh;display:flex;flex-direction:column}.top{height:60px;flex:0 0 60px;padding:9px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#173c31;position:relative;z-index:5}.brand{font-weight:800;letter-spacing:.06em}.brand span{color:#e7bd45}.actions{display:flex;gap:8px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:9px 13px;border-radius:20px;text-decoration:none;font-size:.78rem;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08)}.btn.primary{background:#e7bd45;color:#17231e;border-color:#e7bd45}.viewer{position:relative;flex:1;min-height:0;background:#252525}.viewer iframe{display:block;width:100%;height:100%;border:0;background:#fff}.hint{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);padding:7px 12px;border-radius:20px;background:rgba(0,0,0,.72);font-size:.72rem;pointer-events:none;opacity:.8}@media(max-width:600px){.top{height:54px;flex-basis:54px;padding:7px 9px}.brand{font-size:.67rem}.btn{font-size:.62rem;padding:8px 9px}.hint{font-size:.64rem}}
 </style>
 </head>
 <body>
 <div class="page">
 <header class="top"><div class="brand">ANDINA <span>EXPLORA</span> · PRESENTACIÓN</div><div class="actions"><a class="btn" href="index.html">← Volver</a><a class="btn primary" href="presentacion-andina.pdf" target="_blank" rel="noopener">Abrir PDF ↗</a></div></header>
-<main class="viewer" id="viewer"><div class="loading" id="loading">Cargando presentación…</div><div class="pdf-stage" id="pdfStage"></div><div class="error" id="error"><div class="error-box"><h1>No se pudo mostrar la presentación</h1><p>La presentación sigue disponible en la web. Puedes abrir el PDF directamente.</p><a href="presentacion-andina.pdf" target="_blank" rel="noopener">Abrir presentación ↗</a></div></div></main>
-<div class="controls"><button id="prev" aria-label="Página anterior">‹</button><span id="pageInfo">1 / —</span><button id="next" aria-label="Página siguiente">›</button></div>
+<main class="viewer">
+<iframe src="./presentacion-andina.pdf#toolbar=1&navpanes=0&view=FitH" title="Presentación de la Región Andina" loading="eager"></iframe>
+<div class="hint">Puedes usar los controles del visor para avanzar por las diapositivas</div>
+</main>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" type="module"></script>
-<script type="module">
-const PDF_URL='presentacion-andina.pdf';
-const loading=document.getElementById('loading'),error=document.getElementById('error'),stage=document.getElementById('pdfStage'),info=document.getElementById('pageInfo');
-let pdf=null,page=1,scale=1;
-const getScale=()=>Math.min(1.55,Math.max(.55,(document.getElementById('viewer').clientWidth-44)/794));
-async function render(){if(!pdf)return;const p=await pdf.getPage(page),viewport=p.getViewport({scale});stage.innerHTML='';const c=document.createElement('canvas');c.width=Math.ceil(viewport.width);c.height=Math.ceil(viewport.height);stage.appendChild(c);await p.render({canvasContext:c.getContext('2d'),viewport}).promise;info.textContent=page+' / '+pdf.numPages;loading.style.display='none';}
-async function init(){try{const lib=await import('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs');lib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs';pdf=await lib.getDocument(PDF_URL).promise;scale=getScale();await render();}catch(e){console.error(e);loading.style.display='none';error.style.display='grid';}}
-document.getElementById('prev').onclick=()=>{if(page>1){page--;render();}};document.getElementById('next').onclick=()=>{if(pdf&&page<pdf.numPages){page++;render();}};window.addEventListener('resize',()=>{if(pdf){scale=getScale();render();}});init();
-</script>
 </body>
 </html>
