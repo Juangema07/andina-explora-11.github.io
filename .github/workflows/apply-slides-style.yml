@@ -15,19 +15,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Add dynamic stylesheet to presentation
+      - name: Apply current dynamic stylesheet version
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
           p = Path('diapositivas-andina.html')
           s = p.read_text(encoding='utf-8')
-          link = '<link rel="stylesheet" href="diapositivas-dinamicas.css?v=20260915-1">'
+          import re
+          link = '<link rel="stylesheet" href="diapositivas-dinamicas.css?v=20260915-2">'
+          s = re.sub(r'\s*<link rel="stylesheet" href="diapositivas-dinamicas\.css(?:\?v=[^"]+)?">', '\n  ' + link, s, count=1)
           if link not in s:
-              marker = '<link rel="stylesheet" href="diapositivas-dinamicas.css">'
-              if marker not in s:
-                  s = s.replace('</head>', '  ' + link + '\n</head>', 1)
-                  p.write_text(s, encoding='utf-8')
+              s = s.replace('</head>', '  ' + link + '\n</head>', 1)
+          p.write_text(s, encoding='utf-8')
           PY
       - name: Commit if changed
         shell: bash
@@ -38,6 +38,6 @@ jobs:
             echo 'No changes needed.'
           else
             git add diapositivas-andina.html
-            git commit -m 'style: upgrade presentation backgrounds'
+            git commit -m 'style: refresh presentation background cache'
             git push
           fi
