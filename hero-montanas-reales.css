@@ -1,17 +1,43 @@
-/* Sustituye las montañas geométricas de portada por la imagen real aportada al repositorio. */
+/* Reemplazo real de las montañas geométricas de la portada. */
 .hero-art{
+  position:relative !important;
+  background:none !important;
+  overflow:hidden;
+}
+
+/* La imagen aportada al repositorio ocupa el área donde estaban las 3 montañas dibujadas. */
+.hero-art::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:78%;
   background-image:url('file_00000000bff081f69e70d37ed24e7686.png');
   background-repeat:no-repeat;
   background-position:center bottom;
   background-size:contain;
+  z-index:1;
+  pointer-events:none;
 }
+
+/* Oculta por completo las montañas CSS anteriores. */
 .hero-art .mountain{
   display:none !important;
+  visibility:hidden !important;
 }
-/* Conserva los elementos decorativos de la portada sin cubrir la fotografía. */
+
 .hero-art .sun{z-index:0;}
 .hero-art .coffee-doodle,
 .hero-art .frailejon-doodle{z-index:3;}
-@media (max-width: 700px){
-  .hero-art{background-size:92% auto;background-position:center bottom;}
+
+@media (max-width:700px){
+  .hero-art::after{
+    height:70%;
+    background-size:100% auto;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-art::after{animation:none !important;transform:none !important;}
 }
