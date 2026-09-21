@@ -1,58 +1,164 @@
-/* Modo niños: solo adapta el lenguaje y controles; la estructura visual es la misma de la web normal. */
-html.modo-ninos-child .child-return{
-  display:inline-flex!important;
-  align-items:center;
-  gap:7px;
-  padding:9px 13px;
-  border:1px solid rgba(22,59,49,.18);
+/* =========================================================
+   ANDINA EXPLORA · MODO NIÑOS
+   Apariencia propia. No modifica los estilos de la web normal.
+   ========================================================= */
+html.modo-ninos-child{scroll-behavior:smooth}
+body.standalone-kids-web{
+  --kids-ink:#173b35;
+  --kids-green:#2d7055;
+  --kids-light:#f4f8ed;
+  --kids-yellow:#f4c95d;
+  --kids-blue:#dff1f4;
+  background:#f4f7ee!important;
+  color:var(--kids-ink)!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+}
+body.standalone-kids-web #loader{background:#f4f7ee;color:var(--kids-ink)}
+body.standalone-kids-web .nav{
+  position:sticky!important;top:0;z-index:100;
+  min-height:68px;
+  background:rgba(255,255,255,.96)!important;
+  border-bottom:3px solid #dbe9d8!important;
+  box-shadow:0 4px 18px rgba(35,72,52,.10)!important;
+  backdrop-filter:blur(10px);
+}
+body.standalone-kids-web .logo{color:var(--kids-green)!important;font-weight:900}
+body.standalone-kids-web .logo span{color:#e2a83b!important}
+body.standalone-kids-web #navLinks a{
+  color:var(--kids-ink)!important;
+  font-weight:800!important;
   border-radius:999px;
-  background:#fff;
-  color:#24342e;
-  font:inherit;
-  font-weight:700;
-  cursor:pointer;
+  padding:8px 11px;
 }
-html.modo-ninos-child .child-return:hover{transform:translateY(-1px)}
-html.modo-ninos-child .child-note{display:none!important}
-body.standalone-kids-web::after{content:none!important;display:none!important;pointer-events:none!important}
-html.modo-ninos-child::before{content:none!important;display:none!important;pointer-events:none!important}
-body.standalone-kids-web .nav,
-body.standalone-kids-web header nav,
-body.standalone-kids-web .navbar{
-  position:fixed!important;
-  z-index:100!important;
-  pointer-events:auto!important;
+body.standalone-kids-web #navLinks a:hover{
+  background:#eaf4e5!important;color:var(--kids-green)!important;
 }
-body.standalone-kids-web .nav *{pointer-events:auto}
 body.standalone-kids-web .child-return{
-  position:relative;
-  z-index:101!important;
-  pointer-events:auto!important;
+  display:inline-flex!important;align-items:center;justify-content:center;
+  padding:9px 13px;border:2px solid #cfe2ca;border-radius:999px;
+  background:#f5faef;color:var(--kids-ink);font-weight:900;
+  text-decoration:none;white-space:nowrap;
 }
-
-/* El contenido infantil adicional conserva las tarjetas de la web normal. */
-.kids-extra-explore{
-  margin-top:28px;
-  padding:26px;
-  border-radius:28px;
-  background:rgba(255,255,255,.72);
-  border:1px solid rgba(24,61,50,.10);
-  box-shadow:0 16px 40px rgba(20,45,35,.08);
-  backdrop-filter:blur(5px)
+body.standalone-kids-web .hero{
+  min-height:620px!important;
+  background:linear-gradient(135deg,#dcefd7 0%,#f8f2d8 55%,#dff1f4 100%)!important;
+  overflow:hidden;
 }
-.dark .kids-extra-explore{background:rgba(10,35,29,.68);border-color:rgba(255,255,255,.10)}
-.kids-extra-head{margin-bottom:18px}
-.kids-extra-head h3{font-size:clamp(1.55rem,3vw,2.25rem);margin:7px 0}
-.kids-extra-head p{margin:0;opacity:.72;line-height:1.6}
-.kids-extra-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.kids-extra-grid article{padding:20px;border-radius:20px;background:rgba(255,255,255,.8);border:1px solid rgba(24,61,50,.08);min-height:170px}
-.dark .kids-extra-grid article{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.1)}
-.kids-extra-icon{font-size:1.8rem}
-.kids-extra-grid h4{font-size:1.05rem;margin:10px 0 7px}
-.kids-extra-grid p{font-size:.82rem;line-height:1.65;opacity:.76;margin:0}
+body.standalone-kids-web .hero-overlay{opacity:.08!important}
+body.standalone-kids-web .hero-copy{max-width:720px}
+body.standalone-kids-web .hero-copy h1{
+  font-size:clamp(3rem,9vw,6.8rem)!important;
+  line-height:.9!important;
+  letter-spacing:-.04em;
+  color:var(--kids-ink)!important;
+  text-shadow:none!important;
+}
+body.standalone-kids-web .hero-copy h1 em{color:var(--kids-green)!important}
+body.standalone-kids-web .hero-copy p{
+  max-width:620px;font-size:clamp(1.05rem,2vw,1.35rem)!important;
+  line-height:1.6!important;color:#31544b!important;
+}
+body.standalone-kids-web .eyebrow{letter-spacing:.08em!important;font-weight:900!important}
+body.standalone-kids-web .hero-stats span{
+  background:rgba(255,255,255,.72);border:2px solid rgba(45,112,85,.12);
+  border-radius:18px;padding:10px 13px;
+}
+body.standalone-kids-web .section{
+  padding-top:clamp(55px,7vw,90px)!important;
+  padding-bottom:clamp(55px,7vw,90px)!important;
+}
+body.standalone-kids-web .section-head h2,
+body.standalone-kids-web .intro h2{
+  color:var(--kids-ink)!important;
+  font-size:clamp(2rem,4vw,3.3rem)!important;
+  line-height:1.08!important;
+}
+body.standalone-kids-web .section-head h2 em,
+body.standalone-kids-web .intro h2 em{color:var(--kids-green)!important}
+body.standalone-kids-web .section-head>p,
+body.standalone-kids-web .intro p{
+  font-size:1.05rem!important;line-height:1.7!important;
+}
+body.standalone-kids-web .topic-grid,
+body.standalone-kids-web .culture-grid,
+body.standalone-kids-web .challenge-grid,
+body.standalone-kids-web .info-cards,
+body.standalone-kids-web .visual-facts,
+body.standalone-kids-web .product-strip,
+body.standalone-kids-web .media-grid,
+body.standalone-kids-web .source-grid{
+  gap:16px!important;
+}
+body.standalone-kids-web .topic,
+body.standalone-kids-web .culture-card,
+body.standalone-kids-web .challenge-grid button,
+body.standalone-kids-web .info-cards button,
+body.standalone-kids-web .visual-facts article,
+body.standalone-kids-web .product,
+body.standalone-kids-web .media-grid article,
+body.standalone-kids-web .source-grid a{
+  border:2px solid #dce9d8!important;
+  border-radius:22px!important;
+  background:#fff!important;
+  box-shadow:0 7px 18px rgba(35,72,52,.07)!important;
+}
+body.standalone-kids-web .topic:hover,
+body.standalone-kids-web .culture-card:hover,
+body.standalone-kids-web .challenge-grid button:hover,
+body.standalone-kids-web .info-cards button:hover{
+  transform:translateY(-3px);
+  border-color:#a8cda4!important;
+}
+body.standalone-kids-web .topic.active{
+  background:#eaf5e4!important;border-color:#7eb28a!important;
+}
+body.standalone-kids-web .dark{
+  background:#244c41!important;
+  color:#fff!important;
+}
+body.standalone-kids-web .dark .section-head h2,
+body.standalone-kids-web .dark .section-head h2 em{color:#fff!important}
+body.standalone-kids-web .dark .challenge-grid button{
+  background:#f9fcf6!important;color:var(--kids-ink)!important;
+}
+body.standalone-kids-web .economy{
+  background:#fff9e9!important;
+}
+body.standalone-kids-web .culture{
+  background:#eef7ed!important;
+}
+body.standalone-kids-web .games{
+  background:#eaf5f7!important;
+}
+body.standalone-kids-web .media-section{
+  background:#fffdf5!important;
+}
+body.standalone-kids-web .resources{
+  background:#eef4ec!important;
+}
+body.standalone-kids-web .modal-box{
+  border-radius:26px!important;border:3px solid #d8e8d3!important;
+}
+body.standalone-kids-web .btn.primary{
+  background:#2d7055!important;border-radius:999px!important;
+  box-shadow:0 5px 0 #1d513d!important;
+}
+body.standalone-kids-web .btn.ghost{
+  border:2px solid #2d7055!important;border-radius:999px!important;
+  color:#2d7055!important;background:#fff!important;
+}
+body.standalone-kids-web footer{
+  background:#173b35!important;color:#fff!important;
+}
+body.standalone-kids-web .settings{
+  border-radius:24px!important;
+}
+body.standalone-kids-web .child-note{display:none!important}
 @media(max-width:760px){
-  .child-return{font-size:.85rem}
-  .kids-extra-grid{grid-template-columns:1fr}
-  .kids-extra-explore{padding:20px}
-  .kids-extra-grid article{min-height:0}
+  body.standalone-kids-web .nav{position:sticky!important}
+  body.standalone-kids-web .hero{min-height:560px!important}
+  body.standalone-kids-web .hero-copy h1{font-size:clamp(3rem,16vw,5rem)!important}
+  body.standalone-kids-web #navLinks{gap:4px!important}
+  body.standalone-kids-web #navLinks a{padding:7px 8px!important;font-size:.78rem!important}
+  body.standalone-kids-web .child-return{font-size:.78rem;padding:8px 10px}
 }
