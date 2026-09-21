@@ -5,15 +5,40 @@ window.__ANDINA_LEGACY_ENHANCEMENTS__=true;
 const isKids=location.pathname.endsWith('/modo-ninos.html')||location.pathname.endsWith('modo-ninos.html');
 if(isKids){
   const finishKidsLoader=()=>{document.body.classList.add('loaded');const loader=document.getElementById('loader');if(loader){loader.style.opacity='0';loader.style.visibility='hidden';loader.style.pointerEvents='none';}};
-  setTimeout(finishKidsLoader,1800);
   const cleanDuplicateLegacy=()=>{const tags=[...document.querySelectorAll('script[src*="legacy-enhancements.js"]')];tags.slice(1).forEach(s=>s.remove());};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',cleanDuplicateLegacy,{once:true});else cleanDuplicateLegacy();
-  const kidsFiles=['modo-ninos.js?v=20260916-5','guia-cobertura-andina.js?v=20260916-2','modo-ninos-final.js?v=20260916-2','modo-ninos-contenido.js?v=20260916-1','modo-ninos-dinamico.js?v=20260916-1'];
-  function loadKids(src){const s=document.createElement('script');s.src='./'+src;s.dataset.andinaKidsLoader='1';s.async=true;document.head.appendChild(s)}
-  function kidsCss(){const l=document.createElement('link');l.rel='stylesheet';l.href='./modo-ninos.css?v=20260916-6';document.head.appendChild(l)}
-  function replaceHero(){const art=document.querySelector('.hero-art');if(!art)return;art.querySelectorAll('.mountain').forEach(el=>el.remove());if(art.querySelector('img.hero-real-mountains'))return;const img=document.createElement('img');img.className='hero-real-mountains';img.src='./file_00000000bff081f69e70d37ed24e7686.png?v=20260916-3';img.alt='Cordilleras verdes de la Región Andina';img.decoding='async';img.loading='eager';art.insertBefore(img,art.firstChild)}
-  const start=()=>{kidsCss();replaceHero();kidsFiles.forEach(loadKids);setTimeout(replaceHero,700);setTimeout(replaceHero,1800)};
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+
+  /* La web infantil usa la misma arquitectura visual profesional que la web normal.
+     Después se simplifica el texto, pero no se cambia la estructura visual. */
+  const kidsFiles=[
+    'andina-games-fix.js?v=20260913-2',
+    'andina-image-fix.js?v=20260913-3',
+    'conecta-fix.js?v=20260913-1',
+    'viaje-quality-fix.js?v=20260913-5',
+    'viaje-static-threats-fix.js?v=20260913-2',
+    'professional-final.js?v=20260913-1',
+    'professional-expansion.js?v=20260914-3',
+    'professional-deep-content.js?v=20260914-1',
+    'opinion-restore.js?v=20260914-2',
+    'verified-sources.js?v=20260913-2',
+    'visual-motion.js?v=20260913-1',
+    'music-autoplay.js?v=20260914-9',
+    'genially-desktop-fix.js?v=20260921-3',
+    'site-final-fixes.js?v=20260914-6',
+    'visual-content-upgrade.js?v=20260914-2',
+    'territorios-upgrade.js?v=20260914-2',
+    'final-mobile-ux.js?v=20260914-3',
+    'section-numbering.js?v=20260914-1',
+    'modo-ninos-standalone.js?v=20260920-1'
+  ];
+  function loadKids(src){return new Promise((resolve,reject)=>{if(document.querySelector(`script[data-andina-kids-src="${src}"]`)){resolve();return}const s=document.createElement('script');s.src='./'+src;s.dataset.andinaKidsSrc=src;s.async=false;s.onload=resolve;s.onerror=reject;document.head.appendChild(s)})}
+  function addKidsCss(){if(document.querySelector('link[data-andina-kids-css]'))return;const l=document.createElement('link');l.rel='stylesheet';l.href='./modo-ninos.css?v=20260920-1';l.dataset.andinaKidsCss='1';document.head.appendChild(l)}
+  async function startKids(){
+    addKidsCss();
+    for(const src of kidsFiles){try{await loadKids(src)}catch(err){console.error('Andina Explora: no se pudo cargar '+src,err)}}
+    setTimeout(finishKidsLoader,300);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',startKids,{once:true});else startKids();
   return;
 }
 const files=['andina-games-fix.js?v=20260913-2','andina-image-fix.js?v=20260913-3','conecta-fix.js?v=20260913-1','viaje-quality-fix.js?v=20260913-5','viaje-static-threats-fix.js?v=20260913-2','professional-final.js?v=20260913-1','professional-expansion.js?v=20260914-3','opinion-restore.js?v=20260914-2','verified-sources.js?v=20260913-2','visual-motion.js?v=20260913-1','music-autoplay.js?v=20260914-9','genially-desktop-fix.js?v=20260914-1','site-final-fixes.js?v=20260914-6','visual-content-upgrade.js?v=20260914-2','territorios-upgrade.js?v=20260914-2','final-mobile-ux.js?v=20260914-3','section-numbering.js?v=20260914-1','guia-cobertura-andina.js?v=20260916-1','modo-ninos.js?v=20260916-4'];
