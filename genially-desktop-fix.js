@@ -58,6 +58,13 @@ function add(){
     slides.innerHTML=`<div class="pro-heading"><span class="pro-kicker">PRESENTACIÓN INTERACTIVA</span><h2>Del paisaje a la mesa: <em>el viaje de un producto andino</em></h2><p>Una presentación breve y dinámica que conecta territorio, producción, comercio y cultura sin sobrecargar la pantalla.</p></div><div class="slides-wrap"><iframe class="slides-frame" src="./diapositivas-andina.html" title="Diapositivas interactivas sobre la Región Andina" allowfullscreen loading="lazy"></iframe><div class="slides-fallback">Si no se muestra dentro de la página, puedes abrir las <a href="./diapositivas-andina.html" target="_blank" rel="noopener">diapositivas en pantalla completa</a>.</div></div>`;
     genially.insertAdjacentElement('afterend',slides);
   }
+  let extraInfo=document.querySelector('#infografia-adicional');
+  if(!extraInfo){
+    extraInfo=document.createElement('section');extraInfo.id='infografia-adicional';extraInfo.className='pro-section';
+    extraInfo.innerHTML=`<div class="pro-heading"><span class="pro-kicker">INFOGRAFÍA ADICIONAL</span><h2>Nueva infografía <em>del proyecto</em></h2></div><div class="genially-wrap"><img src="./IMG-20260916-WA0009.jpg" alt="Nueva infografía del proyecto" style="display:block;width:100%;height:auto;border-radius:15px"></div>`;
+    genially.insertAdjacentElement('afterend',extraInfo);
+  }
+  if(extraInfo)extraInfo.insertAdjacentElement('afterend',slides);
   organizeNav(document.querySelector('#navLinks'));
   addQuickAccess();
   reorderSections(main);
