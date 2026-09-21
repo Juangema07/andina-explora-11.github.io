@@ -16,8 +16,6 @@ if(isKids){
     'conecta-fix.js?v=20260913-1',
     'viaje-quality-fix.js?v=20260913-5',
     'viaje-static-threats-fix.js?v=20260913-2',
-    'professional-final.js?v=20260913-1',
-    'professional-expansion.js?v=20260914-3',
     'opinion-restore.js?v=20260914-2',
     'verified-sources.js?v=20260913-2',
     'visual-motion.js?v=20260913-1',
@@ -28,7 +26,7 @@ if(isKids){
     'territorios-upgrade.js?v=20260914-2',
     'final-mobile-ux.js?v=20260914-3',
     'section-numbering.js?v=20260914-1',
-    'modo-ninos-standalone.js?v=20260920-1'
+    'modo-ninos-standalone.js?v=20260920-2'
   ];
   function loadKids(src){return new Promise((resolve,reject)=>{if(document.querySelector(`script[data-andina-kids-src="${src}"]`)){resolve();return}const s=document.createElement('script');s.src='./'+src;s.dataset.andinaKidsSrc=src;s.async=false;s.onload=resolve;s.onerror=reject;document.head.appendChild(s)})}
   function addKidsCss(){if(document.querySelector('link[data-andina-kids-css]'))return;const l=document.createElement('link');l.rel='stylesheet';l.href='./modo-ninos.css?v=20260920-1';l.dataset.andinaKidsCss='1';document.head.appendChild(l)}
