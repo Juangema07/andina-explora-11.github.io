@@ -18,7 +18,6 @@ if(isKids){
     'viaje-static-threats-fix.js?v=20260913-2',
     'professional-final.js?v=20260913-1',
     'professional-expansion.js?v=20260914-3',
-    'professional-deep-content.js?v=20260914-1',
     'opinion-restore.js?v=20260914-2',
     'verified-sources.js?v=20260913-2',
     'visual-motion.js?v=20260913-1',
