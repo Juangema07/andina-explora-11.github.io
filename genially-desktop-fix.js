@@ -37,7 +37,7 @@ function addQuickAccess(){
   actions.appendChild(box);
 }
 function reorderSections(main){
-  const wanted=['fisica','humana','economia','cultura','desafios','infografia-genially','diapositivas-andina','juegos','productos','recursos'];
+  const wanted=['fisica','humana','economia','cultura','desafios','infografia-genially','infografia-adicional','diapositivas-andina','juegos','productos','recursos'];
   const nodes={};wanted.forEach(id=>{const el=document.getElementById(id);if(el)nodes[id]=el});
   const anchor=document.querySelector('.intro.band');if(!anchor)return;
   let cursor=anchor;
