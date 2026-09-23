@@ -11,7 +11,7 @@ if(isKids){
   /* La web infantil usa la misma arquitectura visual profesional que la web normal.
      Después se simplifica el texto, pero no se cambia la estructura visual. */
   const kidsFiles=[
-    'andina-games-fix.js?v=20260913-2',
+    
     'andina-image-fix.js?v=20260913-3',
     'conecta-fix.js?v=20260913-1',
     'viaje-quality-fix.js?v=20260913-5',
