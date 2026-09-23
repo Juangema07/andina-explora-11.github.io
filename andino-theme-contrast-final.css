@@ -1,0 +1,101 @@
+/* Andina Explora — corrección final de contraste para el tema Andino.
+   Las secciones profesionales oscuras no deben heredar el texto oscuro del tema base. */
+
+html[data-theme="andino"] .pro-section.pro-section-dark,
+html[data-theme="andino"] .pro-section.pro-sources,
+html[data-theme="andino"] #fuentes.pro-section,
+html[data-theme="andino"] .opinion-section{
+  color:#edf5ef!important;
+}
+
+/* Encabezados y textos de las secciones oscuras. */
+html[data-theme="andino"] .pro-section.pro-section-dark h1,
+html[data-theme="andino"] .pro-section.pro-section-dark h2,
+html[data-theme="andino"] .pro-section.pro-section-dark h3,
+html[data-theme="andino"] .pro-section.pro-section-dark h4,
+html[data-theme="andino"] .pro-section.pro-section-dark p,
+html[data-theme="andino"] .pro-section.pro-section-dark li,
+html[data-theme="andino"] .pro-section.pro-section-dark small,
+html[data-theme="andino"] .pro-section.pro-section-dark b,
+html[data-theme="andino"] .pro-section.pro-section-dark strong,
+html[data-theme="andino"] .pro-section.pro-section-dark label,
+html[data-theme="andino"] .pro-section.pro-sources h1,
+html[data-theme="andino"] .pro-section.pro-sources h2,
+html[data-theme="andino"] .pro-section.pro-sources h3,
+html[data-theme="andino"] .pro-section.pro-sources p,
+html[data-theme="andino"] .pro-section.pro-sources li,
+html[data-theme="andino"] .pro-section.pro-sources small,
+html[data-theme="andino"] .pro-section.pro-sources b,
+html[data-theme="andino"] .pro-section.pro-sources strong,
+html[data-theme="andino"] #fuentes.pro-section h1,
+html[data-theme="andino"] #fuentes.pro-section h2,
+html[data-theme="andino"] #fuentes.pro-section h3,
+html[data-theme="andino"] #fuentes.pro-section p,
+html[data-theme="andino"] #fuentes.pro-section li,
+html[data-theme="andino"] #fuentes.pro-section small,
+html[data-theme="andino"] #fuentes.pro-section b,
+html[data-theme="andino"] #fuentes.pro-section strong,
+html[data-theme="andino"] .opinion-section h1,
+html[data-theme="andino"] .opinion-section h2,
+html[data-theme="andino"] .opinion-section h3,
+html[data-theme="andino"] .opinion-section p,
+html[data-theme="andino"] .opinion-section label,
+html[data-theme="andino"] .opinion-section legend{
+  color:#edf5ef!important;
+  opacity:1!important;
+}
+
+/* Mantener los acentos verdes del diseño. */
+html[data-theme="andino"] .pro-section.pro-section-dark .pro-heading h2 em,
+html[data-theme="andino"] .pro-section.pro-section-dark .pro-challenge-grid b,
+html[data-theme="andino"] .pro-section.pro-section-dark .pro-kicker,
+html[data-theme="andino"] .pro-section.pro-sources .pro-kicker,
+html[data-theme="andino"] #fuentes.pro-section .pro-kicker{
+  color:#b7d78f!important;
+}
+
+/* Tarjetas oscuras: ningún texto queda negro por herencia. */
+html[data-theme="andino"] .pro-section.pro-section-dark .pro-life-grid article,
+html[data-theme="andino"] .pro-section.pro-section-dark .pro-challenge-grid article,
+html[data-theme="andino"] .pro-section.pro-section-dark .pro-card,
+html[data-theme="andino"] .pro-section.pro-section-dark .pro-card-content,
+html[data-theme="andino"] .pro-section.pro-sources .source-list a{
+  color:#edf5ef!important;
+}
+
+html[data-theme="andino"] .pro-section.pro-section-dark .pro-life-grid article p,
+html[data-theme="andino"] .pro-section.pro-section-dark .pro-challenge-grid article p,
+html[data-theme="andino"] .pro-section.pro-section-dark .pro-card-content p,
+html[data-theme="andino"] .pro-section.pro-sources .source-list a span{
+  color:#d7e3da!important;
+  opacity:1!important;
+}
+
+html[data-theme="andino"] .pro-section.pro-sources .source-list a b{
+  color:#fff!important;
+}
+
+html[data-theme="andino"] .pro-section.pro-sources .source-list a::after{
+  color:#b7d78f!important;
+}
+
+/* Enlaces de la barra "Para comprobar y ampliar": evitar el azul del navegador. */
+html[data-theme="andino"] .pro-section.pro-sources .verified-rail a,
+html[data-theme="andino"] #fuentes.pro-section .verified-rail a{
+  color:#d7edb0!important;
+  text-decoration:underline;
+  text-decoration-color:rgba(215,237,176,.45);
+  text-underline-offset:3px;
+}
+
+html[data-theme="andino"] .pro-section.pro-sources .verified-rail a:hover,
+html[data-theme="andino"] #fuentes.pro-section .verified-rail a:hover{
+  color:#fff!important;
+}
+
+/* Formulario de opiniones sobre fondo oscuro. */
+html[data-theme="andino"] .opinion-section .rating label,
+html[data-theme="andino"] .opinion-section form>label,
+html[data-theme="andino"] .opinion-section legend{
+  color:#edf5ef!important;
+}
