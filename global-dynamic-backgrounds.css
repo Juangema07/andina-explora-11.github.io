@@ -295,3 +295,24 @@ main>.section.dark:not(#desafios) .sector-tabs button,
 main>.section.dark:not(#desafios) .placeholder{
   color:#f5f7f6!important;
 }
+
+
+/* Sección 08 · Territorios destacados: todos sus textos permanecen blancos, independientemente del tema. Solo aplica a este bloque. */
+#territorios-andinos,
+#territorios-andinos h1,
+#territorios-andinos h2,
+#territorios-andinos h3,
+#territorios-andinos h4,
+#territorios-andinos h5,
+#territorios-andinos p,
+#territorios-andinos span,
+#territorios-andinos b,
+#territorios-andinos strong,
+#territorios-andinos small,
+#territorios-andinos a,
+#territorios-andinos label,
+#territorios-andinos button,
+#territorios-andinos .pro-kicker,
+#territorios-andinos .place-card,
+#territorios-andinos .place-card *{color:#fff!important;}
+#territorios-andinos .territory-clean-card:after{color:#fff!important;}
