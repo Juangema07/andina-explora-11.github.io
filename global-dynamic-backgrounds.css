@@ -139,15 +139,50 @@ main>.band strong{
   color:var(--page-text)!important;
 }
 
-main>.section .section-head>p,
-main>.section .intro p,
-main>.section .visual-facts p,
-main>.section .doodle-card small,
-main>.section .media-grid p,
-main>.section .source-grid span,
-main>.band p{
-  color:var(--page-muted)!important;
+/* Regla principal: sobre fondos fotográficos, el texto siempre es negro. */
+main>.section:not(.dark):not(#desafios),
+main>.section:not(.dark):not(#desafios) h1,
+main>.section:not(.dark):not(#desafios) h2,
+main>.section:not(.dark):not(#desafios) h3,
+main>.section:not(.dark):not(#desafios) h4,
+main>.section:not(.dark):not(#desafios) h5,
+main>.section:not(.dark):not(#desafios) p,
+main>.section:not(.dark):not(#desafios) li,
+main>.section:not(.dark):not(#desafios) small,
+main>.section:not(.dark):not(#desafios) b,
+main>.section:not(.dark):not(#desafios) strong,
+main>.section:not(.dark):not(#desafios) a,
+main>.section:not(.dark):not(#desafios) label,
+main>.band:not(.dark),
+main>.band:not(.dark) h1,
+main>.band:not(.dark) h2,
+main>.band:not(.dark) h3,
+main>.band:not(.dark) h4,
+main>.band:not(.dark) h5,
+main>.band:not(.dark) p,
+main>.band:not(.dark) li,
+main>.band:not(.dark) small,
+main>.band:not(.dark) b,
+main>.band:not(.dark) strong,
+main>.band:not(.dark) a,
+main>.band:not(.dark) label{
+  color:#111!important;
   opacity:1!important;
+}
+
+/* Fondos sólidos: texto toma el color contrario al fondo/tema. */
+main>.section.dark:not(#desafios),
+main>.section.dark:not(#desafios) h1,
+main>.section.dark:not(#desafios) h2,
+main>.section.dark:not(#desafios) h3,
+main>.section.dark:not(#desafios) p,
+main>.section.dark:not(#desafios) li,
+main>.section.dark:not(#desafios) small,
+main>.section.dark:not(#desafios) b,
+main>.section.dark:not(#desafios) strong,
+main>.section.dark:not(#desafios) a,
+main>.section.dark:not(#desafios) label{
+  color:#f5f7f6!important;
 }
 
 /* Elementos que tienen fondo propio: texto sigue el contraste del tema. */
@@ -240,4 +275,25 @@ html[data-theme="papel"] #inicio .hero-copy h1,
 html[data-theme="papel"] #inicio .hero-stats,
 html[data-theme="papel"] #inicio .hero-tag{
   color:#f2f7f3!important;
+}
+
+
+/* Última capa de contraste: imagen = negro; fondo sólido = contrario. */
+main>.section:not(.dark):not(#desafios) .topic,
+main>.section:not(.dark):not(#desafios) .visual-facts article,
+main>.section:not(.dark):not(#desafios) .doodle-card,
+main>.section:not(.dark):not(#desafios) .media-grid article,
+main>.section:not(.dark):not(#desafios) .source-grid a,
+main>.section:not(.dark):not(#desafios) .sector-tabs button,
+main>.section:not(.dark):not(#desafios) .placeholder{
+  color:#111!important;
+}
+main>.section.dark:not(#desafios) .topic,
+main>.section.dark:not(#desafios) .visual-facts article,
+main>.section.dark:not(#desafios) .doodle-card,
+main>.section.dark:not(#desafios) .media-grid article,
+main>.section.dark:not(#desafios) .source-grid a,
+main>.section.dark:not(#desafios) .sector-tabs button,
+main>.section.dark:not(#desafios) .placeholder{
+  color:#f5f7f6!important;
 }
