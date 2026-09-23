@@ -207,3 +207,79 @@ body.reduce-motion #andina-learning::before{
   visibility:hidden!important;
   pointer-events:none!important;
 }
+
+
+/* Contraste adaptativo del tema Andino.
+   Secciones con fotografía oscura -> texto claro.
+   Secciones con fotografía clara -> texto oscuro.
+   Los bloques/tarjetas claras conservan texto oscuro. */
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama{
+  --dyn-text:#f7fbf8;
+  --dyn-muted:#e0ebe5;
+}
+
+html:not([data-theme="noche"]):not([data-theme="papel"]) #vida,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #infografia-andina,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #territorios-andinos{
+  --dyn-text:#17231e;
+  --dyn-muted:#4f5f57;
+}
+
+/* Encabezados y textos principales siguen el contraste de cada sección. */
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza h1,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza h2,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza h3,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza li,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza small,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza strong,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura h1,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura h2,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura h3,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura li,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura small,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura strong,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion h1,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion h2,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion h3,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion li,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion small,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion strong,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama h1,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama h2,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama h3,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama li,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama small,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama strong{
+  color:var(--dyn-text)!important;
+  opacity:1;
+}
+
+/* Las tarjetas claras siguen siendo claras y necesitan texto oscuro. */
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza .card,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura .card,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion .card,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama .card,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza article,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura article,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion article,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama article{
+  color:#17231e;
+}
+
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza .card p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura .card p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion .card p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama .card p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza article p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura article p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion article p,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama article p{
+  color:#4f5f57!important;
+}
