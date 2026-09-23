@@ -185,7 +185,11 @@ html[data-theme="papel"] main>.band .eyebrow:not(.light){color:#665c50!important
 
 /* Respeta el control de reducir animaciones de la propia web y del sistema. */
 body.reduce-motion main>.section::before,
-body.reduce-motion main>.band::before,
+body.reduce-motion main>.band::before{
+  animation:none!important;
+  transform:scale(1.05)!important;
+}
+
 @media(prefers-reduced-motion:reduce){
   main>.section::before,
   main>.band::before{
