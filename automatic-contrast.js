@@ -109,19 +109,34 @@ function localPoints(el){
   const sr=s.getBoundingClientRect();
   if(!sr.width||!sr.height)return null;
 
-  // Varios puntos alrededor del texto para no depender de un solo píxel.
-  const pts=[
-    [.50,.50],[.25,.50],[.75,.50],[.50,.25],[.50,.75],
-    [.30,.30],[.70,.30],[.30,.70],[.70,.70]
-  ];
-  const ex=Math.max(0,Math.min(sr.width,(r.left+r.width/2)-sr.left));
-  const ey=Math.max(0,Math.min(sr.height,(r.top+r.height/2)-sr.top));
+  const cx=Math.max(0,Math.min(sr.width,(r.left+r.width/2)-sr.left));
+  const cy=Math.max(0,Math.min(sr.height,(r.top+r.height/2)-sr.top));
+  const dx=Math.max(8,Math.min(r.width*.32,sr.width*.12));
+  const dy=Math.max(8,Math.min(r.height*.45,sr.height*.12));
 
-  return pts.map(([px,py])=>{
-    const x=ex+(px-.5)*Math.min(r.width,sr.width*.22);
-    const y=ey+(py-.5)*Math.min(r.height,sr.height*.22);
-    return {x:Math.max(0,Math.min(1,x/sr.width)),y:Math.max(0,Math.min(1,y/sr.height))};
-  });
+  return [
+    {x:cx-dx,y:cy-dy},{x:cx,y:cy-dy},{x:cx+dx,y:cy-dy},
+    {x:cx-dx,y:cy},{x:cx,y:cy},{x:cx+dx,y:cy},
+    {x:cx-dx,y:cy+dy},{x:cx,y:cy+dy},{x:cx+dx,y:cy+dy}
+  ].map(p=>({x:Math.max(0,Math.min(sr.width,p.x)),y:Math.max(0,Math.min(sr.height,p.y))}));
+}
+
+function imageLumaAt(im, section, points){
+  if(!im||!im.naturalWidth||!im.naturalHeight||!points?.length)return null;
+  const sr=section.getBoundingClientRect();
+  const sw=Math.max(1,sr.width), sh=Math.max(1,sr.height);
+  const iw=im.naturalWidth, ih=im.naturalHeight;
+
+  // background-size: cover + centrado, que es la base del fondo dinámico.
+  const scale=Math.max(sw/iw,sh/ih);
+  const rw=iw*scale, rh=ih*scale;
+  const cropX=(rw-sw)/2, cropY=(rh-sh)/2;
+
+  const normalized=points.map(p=>({
+    x:((p.x+cropX)/scale)/iw,
+    y:((p.y+cropY)/scale)/ih
+  }));
+  return sampleImage(im,normalized);
 }
 
 async function sectionBackgroundLuma(section){
@@ -130,15 +145,31 @@ async function sectionBackgroundLuma(section){
   const im=await loadImage(url);
   if(!im)return null;
 
-  // Para una fotografía de fondo usamos una cuadrícula representativa.
-  // El velo del tema se tiene en cuenta con una aproximación de su color.
   const pts=[];
-  for(let y=.08;y<=.92;y+=.21)for(let x=.08;x<=.92;x+=.21)pts.push({x,y});
-  let l=sampleImage(im,pts);
+  for(let y=.08;y<=.92;y+=.21)for(let x=.08;x<=.92;x+=.21){
+    const r=section.getBoundingClientRect();
+    pts.push({x:x*r.width,y:y*r.height});
+  }
+  let l=imageLumaAt(im,section,pts);
   if(l===null)return null;
 
   const theme=document.documentElement.dataset.theme||'andino';
-  // Aproximación del velo CSS actual: Papel aclara, Noche oscurece.
+  if(theme==='noche')l=l*.36;
+  else if(theme==='papel')l=Math.min(1,l*.76+.24);
+  else l=Math.min(1,l*.82+.18);
+  return l;
+}
+
+async function elementPhotoLuma(el,section){
+  const url=imageUrl(getComputedStyle(section).getPropertyValue('--dyn-bg'));
+  if(!url)return null;
+  const im=await loadImage(url);
+  if(!im)return null;
+
+  let l=imageLumaAt(im,section,localPoints(el));
+  if(l===null)return null;
+
+  const theme=document.documentElement.dataset.theme||'andino';
   if(theme==='noche')l=l*.36;
   else if(theme==='papel')l=Math.min(1,l*.76+.24);
   else l=Math.min(1,l*.82+.18);
@@ -181,7 +212,9 @@ async function scanSection(section){
     // Si el elemento/tarjeta tiene color de fondo propio, usarlo.
     let luma=nearestSolidBackground(el,section);
 
-    // Si no tiene fondo propio, usar la fotografía de la sección.
+    // Si no tiene fondo propio, analizar justo la zona de la fotografía
+    // que queda detrás del texto; si no se puede, usar el promedio de sección.
+    if(luma===null)luma=await elementPhotoLuma(el,section);
     if(luma===null)luma=baseLuma;
     if(luma!==null)setContrast(el,luma);
   }
