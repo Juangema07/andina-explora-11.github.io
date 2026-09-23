@@ -1,0 +1,221 @@
+/* Andina Explora — fondos fotográficos dinámicos + contraste universal
+   Última capa visual: 2026-09-23
+   Cada sección importante tiene una fotografía andina distinta y un movimiento
+   lento tipo parallax/pan. El texto se fuerza a un color legible según el tema. */
+
+:root{
+  --page-text:#17362c;
+  --page-muted:#4e6158;
+  --surface-overlay:rgba(246,243,232,.84);
+  --surface-overlay-2:rgba(246,243,232,.92);
+  --section-shadow:rgba(0,0,0,.12);
+}
+html[data-theme="noche"]{
+  --page-text:#f2f7f3;
+  --page-muted:#cbd9d2;
+  --surface-overlay:rgba(7,20,16,.84);
+  --surface-overlay-2:rgba(8,26,21,.93);
+  --section-shadow:rgba(0,0,0,.32);
+}
+html[data-theme="papel"]{
+  --page-text:#30291f;
+  --page-muted:#5b5145;
+  --surface-overlay:rgba(247,241,228,.84);
+  --surface-overlay-2:rgba(242,235,219,.93);
+  --section-shadow:rgba(60,45,30,.14);
+}
+
+/* Fondos: cada bloque recibe una imagen distinta. */
+#inicio{--bg-photo:url('./assets/andina/file_000000003a8c81f685c4c3177c598939.png');}
+.intro.band{--bg-photo:url('./assets/andina/paramo.png');}
+#fisica{--bg-photo:url('./assets/andina/mapa.png');}
+#humana{--bg-photo:url('./assets/andina/bogota.png');}
+#economia{--bg-photo:url('./assets/andina/eje-cafetero.png');}
+#cultura{--bg-photo:url('./assets/andina/valle-del-cauca.png');}
+#desafios{--bg-photo:url('./assets/andina/polluted_water.png');}
+#juegos{--bg-photo:url('./assets/andina/file_00000000426881f6a792160bee4b88c6.png');}
+#productos{--bg-photo:url('./assets/andina/file_00000000006481f684d9007640452d51.png');}
+#recursos{--bg-photo:url('./assets/andina/file_000000004cac81f6b568a4826989c123.png');}
+
+main>.section,
+main>.band{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background:transparent!important;
+  color:var(--page-text)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08), inset 0 -1px 0 var(--section-shadow);
+}
+
+/* Imagen independiente: se mueve muy lentamente para que el fondo tenga vida. */
+main>.section::before,
+main>.band::before{
+  content:"";
+  position:absolute;
+  z-index:-2;
+  inset:-7%;
+  background-image:var(--bg-photo);
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  transform:scale(1.07);
+  animation:andinaBackgroundDrift 28s ease-in-out infinite alternate;
+  will-change:transform,background-position;
+}
+
+/* Velo de lectura encima de la fotografía. */
+main>.section::after,
+main>.band::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:
+    linear-gradient(180deg,var(--surface-overlay-2),var(--surface-overlay)),
+    radial-gradient(circle at 20% 10%,rgba(255,255,255,.08),transparent 45%);
+  pointer-events:none;
+}
+
+/* El contenido siempre queda por encima de las capas del fondo. */
+main>.section>*,
+main>.band>*{
+  position:relative;
+  z-index:1;
+}
+
+/* Los bloques oscuros ya existentes conservan su identidad, pero usan foto. */
+html[data-theme="noche"] main>.section.dark::after,
+html[data-theme="noche"] #desafios::after{
+  background:
+    linear-gradient(180deg,rgba(5,17,14,.82),rgba(7,25,20,.94)),
+    radial-gradient(circle at 75% 15%,rgba(170,220,180,.06),transparent 42%);
+}
+html[data-theme="papel"] main>.section.dark::after,
+html[data-theme="papel"] #desafios::after{
+  background:
+    linear-gradient(180deg,rgba(39,48,41,.82),rgba(28,43,36,.94)),
+    radial-gradient(circle at 75% 15%,rgba(255,255,255,.08),transparent 42%);
+}
+
+/* Contraste global: evita que reglas antiguas oculten texto dentro de las secciones. */
+main>.section,
+main>.band,
+main>.section h1,
+main>.section h2,
+main>.section h3,
+main>.section h4,
+main>.section h5,
+main>.section p,
+main>.section li,
+main>.section small,
+main>.section b,
+main>.section strong,
+main>.band h1,
+main>.band h2,
+main>.band h3,
+main>.band p,
+main>.band li,
+main>.band small,
+main>.band b,
+main>.band strong{
+  color:var(--page-text)!important;
+}
+
+main>.section .section-head>p,
+main>.section .intro p,
+main>.section .visual-facts p,
+main>.section .doodle-card small,
+main>.section .media-grid p,
+main>.section .source-grid span,
+main>.band p{
+  color:var(--page-muted)!important;
+  opacity:1!important;
+}
+
+/* Elementos que tienen fondo propio: texto sigue el contraste del tema. */
+html[data-theme="andino"] main>.section .topic,
+html[data-theme="andino"] main>.section .visual-facts article,
+html[data-theme="andino"] main>.section .doodle-card,
+html[data-theme="andino"] main>.section .media-grid article,
+html[data-theme="andino"] main>.section .source-grid a,
+html[data-theme="andino"] main>.section .sector-tabs button,
+html[data-theme="andino"] main>.section .placeholder{
+  color:#17362c!important;
+}
+html[data-theme="noche"] main>.section .topic,
+html[data-theme="noche"] main>.section .visual-facts article,
+html[data-theme="noche"] main>.section .doodle-card,
+html[data-theme="noche"] main>.section .media-grid article,
+html[data-theme="noche"] main>.section .source-grid a,
+html[data-theme="noche"] main>.section .sector-tabs button,
+html[data-theme="noche"] main>.section .placeholder{
+  color:#f2f7f3!important;
+}
+html[data-theme="papel"] main>.section .topic,
+html[data-theme="papel"] main>.section .visual-facts article,
+html[data-theme="papel"] main>.section .doodle-card,
+html[data-theme="papel"] main>.section .media-grid article,
+html[data-theme="papel"] main>.section .source-grid a,
+html[data-theme="papel"] main>.section .sector-tabs button,
+html[data-theme="papel"] main>.section .placeholder{
+  color:#30291f!important;
+}
+
+/* Encabezados, enlaces y controles dentro de los bloques. */
+html[data-theme="andino"] main>.section a,
+html[data-theme="andino"] main>.band a{color:#17362c!important;}
+html[data-theme="noche"] main>.section a,
+html[data-theme="noche"] main>.band a{color:#f2f7f3!important;}
+html[data-theme="papel"] main>.section a,
+html[data-theme="papel"] main>.band a{color:#30291f!important;}
+
+html[data-theme="noche"] main>.section .eyebrow:not(.light),
+html[data-theme="noche"] main>.band .eyebrow:not(.light){color:#d8e8df!important;}
+html[data-theme="andino"] main>.section .eyebrow:not(.light),
+html[data-theme="andino"] main>.band .eyebrow:not(.light){color:#476056!important;}
+html[data-theme="papel"] main>.section .eyebrow:not(.light),
+html[data-theme="papel"] main>.band .eyebrow:not(.light){color:#665c50!important;}
+
+/* Animación suave, sin marear ni mover el contenido. */
+@keyframes andinaBackgroundDrift{
+  0%{transform:scale(1.07) translate3d(-1.2%,0,0);background-position:48% 50%;}
+  50%{transform:scale(1.10) translate3d(0,1.2%,0);background-position:52% 48%;}
+  100%{transform:scale(1.07) translate3d(1.2%,-.6%,0);background-position:50% 52%;}
+}
+
+/* Respeta el control de reducir animaciones de la propia web y del sistema. */
+body.reduce-motion main>.section::before,
+body.reduce-motion main>.band::before,
+@media(prefers-reduced-motion:reduce){
+  main>.section::before,
+  main>.band::before{
+    animation:none!important;
+    transform:scale(1.05)!important;
+  }
+}
+
+/* Móviles: movimiento más corto y menos costoso. */
+@media(max-width:760px){
+  main>.section::before,
+  main>.band::before{
+    animation-duration:38s;
+    background-attachment:scroll;
+  }
+}
+
+/* El héroe ya tiene composición propia; solo aseguramos que su texto no herede colores
+   incompatibles de temas posteriores. */
+html[data-theme="noche"] #inicio .hero-copy,
+html[data-theme="noche"] #inicio .hero-copy p,
+html[data-theme="noche"] #inicio .hero-copy h1,
+html[data-theme="noche"] #inicio .hero-stats,
+html[data-theme="noche"] #inicio .hero-tag{
+  color:#f2f7f3!important;
+}
+html[data-theme="papel"] #inicio .hero-copy,
+html[data-theme="papel"] #inicio .hero-copy p,
+html[data-theme="papel"] #inicio .hero-copy h1,
+html[data-theme="papel"] #inicio .hero-stats,
+html[data-theme="papel"] #inicio .hero-tag{
+  color:#fff!important;
+}
