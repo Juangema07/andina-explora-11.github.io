@@ -30,9 +30,9 @@ style.textContent=`
   }
 
   /* Solo se aplican a elementos marcados por el detector. */
-  [data-auto-contrast="light"]{color:#fff!important;text-shadow:0 1px 3px rgba(0,0,0,.28)!important;}
+  [data-auto-contrast="light"]{color:#fff!important;}
   [data-auto-contrast="light"] *{color:#fff!important;}
-  [data-auto-contrast="dark"]{color:#000!important;text-shadow:0 1px 2px rgba(255,255,255,.18)!important;}
+  [data-auto-contrast="dark"]{color:#000!important;}
   [data-auto-contrast="dark"] *{color:#000!important;}
 
   /* Los elementos que tienen un fondo propio son evaluados individualmente. */
@@ -224,7 +224,7 @@ let timer=0;
 async function scan(){
   cancelAnimationFrame(timer);
   timer=requestAnimationFrame(async()=>{
-    const sections=[...document.querySelectorAll('.pro-section,.pro-games,#andina-learning')];
+    const sections=[...document.querySelectorAll('section')].filter(s=>getComputedStyle(s).getPropertyValue('--dyn-bg').trim()||s.matches('.pro-games,#andina-learning'));
     await Promise.all(sections.map(scanSection));
   });
 }
