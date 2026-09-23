@@ -58,9 +58,8 @@ main>.band::before{
   background-position:center;
   background-size:cover;
   background-repeat:no-repeat;
-  transform:scale(1.07);
-  animation:andinaBackgroundDrift 28s ease-in-out infinite alternate;
-  will-change:transform,background-position;
+  transform:none;
+  animation:andinaBackgroundDrift 48s ease-in-out infinite alternate;
 }
 
 /* Velo de lectura encima de la fotografía. */
@@ -231,16 +230,15 @@ html[data-theme="papel"] main>.band .eyebrow:not(.light){color:#d8e8df!important
 
 /* Animación suave, sin marear ni mover el contenido. */
 @keyframes andinaBackgroundDrift{
-  0%{transform:scale(1.07) translate3d(-1.2%,0,0);background-position:48% 50%;}
-  50%{transform:scale(1.10) translate3d(0,1.2%,0);background-position:52% 48%;}
-  100%{transform:scale(1.07) translate3d(1.2%,-.6%,0);background-position:50% 52%;}
+  0%{background-position:48% 50%;}
+  50%{background-position:52% 48%;}
+  100%{background-position:50% 52%;}
 }
 
 /* Respeta el control de reducir animaciones de la propia web y del sistema. */
 body.reduce-motion main>.section::before,
 body.reduce-motion main>.band::before{
   animation:none!important;
-  transform:scale(1.05)!important;
 }
 
 @media(prefers-reduced-motion:reduce){
