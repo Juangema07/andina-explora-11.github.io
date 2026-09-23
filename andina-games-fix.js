@@ -1,5 +1,7 @@
 (()=>{
 'use strict';
+if(window.__ANDINA_GAMES_FIX_LOADED__)return;
+window.__ANDINA_GAMES_FIX_LOADED__=true;
 const PAGES_BASE=new URL('./assets/andina/',document.baseURI).href;
 const RAW_BASE='https://raw.githubusercontent.com/Juangema07/andina-explora-11.github.io/main/assets/andina/';
 const asset=name=>({primary:RAW_BASE+name+'?v=20260913',fallback:PAGES_BASE+name+'?v=20260913'});
