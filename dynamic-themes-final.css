@@ -1,0 +1,199 @@
+/* Andina Explora — fondos dinámicos finales
+   2026-09-23
+   Corrige los temas Noche/Papel y aplica fotografía animada a las secciones
+   intermedias. Fuentes y Opinión quedan deliberadamente estáticas. */
+
+:root{
+  --dyn-overlay-top:rgba(246,243,232,.82);
+  --dyn-overlay-bottom:rgba(246,243,232,.90);
+  --dyn-text:#17231e;
+  --dyn-muted:#4f5f57;
+}
+
+html[data-theme="noche"]{
+  --dyn-overlay-top:rgba(5,17,14,.80);
+  --dyn-overlay-bottom:rgba(7,25,20,.91);
+  --dyn-text:#edf5ef;
+  --dyn-muted:#cbd9d2;
+}
+
+html[data-theme="papel"]{
+  --dyn-overlay-top:rgba(247,241,228,.76);
+  --dyn-overlay-bottom:rgba(242,235,219,.88);
+  --dyn-text:#30291f;
+  --dyn-muted:#5b5145;
+}
+
+/* Solo las secciones que deben tener fondo vivo. */
+.pro-section:not(#fuentes):not(#opinion),
+.pro-games,
+#andina-learning{
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:hidden;
+  background:transparent!important;
+  color:var(--dyn-text)!important;
+}
+
+/* Una fotografía diferente por bloque. */
+#panorama{--dyn-bg:url('./assets/andina/mapa.png');}
+#naturaleza{--dyn-bg:url('./assets/andina/paramo.png');}
+#vida{--dyn-bg:url('./assets/andina/bogota.png');}
+#cultura{--dyn-bg:url('./assets/andina/eje-cafetero.png');}
+#conservacion{--dyn-bg:url('./assets/andina/valle-del-cauca.png');}
+#infografia-andina{--dyn-bg:url('./assets/andina/file_000000004cac81f6b568a4826989c123.png');}
+#territorios-andinos{--dyn-bg:url('./assets/andina/file_000000003a8c81f685c4c3177c598939.png');}
+#juegos{--dyn-bg:url('./assets/andina/file_00000000426881f6a792160bee4b88c6.png');}
+#andina-learning{--dyn-bg:url('./assets/andina/paramo.png');}
+
+/* Capa fotográfica con movimiento lento tipo paneo/zoom. */
+.pro-section:not(#fuentes):not(#opinion)::before,
+.pro-games::before,
+#andina-learning::before{
+  content:"";
+  position:absolute;
+  z-index:-2;
+  inset:-8%;
+  background-image:var(--dyn-bg);
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  transform:scale(1.08) translate3d(-1.2%,0,0);
+  animation:andinaFinalBgMove 32s ease-in-out infinite alternate;
+  will-change:transform;
+  pointer-events:none;
+}
+
+/* Velo independiente para que la fotografía se vea sin destruir la lectura. */
+.pro-section:not(#fuentes):not(#opinion)::after,
+.pro-games::after,
+#andina-learning::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  background:
+    linear-gradient(180deg,var(--dyn-overlay-top),var(--dyn-overlay-bottom)),
+    radial-gradient(circle at 75% 15%,rgba(255,255,255,.08),transparent 42%);
+  pointer-events:none;
+}
+
+/* Todo el contenido queda sobre las dos capas. */
+.pro-section:not(#fuentes):not(#opinion)>*,
+.pro-games>*,
+#andina-learning>*{
+  position:relative;
+  z-index:1;
+}
+
+/* Contraste de Noche. */
+html[data-theme="noche"] .pro-section:not(#fuentes):not(#opinion),
+html[data-theme="noche"] .pro-games,
+html[data-theme="noche"] #andina-learning,
+html[data-theme="noche"] .pro-section:not(#fuentes):not(#opinion) h1,
+html[data-theme="noche"] .pro-section:not(#fuentes):not(#opinion) h2,
+html[data-theme="noche"] .pro-section:not(#fuentes):not(#opinion) h3,
+html[data-theme="noche"] .pro-section:not(#fuentes):not(#opinion) p,
+html[data-theme="noche"] .pro-section:not(#fuentes):not(#opinion) li,
+html[data-theme="noche"] .pro-section:not(#fuentes):not(#opinion) small,
+html[data-theme="noche"] .pro-section:not(#fuentes):not(#opinion) strong,
+html[data-theme="noche"] #andina-learning h2,
+html[data-theme="noche"] #andina-learning h3,
+html[data-theme="noche"] #andina-learning p{
+  color:var(--dyn-text)!important;
+  opacity:1;
+}
+
+html[data-theme="noche"] .pro-section:not(#fuentes):not(#opinion) .pro-heading p,
+html[data-theme="noche"] #andina-learning .andina-learning-intro{
+  color:var(--dyn-muted)!important;
+}
+
+/* Contraste de Papel: texto oscuro sobre fotografía aclarada. */
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion),
+html[data-theme="papel"] .pro-games,
+html[data-theme="papel"] #andina-learning,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) h1,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) h2,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) h3,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) p,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) li,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) small,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) strong,
+html[data-theme="papel"] #andina-learning h2,
+html[data-theme="papel"] #andina-learning h3,
+html[data-theme="papel"] #andina-learning p{
+  color:var(--dyn-text)!important;
+  opacity:1;
+}
+
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) .pro-heading p,
+html[data-theme="papel"] #andina-learning .andina-learning-intro{
+  color:var(--dyn-muted)!important;
+}
+
+/* Los bloques con fondo propio mantienen su función, pero no dejan texto ilegible. */
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) .pro-stat-grid>div,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) .infographic button,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) .econ-infographic article,
+html[data-theme="papel"] #andina-learning .learning-card{
+  color:#30291f!important;
+}
+
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) .pro-stat-grid>div p,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) .infographic button span,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) .infographic button small,
+html[data-theme="papel"] .pro-section:not(#fuentes):not(#opinion) .econ-infographic article p,
+html[data-theme="papel"] #andina-learning .learning-card p{
+  color:#4c453b!important;
+}
+
+/* Mantener Fuentes y Opinión como las únicas dos secciones finales sin paneo. */
+#fuentes,
+#opinion{
+  position:relative;
+  isolation:isolate;
+  background-attachment:scroll!important;
+}
+#fuentes::before,#fuentes::after,#opinion::before,#opinion::after{
+  animation:none!important;
+}
+
+@keyframes andinaFinalBgMove{
+  0%{
+    transform:scale(1.08) translate3d(-1.2%,0,0);
+    background-position:48% 50%;
+  }
+  50%{
+    transform:scale(1.11) translate3d(0,1%,0);
+    background-position:52% 48%;
+  }
+  100%{
+    transform:scale(1.08) translate3d(1.2%,-.7%,0);
+    background-position:50% 52%;
+  }
+}
+
+body.reduce-motion .pro-section:not(#fuentes):not(#opinion)::before,
+body.reduce-motion .pro-games::before,
+body.reduce-motion #andina-learning::before{
+  animation:none!important;
+  transform:scale(1.06)!important;
+}
+
+@media(max-width:760px){
+  .pro-section:not(#fuentes):not(#opinion)::before,
+  .pro-games::before,
+  #andina-learning::before{
+    animation-duration:42s;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .pro-section:not(#fuentes):not(#opinion)::before,
+  .pro-games::before,
+  #andina-learning::before{
+    animation:none!important;
+    transform:scale(1.05)!important;
+  }
+}
