@@ -283,3 +283,116 @@ html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion article p
 html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama article p{
   color:#4f5f57!important;
 }
+
+
+/* CONTRASTE UNIFICADO PARA LOS 3 TEMAS
+   El contraste se decide por el tipo de fondo de cada sección, no por el tema.
+   Así Noche, Papel y Andino mantienen texto legible sobre las fotografías.
+   Los bloques claros internos conservan texto oscuro. */
+
+/* Fondos fotográficos predominantemente oscuros. */
+html[data-theme="noche"] #panorama,
+html[data-theme="noche"] #naturaleza,
+html[data-theme="noche"] #cultura,
+html[data-theme="noche"] #conservacion,
+html[data-theme="papel"] #panorama,
+html[data-theme="papel"] #naturaleza,
+html[data-theme="papel"] #cultura,
+html[data-theme="papel"] #conservacion,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #panorama,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #naturaleza,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #cultura,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #conservacion{
+  --dyn-text:#f7fbf8;
+  --dyn-muted:#e3eee8;
+}
+
+/* Fondos fotográficos predominantemente claros. */
+html[data-theme="noche"] #vida,
+html[data-theme="noche"] #infografia-andina,
+html[data-theme="noche"] #territorios-andinos,
+html[data-theme="papel"] #vida,
+html[data-theme="papel"] #infografia-andina,
+html[data-theme="papel"] #territorios-andinos,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #vida,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #infografia-andina,
+html:not([data-theme="noche"]):not([data-theme="papel"]) #territorios-andinos{
+  --dyn-text:#17231e;
+  --dyn-muted:#4f5f57;
+}
+
+/* Texto principal: se fuerza el color de la sección para vencer reglas antiguas de los temas. */
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) h1,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) h2,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) h3,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) h4,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) p,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) li,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) small,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) strong,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) span,
+html[data-theme] .pro-games h1,
+html[data-theme] .pro-games h2,
+html[data-theme] .pro-games h3,
+html[data-theme] .pro-games h4,
+html[data-theme] .pro-games p,
+html[data-theme] .pro-games li,
+html[data-theme] .pro-games small,
+html[data-theme] .pro-games strong,
+html[data-theme] .pro-games span,
+html[data-theme] #andina-learning h1,
+html[data-theme] #andina-learning h2,
+html[data-theme] #andina-learning h3,
+html[data-theme] #andina-learning h4,
+html[data-theme] #andina-learning p,
+html[data-theme] #andina-learning li,
+html[data-theme] #andina-learning small,
+html[data-theme] #andina-learning strong,
+html[data-theme] #andina-learning span{
+  color:var(--dyn-text)!important;
+  opacity:1!important;
+}
+
+/* Texto secundario. */
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .pro-heading p,
+html[data-theme] #andina-learning .andina-learning-intro{
+  color:var(--dyn-muted)!important;
+  opacity:1!important;
+}
+
+/* Tarjetas, artículos y paneles claros: texto oscuro independientemente del tema. */
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .card,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) article,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .pro-stat-grid>div,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .infographic button,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .econ-infographic article,
+html[data-theme] #andina-learning .learning-card{
+  color:#17231e!important;
+}
+
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .card h1,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .card h2,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .card h3,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .card h4,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) article h1,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) article h2,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) article h3,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) article h4,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .card p,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) article p,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .pro-stat-grid>div p,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .infographic button span,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .infographic button small,
+html[data-theme] .pro-section:not(#fuentes):not(#opinion) .econ-infographic article p,
+html[data-theme] #andina-learning .learning-card p{
+  color:#4f5f57!important;
+  opacity:1!important;
+}
+
+/* Los dos últimos bloques siguen sin fondo fotográfico dinámico. */
+html[data-theme] #fuentes,
+html[data-theme] #opinion,
+html[data-theme] #fuentes *,
+html[data-theme] #opinion *{
+  /* No modificar su diseño/contraste original. */
+}
