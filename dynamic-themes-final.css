@@ -58,9 +58,8 @@ html[data-theme="papel"]{
   background-position:center;
   background-size:cover;
   background-repeat:no-repeat;
-  transform:scale(1.08) translate3d(-1.2%,0,0);
-  animation:andinaFinalBgMove 32s ease-in-out infinite alternate;
-  will-change:transform;
+  transform:none;
+  animation:andinaFinalBgMove 48s ease-in-out infinite alternate;
   pointer-events:none;
 }
 
@@ -160,25 +159,15 @@ html[data-theme="papel"] #andina-learning .learning-card p{
 }
 
 @keyframes andinaFinalBgMove{
-  0%{
-    transform:scale(1.08) translate3d(-1.2%,0,0);
-    background-position:48% 50%;
-  }
-  50%{
-    transform:scale(1.11) translate3d(0,1%,0);
-    background-position:52% 48%;
-  }
-  100%{
-    transform:scale(1.08) translate3d(1.2%,-.7%,0);
-    background-position:50% 52%;
-  }
+  0%{background-position:48% 50%;}
+  50%{background-position:52% 48%;}
+  100%{background-position:50% 52%;}
 }
 
 body.reduce-motion .pro-section:not(#fuentes):not(#opinion)::before,
 body.reduce-motion .pro-games::before,
 body.reduce-motion #andina-learning::before{
   animation:none!important;
-  transform:scale(1.06)!important;
 }
 
 @media(max-width:760px){
@@ -194,7 +183,6 @@ body.reduce-motion #andina-learning::before{
   .pro-games::before,
   #andina-learning::before{
     animation:none!important;
-    transform:scale(1.05)!important;
   }
 }
 
