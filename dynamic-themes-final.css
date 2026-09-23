@@ -197,3 +197,13 @@ body.reduce-motion #andina-learning::before{
     transform:scale(1.05)!important;
   }
 }
+
+
+/* Corrección final: no colocar aves flotantes gigantes sobre la sección Cultura.
+   Los assets de fauna siguen disponibles en sus tarjetas correspondientes. */
+#cultura .andina-float-bird,
+#cultura .v2-float-bird{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
