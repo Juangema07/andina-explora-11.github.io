@@ -316,3 +316,29 @@ main>.section.dark:not(#desafios) .placeholder{
 #territorios-andinos .place-card,
 #territorios-andinos .place-card *{color:#fff!important;}
 #territorios-andinos .territory-clean-card:after{color:#fff!important;}
+
+
+/* FIX SECCIÓN 08 · TERRITORIOS DESTACADOS — texto blanco exclusivamente en este bloque */
+#territorios-andinos.pro-section.pro-section-dark,
+#territorios-andinos.pro-section.pro-section-dark *,
+#territorios-andinos .pro-heading,
+#territorios-andinos .pro-heading *,
+#territorios-andinos .place-grid,
+#territorios-andinos .place-card,
+#territorios-andinos .place-card *,
+#territorios-andinos .place-visual,
+#territorios-andinos .place-visual *,
+#territorios-andinos .place-card > span,
+#territorios-andinos .place-card > span *,
+#territorios-andinos h1,
+#territorios-andinos h2,
+#territorios-andinos h3,
+#territorios-andinos p,
+#territorios-andinos span,
+#territorios-andinos strong,
+#territorios-andinos b,
+#territorios-andinos small,
+#territorios-andinos .pro-kicker {
+  color:#fff !important;
+  -webkit-text-fill-color:#fff !important;
+}
