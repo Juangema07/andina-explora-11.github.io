@@ -1,0 +1,215 @@
+/* Andina Explora — corrección global de contraste entre temas.
+   Este archivo va al final de la cascada para evitar textos que se "pierdan". */
+
+html[data-theme="andino"],
+html[data-theme="noche"],
+html[data-theme="papel"]{
+  color-scheme:light;
+}
+
+/* Ajustes comunes: ningún bloque debe heredar accidentalmente el color de otro tema. */
+html[data-theme="andino"] body,
+html[data-theme="papel"] body{color:#183d32;}
+
+html[data-theme="noche"] body{color:#edf5ef;}
+
+/* NOCHE: superficies claras de la versión base pasan a superficies oscuras. */
+html[data-theme="noche"] .nav{
+  background:rgba(12,28,23,.94)!important;
+  color:#edf5ef!important;
+  border:1px solid rgba(255,255,255,.08);
+}
+html[data-theme="noche"] .logo,
+html[data-theme="noche"] .nav nav a{color:#edf5ef!important;}
+html[data-theme="noche"] .logo small,
+html[data-theme="noche"] .nav nav a:not(.active){color:#b9cbc2!important;}
+html[data-theme="noche"] .nav nav a:hover,
+html[data-theme="noche"] .nav nav a.active{background:#dced92!important;color:#14251f!important;}
+html[data-theme="noche"] .section,
+html[data-theme="noche"] .games,
+html[data-theme="noche"] .media-section,
+html[data-theme="noche"] .resources,
+html[data-theme="noche"] .economy,
+html[data-theme="noche"] .culture,
+html[data-theme="noche"] .band{
+  background:#0b1915!important;
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] .section-head>p,
+html[data-theme="noche"] .intro p,
+html[data-theme="noche"] .visual-facts p,
+html[data-theme="noche"] .doodle-card small,
+html[data-theme="noche"] .media-grid p,
+html[data-theme="noche"] .source-grid span{
+  color:#cbd9d2!important;
+}
+html[data-theme="noche"] .section-head h2,
+html[data-theme="noche"] .intro h2,
+html[data-theme="noche"] .media-grid h3,
+html[data-theme="noche"] .source-grid b,
+html[data-theme="noche"] .doodle-card b{color:#edf5ef!important;}
+html[data-theme="noche"] .topic,
+html[data-theme="noche"] .visual-facts article,
+html[data-theme="noche"] .doodle-card,
+html[data-theme="noche"] .media-grid article,
+html[data-theme="noche"] .source-grid a,
+html[data-theme="noche"] .sector-tabs button,
+html[data-theme="noche"] .placeholder{
+  background:#142a22!important;
+  color:#edf5ef!important;
+  border-color:#315348!important;
+}
+html[data-theme="noche"] .topic small{color:#b9cbc2!important;}
+html[data-theme="noche"] .topic.active,
+html[data-theme="noche"] .sector-tabs button.active{
+  background:#dced92!important;color:#14251f!important;
+}
+html[data-theme="noche"] .topic.active small{color:#294033!important;}
+html[data-theme="noche"] .economy .econ-view{
+  background:#20382d!important;color:#edf5ef!important;
+}
+html[data-theme="noche"] .econ-view p,
+html[data-theme="noche"] .econ-view h3{color:#edf5ef!important;}
+html[data-theme="noche"] .chips span,
+html[data-theme="noche"] .altitude-chips span{
+  background:#dce8c3!important;color:#183d32!important;
+}
+html[data-theme="noche"] .product,
+html[data-theme="noche"] .culture-card{color:#fff!important;}
+html[data-theme="noche"] .reflection,
+html[data-theme="noche"] .game-arena{color:#edf5ef!important;}
+html[data-theme="noche"] .modal-box{
+  background:#142a22!important;color:#edf5ef!important;
+}
+html[data-theme="noche"] .modal-box p{color:#cbd9d2!important;}
+html[data-theme="noche"] .modal-box .highlight{
+  background:#dce8c3!important;color:#183d32!important;
+}
+html[data-theme="noche"] .modal-box .highlight p{color:#29483b!important;}
+
+/* PAPEL: texto oscuro explícito en todas las superficies claras. */
+html[data-theme="papel"] .nav{
+  background:rgba(248,242,229,.96)!important;
+  color:#30291f!important;
+  border:1px solid rgba(70,55,38,.12);
+}
+html[data-theme="papel"] .logo,
+html[data-theme="papel"] .nav nav a{color:#30291f!important;}
+html[data-theme="papel"] .logo small,
+html[data-theme="papel"] .nav nav a:not(.active){color:#675d50!important;}
+html[data-theme="papel"] .nav nav a:hover,
+html[data-theme="papel"] .nav nav a.active{background:#33473d!important;color:#fff!important;}
+html[data-theme="papel"] .section,
+html[data-theme="papel"] .games,
+html[data-theme="papel"] .media-section,
+html[data-theme="papel"] .resources,
+html[data-theme="papel"] .economy,
+html[data-theme="papel"] .culture,
+html[data-theme="papel"] .band{
+  color:#30291f!important;
+}
+html[data-theme="papel"] .section-head h2,
+html[data-theme="papel"] .intro h2,
+html[data-theme="papel"] .media-grid h3,
+html[data-theme="papel"] .source-grid b,
+html[data-theme="papel"] .doodle-card b{color:#30291f!important;}
+html[data-theme="papel"] .section-head>p,
+html[data-theme="papel"] .intro p,
+html[data-theme="papel"] .visual-facts p,
+html[data-theme="papel"] .doodle-card small,
+html[data-theme="papel"] .media-grid p,
+html[data-theme="papel"] .source-grid span{color:#5b5145!important;}
+html[data-theme="papel"] .topic,
+html[data-theme="papel"] .visual-facts article,
+html[data-theme="papel"] .doodle-card,
+html[data-theme="papel"] .media-grid article,
+html[data-theme="papel"] .source-grid a,
+html[data-theme="papel"] .sector-tabs button,
+html[data-theme="papel"] .placeholder{
+  color:#30291f!important;
+}
+html[data-theme="papel"] .topic small{color:#665c50!important;}
+html[data-theme="papel"] .topic.active,
+html[data-theme="papel"] .sector-tabs button.active{
+  background:#33473d!important;color:#fff!important;
+}
+html[data-theme="papel"] .topic.active small{color:#d9e6dc!important;}
+html[data-theme="papel"] .economy .econ-view{
+  color:#30291f!important;
+}
+html[data-theme="papel"] .econ-view p{color:#4f463b!important;}
+html[data-theme="papel"] .modal-box{
+  background:#f8f0df!important;color:#30291f!important;
+}
+html[data-theme="papel"] .modal-box p{color:#554b40!important;}
+
+/* ANDINO: conserva el diseño verde original, pero fija textos sensibles. */
+html[data-theme="andino"] .section-head>p,
+html[data-theme="andino"] .intro p,
+html[data-theme="andino"] .visual-facts p,
+html[data-theme="andino"] .doodle-card small,
+html[data-theme="andino"] .media-grid p,
+html[data-theme="andino"] .source-grid span{color:#5c6962!important;}
+html[data-theme="andino"] .modal-box p{color:#56645d!important;}
+
+/* La experiencia profesional se genera dinámicamente: cubrir sus superficies también. */
+html[data-theme="noche"] .pro-section:not(.pro-section-dark):not(.pro-sources),
+html[data-theme="noche"] .pro-games{
+  background:linear-gradient(145deg,#0b1915,#142a22)!important;
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] .pro-section:not(.pro-section-dark) .pro-heading p{
+  color:#dce8df!important;
+  opacity:1!important;
+}
+html[data-theme="noche"] .pro-stat-grid>div{
+  background:rgba(255,255,255,.055)!important;
+  border-color:rgba(255,255,255,.1)!important;
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] .pro-map-card{
+  background:#142f26!important;color:#edf5ef!important;
+}
+html[data-theme="noche"] .pro-life-grid article,
+html[data-theme="noche"] .pro-challenge-grid article{
+  background:rgba(255,255,255,.07)!important;color:#edf5ef!important;
+}
+html[data-theme="noche"] .pro-highlight{
+  background:#d8e8c0!important;color:#14251e!important;
+}
+html[data-theme="papel"] .pro-section:not(.pro-section-dark):not(.pro-sources),
+html[data-theme="papel"] .pro-games{
+  background:#eee6d6!important;
+  color:#30291f!important;
+}
+html[data-theme="papel"] .pro-section:not(.pro-section-dark) .pro-heading p{
+  color:#4c453b!important;
+  opacity:1!important;
+}
+html[data-theme="papel"] .pro-stat-grid>div{
+  background:rgba(255,255,255,.72)!important;
+  color:#30291f!important;
+}
+html[data-theme="papel"] .pro-map-card{
+  color:#fff!important;
+}
+html[data-theme="andino"] .pro-section:not(.pro-section-dark):not(.pro-sources),
+html[data-theme="andino"] .pro-games{
+  color:#17231e!important;
+}
+html[data-theme="andino"] .pro-section:not(.pro-section-dark) .pro-heading p{
+  color:#405048!important;opacity:1!important;
+}
+
+/* Controles y formularios siempre legibles. */
+html[data-theme="noche"] .settings{
+  background:#142a22!important;color:#edf5ef!important;border-color:#315348!important;
+}
+html[data-theme="noche"] .settings label,
+html[data-theme="noche"] .settings h2,
+html[data-theme="noche"] .settings .eyebrow,
+html[data-theme="noche"] .settings .close{color:#edf5ef!important;}
+html[data-theme="noche"] .settings select,
+html[data-theme="noche"] .settings option{
+  background:#fff!important;color:#111!important;
+}
