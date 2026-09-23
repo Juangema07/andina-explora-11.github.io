@@ -1,0 +1,124 @@
+/* Andina Explora — fondos fotográficos por sección.
+   Mantiene la imagen visible detrás del contenido, como el fondo general,
+   pero añade una capa de lectura para conservar el contraste. */
+
+.pro-section,
+#juegos.pro-games{
+  position:relative;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+  isolation:isolate;
+}
+
+#panorama{
+  --photo-bg:url('./assets/andina/file_000000003a8c81f685c4c3177c598939.png');
+}
+#naturaleza{
+  --photo-bg:url('./assets/andina/paramo.png');
+}
+#vida{
+  --photo-bg:url('./assets/andina/bogota.png');
+}
+#cultura{
+  --photo-bg:url('./assets/andina/eje-cafetero.png');
+}
+#conservacion{
+  --photo-bg:url('./assets/andina/valle-del-cauca.png');
+}
+#juegos.pro-games{
+  --photo-bg:url('./assets/andina/file_00000000426881f6a792160bee4b88c6.png');
+}
+#fuentes{
+  --photo-bg:url('./assets/andina/file_000000004cac81f6b568a4826989c123.png');
+}
+
+/* ANDINO: fotografía visible + velo suave. */
+html[data-theme="andino"] .pro-section,
+html[data-theme="andino"] #juegos.pro-games{
+  background-image:
+    linear-gradient(rgba(246,243,232,.78),rgba(246,243,232,.84)),
+    var(--photo-bg)!important;
+  color:#17231e!important;
+}
+html[data-theme="andino"] #vida,
+html[data-theme="andino"] #conservacion,
+html[data-theme="andino"] #fuentes{
+  background-image:
+    linear-gradient(rgba(9,31,25,.86),rgba(13,42,34,.90)),
+    var(--photo-bg)!important;
+  color:#edf5ef!important;
+}
+
+/* NOCHE: conserva las fotografías, con una capa más profunda. */
+html[data-theme="noche"] .pro-section,
+html[data-theme="noche"] #juegos.pro-games{
+  background-image:
+    linear-gradient(rgba(7,20,16,.84),rgba(10,28,22,.90)),
+    var(--photo-bg)!important;
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] #vida,
+html[data-theme="noche"] #conservacion,
+html[data-theme="noche"] #fuentes{
+  background-image:
+    linear-gradient(rgba(5,18,14,.91),rgba(8,25,20,.94)),
+    var(--photo-bg)!important;
+}
+
+/* PAPEL: la foto queda presente, pero con acabado cálido. */
+html[data-theme="papel"] .pro-section,
+html[data-theme="papel"] #juegos.pro-games{
+  background-image:
+    linear-gradient(rgba(247,241,228,.80),rgba(242,235,219,.88)),
+    var(--photo-bg)!important;
+  color:#30291f!important;
+}
+html[data-theme="papel"] #vida,
+html[data-theme="papel"] #conservacion,
+html[data-theme="papel"] #fuentes{
+  background-image:
+    linear-gradient(rgba(39,48,41,.84),rgba(28,43,36,.90)),
+    var(--photo-bg)!important;
+  color:#f3f5ed!important;
+}
+
+/* El contenido queda por encima del fondo fotográfico. */
+.pro-section>.pro-heading,
+.pro-section>.pro-stat-grid,
+.pro-section>.pro-map-card,
+.pro-section>.pro-card-grid,
+.pro-section>.pro-life-grid,
+.pro-section>.pro-highlight,
+.pro-section>.pro-culture-grid,
+.pro-section>.pro-challenge-grid,
+.pro-section>.pro-quote,
+.pro-section>.source-list,
+#juegos.pro-games>*{
+  position:relative;
+  z-index:1;
+}
+
+/* El fondo también tiene una leve sensación de profundidad al desplazarse. */
+@media(min-width:761px){
+  .pro-section,
+  #juegos.pro-games{
+    background-attachment:fixed;
+  }
+}
+
+@media(max-width:760px){
+  .pro-section,
+  #juegos.pro-games{
+    background-attachment:scroll;
+  }
+}
+
+/* Si el usuario reduce movimiento, no añadimos ningún efecto de desplazamiento. */
+@media(prefers-reduced-motion:reduce){
+  .pro-section,
+  #juegos.pro-games{
+    background-attachment:scroll;
+  }
+}
