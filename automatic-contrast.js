@@ -56,7 +56,7 @@ function luminance(r,g,b){
 }
 
 function rgbaColor(value){
-  const m=value.match(/rgba?\\(([^)]+)\\)/i);
+  const m=value.match(/rgba?\(([^)]+)\)/i);
   if(!m)return null;
   const p=m[1].split(',').map(x=>parseFloat(x.trim()));
   if(p.length<3)return null;
@@ -67,7 +67,7 @@ function rgbaColor(value){
 
 function imageUrl(value){
   if(!value||value==='none')return null;
-  const m=value.match(/url\\((['"]?)(.*?)\\1\\)/i);
+  const m=value.match(/url\(([\'"]?)(.*?)\1\)/i);
   return m?m[2]:null;
 }
 
