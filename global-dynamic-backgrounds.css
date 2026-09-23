@@ -83,6 +83,24 @@ main>.band>*{
   z-index:1;
 }
 
+/* La zona de desafíos/reflexión queda nocturna SIEMPRE, sin importar el tema. */
+#desafios{
+  --bg-photo:url('./assets/andina/polluted_water.png')!important;
+  color:#f2f7f3!important;
+}
+#desafios::before{
+  animation-duration:22s!important;
+  filter:saturate(.9) brightness(.72)!important;
+}
+#desafios::after{
+  background:
+    linear-gradient(180deg,rgba(3,13,11,.84),rgba(4,20,16,.96)),
+    radial-gradient(circle at 72% 12%,rgba(170,220,180,.08),transparent 44%)!important;
+}
+#desafios h1,#desafios h2,#desafios h3,#desafios p,#desafios small,#desafios b,#desafios strong,#desafios .eyebrow,#desafios label{
+  color:#f2f7f3!important;
+}
+
 /* Los bloques oscuros ya existentes conservan su identidad, pero usan foto. */
 html[data-theme="noche"] main>.section.dark::after,
 html[data-theme="noche"] #desafios::after{
