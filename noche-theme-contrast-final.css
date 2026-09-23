@@ -1,0 +1,192 @@
+/* Andina Explora — Noche: corrección completa de contraste.
+   Se aplica después de todos los estilos visuales para impedir que
+   componentes creados para fondos claros queden con texto invisible. */
+
+html[data-theme="noche"] .pro-section,
+html[data-theme="noche"] .pro-games,
+html[data-theme="noche"] .deep-section,
+html[data-theme="noche"] .deep-economy,
+html[data-theme="noche"] .deep-challenges,
+html[data-theme="noche"] .infographic-section,
+html[data-theme="noche"] .gallery-section{
+  color:#edf5ef!important;
+  background-color:#0b1915!important;
+}
+
+/* Encabezados y textos generales de los bloques profesionales. */
+html[data-theme="noche"] .pro-section h1,
+html[data-theme="noche"] .pro-section h2,
+html[data-theme="noche"] .pro-section h3,
+html[data-theme="noche"] .pro-section h4,
+html[data-theme="noche"] .deep-section h1,
+html[data-theme="noche"] .deep-section h2,
+html[data-theme="noche"] .deep-section h3,
+html[data-theme="noche"] .deep-section h4,
+html[data-theme="noche"] .infographic-section h1,
+html[data-theme="noche"] .infographic-section h2,
+html[data-theme="noche"] .infographic-section h3,
+html[data-theme="noche"] .gallery-section h1,
+html[data-theme="noche"] .gallery-section h2,
+html[data-theme="noche"] .gallery-section h3{
+  color:#edf5ef!important;
+}
+
+html[data-theme="noche"] .pro-section p,
+html[data-theme="noche"] .deep-section p,
+html[data-theme="noche"] .infographic-section p,
+html[data-theme="noche"] .gallery-section p,
+html[data-theme="noche"] .pro-section li,
+html[data-theme="noche"] .deep-section li,
+html[data-theme="noche"] .source-note{
+  color:#cbd9d2!important;
+  opacity:1!important;
+}
+
+/* Infografía: las tarjetas heredaban fondo blanco + texto verde oscuro. */
+html[data-theme="noche"] .infographic{
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] .infographic button{
+  background:#142a22!important;
+  color:#edf5ef!important;
+  border-color:rgba(255,255,255,.10)!important;
+  box-shadow:none!important;
+}
+html[data-theme="noche"] .infographic button strong{
+  color:#b7d78f!important;
+}
+html[data-theme="noche"] .infographic button span{
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] .infographic button small{
+  color:#b9cbc2!important;
+  opacity:1!important;
+}
+html[data-theme="noche"] .infographic-detail{
+  background:#14382d!important;
+  color:#edf5ef!important;
+}
+
+/* Flujo de la infografía y bloques de datos. */
+html[data-theme="noche"] .flow-item{
+  background:#142a22!important;
+  color:#edf5ef!important;
+  border-color:rgba(255,255,255,.10)!important;
+  box-shadow:none!important;
+}
+html[data-theme="noche"] .flow-item b,
+html[data-theme="noche"] .flow-item strong{
+  color:#b7d78f!important;
+}
+html[data-theme="noche"] .flow-item span{
+  color:#cbd9d2!important;
+  opacity:1!important;
+}
+html[data-theme="noche"] .fact-ribbon span{
+  background:#1c382e!important;
+  color:#dcebc9!important;
+}
+
+/* Datos económicos. */
+html[data-theme="noche"] .econ-infographic article{
+  background:#142a22!important;
+  color:#edf5ef!important;
+  border-color:rgba(255,255,255,.10)!important;
+  box-shadow:none!important;
+}
+html[data-theme="noche"] .econ-number{
+  color:#b7d78f!important;
+}
+html[data-theme="noche"] .econ-infographic h3{
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] .econ-infographic p{
+  color:#cbd9d2!important;
+  opacity:1!important;
+}
+html[data-theme="noche"] .econ-tags span{
+  background:#1c382e!important;
+  color:#dcebc9!important;
+}
+
+/* Problemáticas: evitar tarjetas blancas con texto oscuro. */
+html[data-theme="noche"] .problem-table article{
+  background:#142a22!important;
+  color:#edf5ef!important;
+  border-color:rgba(255,255,255,.10)!important;
+}
+html[data-theme="noche"] .problem-table article>b{
+  color:#b7d78f!important;
+}
+html[data-theme="noche"] .problem-table h3{
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] .problem-table p{
+  color:#cbd9d2!important;
+  opacity:1!important;
+}
+
+/* Mapa de conexiones. */
+html[data-theme="noche"] .connection-map{
+  background:radial-gradient(circle at center,rgba(183,215,143,.12),transparent 25%),#12251f!important;
+}
+html[data-theme="noche"] .connection-map article{
+  background:#142a22!important;
+  color:#edf5ef!important;
+  box-shadow:0 15px 35px rgba(0,0,0,.22)!important;
+}
+html[data-theme="noche"] .connection-map article b{
+  color:#b7d78f!important;
+}
+html[data-theme="noche"] .connection-map article span{
+  color:#cbd9d2!important;
+  opacity:1!important;
+}
+
+/* Créditos visuales: las tarjetas blancas eran especialmente ilegibles. */
+html[data-theme="noche"] .gallery-grid figure{
+  background:#142a22!important;
+  color:#edf5ef!important;
+  box-shadow:none!important;
+}
+html[data-theme="noche"] .gallery-grid figcaption{
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] .gallery-grid img{
+  background:#10231d!important;
+}
+
+/* Paneles humanos y turísticos. */
+html[data-theme="noche"] .human-panels article,
+html[data-theme="noche"] .tour-grid article{
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] .human-panels h3,
+html[data-theme="noche"] .tour-grid h3{
+  color:#edf5ef!important;
+}
+html[data-theme="noche"] .human-panels p,
+html[data-theme="noche"] .tour-grid p{
+  color:#cbd9d2!important;
+  opacity:1!important;
+}
+
+/* Elementos con colores verdes oscuros heredados del tema claro. */
+html[data-theme="noche"] .pro-section .pro-stat-grid strong,
+html[data-theme="noche"] .pro-section .pro-challenge-grid b{
+  color:#b7d78f!important;
+}
+
+/* La sección clara de "claves para entenderla" debe seguir siendo Noche. */
+html[data-theme="noche"] .pro-section.deep-section,
+html[data-theme="noche"] .pro-section.deep-economy,
+html[data-theme="noche"] .pro-section.deep-challenges{
+  background-image:none!important;
+  background-color:#0b1915!important;
+}
+
+/* Mantener visibles los enlaces. */
+html[data-theme="noche"] .pro-section a,
+html[data-theme="noche"] .deep-section a{
+  color:#d7edb0!important;
+}
