@@ -16,7 +16,14 @@
 <link rel="stylesheet" href="theme-contrast-fix.css?v=20260923-1">
 <link rel="stylesheet" href="photo-section-backgrounds.css?v=20260923-1">
 <link rel="stylesheet" href="global-dynamic-backgrounds.css?v=20260923-3">
-</head>
+<style>
+.group-video{margin-top:42px;padding:28px;border:1px solid rgba(231,189,69,.28);border-radius:20px;background:#080b09;color:#f5f4ed}
+.group-video h3{font-size:clamp(1.5rem,3vw,2.2rem);margin:8px 0}
+.group-video p{color:#cbd1cc;margin:0 0 20px}
+.group-video video{display:block;width:100%;max-height:680px;background:#000;border-radius:14px;border:1px solid #303a35}
+.group-video .eyebrow{color:#e7bd45;font-weight:800;letter-spacing:.1em;font-size:.78rem}
+.media-grid .placeholder{display:inline-block;text-decoration:none}
+</style></head>
 <body>
 <div id="loader"><strong>ANDINA</strong><span>Preparando el recorrido…</span><i></i></div>
 <header class="nav">
@@ -83,7 +90,15 @@
   <div id="gameArena" class="game-arena" hidden></div>
 </section>
 
-<section class="section media-section" id="productos"><div class="section-head"><div><span class="eyebrow">08 · PRODUCTOS DEL GRUPO</span><h2>También <em>creamos.</em></h2></div><p>Aquí quedarán integrados el video, podcast, infografías y presentación exigidos por el proyecto.</p></div><div class="media-grid"><article><span>🎬</span><h3>Video original</h3><p>3–5 minutos · documental, reportaje, entrevista o magazine.</p><button class="placeholder">Agregar video</button></article><article><span>🎙️</span><h3>Podcast</h3><p>5–8 minutos · historia, cultura, economía o problemática.</p><button class="placeholder">Agregar audio</button></article><article><span>📊</span><h3>Infografías</h3><p>Geografía física + geografía humana y económica.</p><button class="placeholder">Agregar infografías</button></article><article><span>🖥️</span><h3>PowerPoint</h3><p>10–15 diapositivas disponibles desde la web.</p><button class="placeholder">Agregar presentación</button></article></div>
+<section class="section media-section" id="productos">
+  <div class="section-head"><div><span class="eyebrow">08 · PRODUCTOS DEL GRUPO</span><h2>También <em>creamos.</em></h2></div><p>Aquí están integrados los productos del proyecto. El video queda visible directamente debajo de las diapositivas.</p></div>
+  <div class="media-grid">
+    <article><span>🎬</span><h3>Video original</h3><p>5 Minutos por Colombia · video del grupo.</p><a class="placeholder" href="#video-grupo">Ver video ↓</a></article>
+    <article><span>🎙️</span><h3>Podcast</h3><p>5–8 minutos · historia, cultura, economía o problemática.</p><button class="placeholder">Agregar audio</button></article>
+    <article><span>📊</span><h3>Infografías</h3><p>Geografía física + geografía humana y económica.</p><button class="placeholder">Agregar infografías</button></article>
+    <article><span>🖥️</span><h3>PowerPoint</h3><p>10–15 diapositivas disponibles desde la web.</p><a class="placeholder" href="diapositivas-andina.html">Abrir diapositivas ↗</a></article>
+  </div>
+  <div id="video-grupo" class="group-video"><span class="eyebrow">VIDEO · 5 MINUTOS POR COLOMBIA</span><h3>Video del grupo</h3><p>Reproduce aquí directamente el video que subiste a la web.</p><video controls preload="metadata" playsinline><source src="5%20Minutos%20por%20Colombia%20(1).mp4" type="video/mp4">Tu navegador no puede reproducir este video.</video></div>
 </section>
 
 <section id="recursos" class="section resources"><div class="section-head"><div><span class="eyebrow">09 · PARA SEGUIR EXPLORANDO</span><h2>Fuentes que <em>sí ayudan.</em></h2></div><p>Usa instituciones y organizaciones confiables para contrastar datos y construir las fuentes bibliográficas del proyecto.</p></div><div class="source-grid"><a href="https://www.dane.gov.co/" target="_blank" rel="noopener"><b>DANE</b><span>Datos de población, territorio y estadísticas.</span></a><a href="https://www.igac.gov.co/" target="_blank" rel="noopener"><b>IGAC</b><span>Cartografía, geografía y mapas de Colombia.</span></a><a href="https://www.parquesnacionales.gov.co/" target="_blank" rel="noopener"><b>Parques Nacionales</b><span>Áreas protegidas y biodiversidad.</span></a><a href="https://www.minambiente.gov.co/" target="_blank" rel="noopener"><b>MinAmbiente</b><span>Ambiente, conservación y territorio.</span></a><a href="https://www.mincultura.gov.co/" target="_blank" rel="noopener"><b>MinCultura</b><span>Patrimonio, cultura y expresiones tradicionales.</span></a></div></section>
