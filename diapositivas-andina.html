@@ -2,96 +2,96 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Andina Explora · Presentación</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173c31">
+<title>Andina Explora · Diapositivas y video</title>
 <style>
-:root{--green:#173c31;--gold:#e7bd45;--bg:#080b09;--line:#303a35;--text:#f5f4ed}
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
-body{overflow-x:hidden}
-.app{width:100%;min-height:100dvh;display:grid;grid-template-rows:50px 1fr 50px;background:#080b09}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:5px 10px;background:var(--green);border-bottom:1px solid #ffffff26;z-index:2}
-.brand{font-weight:900;letter-spacing:.06em;font-size:.85rem}
-.top-actions{display:flex;gap:6px}
-.tool{border:1px solid #ffffff40;background:#ffffff17;color:#fff;border-radius:8px;padding:7px 10px;font-weight:700;cursor:pointer;text-decoration:none;font-size:.75rem}
-.viewer{position:relative;min-height:0;background:#111713;padding:10px}
-.pdf-frame{display:block;width:100%;height:100%;min-height:calc(100dvh - 120px);border:1px solid var(--line);border-radius:10px;background:#fff}
-.pdf-fallback{position:absolute;inset:10px;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px;background:#101511;color:#fff;pointer-events:none;opacity:0}
-.pdf-fallback-box{max-width:520px;background:#f3ead8;color:#17231e;padding:24px;border-radius:15px}
-.pdf-fallback a,.video-actions a{display:inline-block;margin-top:10px;background:var(--green);color:#fff;border-radius:8px;padding:10px 14px;text-decoration:none;font-weight:800}
-.bottom{display:flex;align-items:center;justify-content:center;gap:8px;background:#151b18;border-top:1px solid var(--line);padding:7px}
-.bottom a{border:1px solid #46524c;background:#252d29;color:#fff;border-radius:8px;padding:8px 12px;text-decoration:none;font-weight:800;font-size:.78rem}
-.presentation-video{background:#080b09;color:#f5f4ed;padding:56px 20px 70px;display:flex;justify-content:center;border-top:1px solid #303a35}
-.presentation-video-inner{width:min(1100px,100%)}
-.eyebrow{display:block;color:#e7bd45;font-size:.78rem;font-weight:800;letter-spacing:.12em;margin-bottom:8px}
-.presentation-video h2{margin:0 0 10px;font-size:clamp(1.6rem,3vw,2.4rem)}
-.presentation-video p{margin:0 0 24px;color:#cbd1cc;line-height:1.6}
-.presentation-video video{display:block;width:100%;max-height:680px;background:#000;border:1px solid #303a35;border-radius:14px;box-shadow:0 14px 45px #0009}
-.video-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.video-actions a{margin-top:0}
-.video-note{margin-top:12px;font-size:.78rem;color:#9da7a1}
+html{scroll-behavior:smooth}
+body{margin:0;background:#080b09;color:#f5f4ed;font-family:Arial,Helvetica,sans-serif}
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;background:#173c31;border-bottom:1px solid #ffffff30}
+header strong{font-size:.85rem;letter-spacing:.08em}
+nav{display:flex;gap:7px;flex-wrap:wrap}
+a{color:#fff;text-decoration:none}
+.btn{display:inline-block;padding:9px 12px;border:1px solid #ffffff45;border-radius:9px;background:#ffffff15;font-weight:800;font-size:.78rem}
+.viewer-section{padding:14px;background:#111713}
+.viewer{width:100%;max-width:1400px;margin:auto}
+.viewer h1{font-size:clamp(1.2rem,3vw,2rem);margin:4px 0 12px}
+.pdf-box{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #39443f;box-shadow:0 15px 50px #0008}
+.pdf-viewer{display:block;width:100%;height:min(82vh,900px);min-height:520px;border:0;background:#fff}
+.pdf-fallback{padding:25px;text-align:center;background:#17231e;color:#fff}
+.pdf-fallback a{background:#e7bd45;color:#111;padding:11px 15px;border-radius:8px;font-weight:900;display:inline-block;margin-top:8px}
+.video-section{padding:55px 16px 75px;border-top:2px solid #303a35;background:#080b09}
+.video-wrap{max-width:1100px;margin:auto}
+.eyebrow{color:#e7bd45;font-size:.78rem;font-weight:900;letter-spacing:.12em}
+h2{font-size:clamp(1.6rem,4vw,2.6rem);margin:8px 0}
+p{color:#cbd1cc;line-height:1.6}
+.video-box{margin-top:22px;background:#000;border:1px solid #39443f;border-radius:14px;overflow:hidden;box-shadow:0 18px 55px #0009}
+video{display:block;width:100%;height:auto;max-height:720px;background:#000}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.actions a{background:#173c31;border:1px solid #ffffff35;padding:10px 13px;border-radius:8px;font-weight:800}
+.notice{margin-top:12px;font-size:.8rem;color:#9da7a1}
+footer{padding:22px 16px;text-align:center;background:#151b18;border-top:1px solid #303a35}
 @media(max-width:700px){
- .app{grid-template-rows:45px 1fr 52px}
- .top-actions .tool:first-child{display:none}
- .top-actions{gap:4px}
- .tool{font-size:.6rem;padding:6px 7px}
- .brand{font-size:.58rem}
- .viewer{padding:4px}
- .pdf-frame{min-height:calc(100dvh - 105px);border-radius:6px}
- .bottom{gap:4px;overflow:auto;justify-content:flex-start}
- .bottom a{white-space:nowrap;font-size:.65rem;padding:8px 9px}
- .presentation-video{padding:40px 14px 50px}
+ .pdf-viewer{height:70vh;min-height:430px}
+ header{position:relative}
+ nav .btn{font-size:.65rem;padding:7px 8px}
+ .viewer-section{padding:8px}
 }
 </style>
-<link rel="stylesheet" href="diapositivas-dinamicas.css?v=20260930-1">
 </head>
 <body>
-<div class="app">
-<header class="topbar">
-  <div class="brand">ANDINA <b>EXPLORA</b> · PRESENTACIÓN</div>
-  <div class="top-actions">
-    <a class="tool" href="index.html">← Volver</a>
-    <a class="tool" href="presentacion-andina.pdf" target="_blank" rel="noopener">PDF ↗</a>
-  </div>
+
+<header>
+  <strong>ANDINA EXPLORA · PRESENTACIÓN</strong>
+  <nav>
+    <a class="btn" href="index.html">← Volver</a>
+    <a class="btn" href="#video">↓ Video</a>
+  </nav>
 </header>
 
-<main class="viewer" aria-label="Presentación en PDF">
-  <object class="pdf-frame" data="./presentacion-andina.pdf" type="application/pdf">
-    <iframe class="pdf-frame" src="./presentacion-andina.pdf" title="Presentación Andina">
-      <div class="pdf-fallback" style="position:static;opacity:1;pointer-events:auto">
-        <div class="pdf-fallback-box">
-          <h2>Presentación Andina</h2>
-          <p>Tu navegador no puede mostrar el PDF dentro de la página.</p>
-          <a href="presentacion-andina.pdf" target="_blank" rel="noopener">Abrir las diapositivas</a>
+<section class="viewer-section" id="diapositivas">
+  <div class="viewer">
+    <h1>Diapositivas</h1>
+    <div class="pdf-box">
+      <iframe
+        class="pdf-viewer"
+        src="./presentacion-andina.pdf#toolbar=1&navpanes=0&view=FitH"
+        title="Diapositivas de la Región Andina"
+        loading="eager">
+        <div class="pdf-fallback">
+          <p>Este navegador no puede mostrar el PDF dentro de la página.</p>
+          <a href="./presentacion-andina.pdf" target="_blank" rel="noopener">Abrir las diapositivas</a>
         </div>
-      </div>
-    </iframe>
-  </object>
-</main>
-
-<footer class="bottom">
-  <a href="presentacion-andina.pdf" target="_blank" rel="noopener">📄 Abrir PDF</a>
-  <a href="index.html#productos">← Productos</a>
-  <a href="#video">↓ Ir al video</a>
-</footer>
-</div>
-
-<!-- IMPORTANTE: esta sección está FUERA de .app, por lo que es una sección independiente después del visor. -->
-<section id="video" class="presentation-video" aria-labelledby="video-title">
-  <div class="presentation-video-inner">
-    <span class="eyebrow">VIDEO · PRODUCTO DEL GRUPO</span>
-    <h2 id="video-title">5 Minutos por Colombia</h2>
-    <p>Video integrado directamente después de las diapositivas.</p>
-    <video controls preload="metadata" playsinline>
-      <source src="./5%20Minutos%20por%20Colombia%20(1).mp4" type="video/mp4">
-      Tu navegador no puede reproducir este video.
-    </video>
-    <div class="video-actions">
-      <a href="./5%20Minutos%20por%20Colombia%20(1).mp4" target="_blank" rel="noopener">▶ Abrir video directamente</a>
-      <a href="index.html#video-grupo">Volver al video de la página principal</a>
+      </iframe>
     </div>
-    <div class="video-note">Si el reproductor integrado no inicia, usa “Abrir video directamente”. El archivo está alojado en este mismo repositorio.</div>
+    <div class="actions">
+      <a href="./presentacion-andina.pdf" target="_blank" rel="noopener">📄 Abrir PDF completo</a>
+    </div>
   </div>
 </section>
+
+<section class="video-section" id="video">
+  <div class="video-wrap">
+    <span class="eyebrow">VIDEO · PRODUCTO DEL GRUPO</span>
+    <h2>5 Minutos por Colombia</h2>
+    <p>El video está colocado como una sección independiente después de las diapositivas.</p>
+
+    <div class="video-box">
+      <video controls preload="metadata" playsinline webkit-playsinline>
+        <source src="./5%20Minutos%20por%20Colombia%20(1).mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video.
+      </video>
+    </div>
+
+    <div class="actions">
+      <a href="./5%20Minutos%20por%20Colombia%20(1).mp4" target="_blank" rel="noopener">▶ Abrir video directamente</a>
+      <a href="index.html#video-grupo">← Volver al inicio</a>
+    </div>
+    <div class="notice">Si el reproductor no aparece en tu navegador, usa “Abrir video directamente”.</div>
+  </div>
+</section>
+
+<footer>Andina Explora · Región Andina de Colombia · Grado 11°</footer>
 </body>
 </html>
